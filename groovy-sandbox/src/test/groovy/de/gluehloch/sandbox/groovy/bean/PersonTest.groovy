@@ -6,10 +6,10 @@ import org.junit.runner.JUnitCore
 /**
  * Testet die Klasse Person.
  */
-class PersonTestStub {
+class PersonTestStub extends GroovyTestCase {
 
     @Test
-	void xtestPerson() {
+	void testPerson() {
 		Person person = new Person(name: 'Winkler',
 		        surname: 'Andre', age: 37, gender: 'male')
 		assert person.surname == 'Andre'
