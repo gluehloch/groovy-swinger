@@ -6,7 +6,7 @@ import org.junit.runner.JUnitCore
 /**
  * Testet die Klasse Person.
  */
-class PersonTestStub extends GroovyTestCase {
+class PersonTest {
 
     @Test
 	void testPerson() {
