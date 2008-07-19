@@ -1,5 +1,6 @@
 package de.gluehloch.sandbox.groovy.bean
 
+import java.beans.PropertyChangeEvent
 import java.beans.PropertyChangeListener
 import java.beans.PropertyChangeSupport
 
@@ -14,10 +15,22 @@ class GroovyPropertyChangeSupport {
 	def wrappedObject
 	def listeners = [:]
 
+	/**
+	 * Hinzufügen eines Listeners, der an allen Eigenschaften interessiert ist.
+	 *
+	 * @param listener Ein PropertyChangeListener.
+	 */
 	def addPropertyChangeListener(def listener) {
 		addPropertyChangeListener(ALL, listener)
 	}
 
+	/**
+	 * Hinzufügen eines Listeners, der nur an einer bestimmten Eigenschaft
+	 * interessiert ist.
+	 *
+	 * @param name Der Name der Eigenschaft.
+	 * @param listener Ein PropertyChangeListener.
+	 */
     def addPropertyChangeListener(def name, def listener) {
         def forAllProperties
         if (listeners.containsKey(name)) {
@@ -29,13 +42,40 @@ class GroovyPropertyChangeSupport {
         forAllProperties.add(listener)
     }
 
+	/**
+	 * Entfernt einen Ein PropertyChangeListener.
+	 *
+	 * @param listener Der zu entfernende Listener.
+	 */
 	def removePropertyChangeListener(def listener) {
 		removePropertyChangeListener(ALL, listener)
 	}
 
+	/**
+	 * Entfernt einen Listener für eine bestimmte Eigenschaft.
+	 *
+	 * @param name Name der Eigenschaft.
+	 * @param listener Ein PropertyChangeListener.
+	 */
     def removePropertyChangeListener(def name, def listener) {
     	listeners.get(name)?.remove(listener)
     }
+
+	/**
+	 * Feuert ein PropertyChangeEvent.
+	 *
+	 * @param name Name der Eigenschaft.
+	 * @param oldValue Der alte Wert.
+	 * @param newValue Der neue Wert.
+	 */
+	protected void firePropertyChangeEvent(def name, def oldValue, def newValue) {
+		PropertyChangeEvent pce = new PropertyChangeEvent(name, oldValue, newValue)
+		listeners.eachWithIndex { key, listener ->
+			if (key == ALL || key == name) {
+				listener.propertyChange(pce)
+			}
+		}
+	}
 
 	// ------------------------------------------------------------------------
 
