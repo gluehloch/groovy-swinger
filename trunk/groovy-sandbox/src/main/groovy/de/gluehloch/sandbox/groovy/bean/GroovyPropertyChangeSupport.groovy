@@ -64,43 +64,22 @@ class GroovyPropertyChangeSupport {
 	/**
 	 * Feuert ein PropertyChangeEvent.
 	 *
+	 * @param object Das Objekt welches das Event feuert.
 	 * @param name Name der Eigenschaft.
 	 * @param oldValue Der alte Wert.
 	 * @param newValue Der neue Wert.
 	 */
-	protected void firePropertyChangeEvent(def name, def oldValue, def newValue) {
-		PropertyChangeEvent pce = new PropertyChangeEvent(name, oldValue, newValue)
-		listeners.eachWithIndex { key, listener ->
+	void firePropertyChangeEvent(
+			def object, def name, def oldValue, def newValue) {
+
+		PropertyChangeEvent pce =
+			new PropertyChangeEvent(object, name, oldValue, newValue)
+
+		listeners.eachWithIndex { key, listeners ->
 			if (key == ALL || key == name) {
-				listener.propertyChange(pce)
+				listeners.each { it.propertyChange(pce) }
 			}
 		}
 	}
-
-	// ------------------------------------------------------------------------
-
-    private def preparePropertyChangeListenerMechanics(def clazzToPimp) {
-    	def dummy = new Object()
-        PropertyChangeSupport support = new PropertyChangeSupport(dummy)
-        clazzToPimp.metaClass.propertyChangeSupport = support
-
-        clazzToPimp.metaClass.addPropertyChangeListener << { String key, PropertyChangeListener listener ->
-            support.addPropertyChangeListener(key, listener)
-        }
-        clazzToPimp.metaClass.addPropertyChangeListener << { PropertyChangeListener listener ->
-            support.addPropertyChangeListener(listener)
-        }
-
-        clazzToPimp.metaClass.removePropertyChangeListener << { PropertyChangeListener listener ->
-            support.removePropertyChangeListener(listener)
-        }
-
-        clazzToPimp.metaClass.setProperty = { String key, value ->
-            def metaProperty = clazzToPimp.metaClass.getMetaProperty(key);
-            def oldValue = delegate.getProperty(key);
-            metaProperty.setProperty(delegate, value);
-            delegate.propertyChangeSupport.firePropertyChange(key, oldValue, value);
-        }
-    }
 
 }
