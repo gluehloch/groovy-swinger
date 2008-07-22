@@ -39,7 +39,7 @@ class GroovyPropertyChangeSupport {
             forAllProperties = []
             listeners.put(name, forAllProperties)
         }
-        forAllProperties.add(listener)
+        forAllProperties << listener
     }
 
 	/**
@@ -64,20 +64,19 @@ class GroovyPropertyChangeSupport {
 	/**
 	 * Feuert ein PropertyChangeEvent.
 	 *
-	 * @param object Das Objekt welches das Event feuert.
 	 * @param name Name der Eigenschaft.
 	 * @param oldValue Der alte Wert.
 	 * @param newValue Der neue Wert.
 	 */
-	void firePropertyChangeEvent(
-			def object, def name, def oldValue, def newValue) {
-
+	void firePropertyChangeEvent(def name, def oldValue, def newValue) {
 		PropertyChangeEvent pce =
-			new PropertyChangeEvent(object, name, oldValue, newValue)
+			new PropertyChangeEvent(wrappedObject, name, oldValue, newValue)
 
-		listeners.eachWithIndex { key, listeners ->
+		listeners.each { key, values ->
 			if (key == ALL || key == name) {
-				listeners.each { it.propertyChange(pce) }
+				values.each { l ->
+					l.propertyChange(pce)
+				}
 			}
 		}
 	}
