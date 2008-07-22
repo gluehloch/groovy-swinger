@@ -16,13 +16,18 @@ class GroovyPropertyChangeSupportTest {
 	@Test
 	void testGroovyPropertyChangeSupport() {
 		def listener = { event ->
-			println "NAME: ${event.name}: OLD: ${event.oldValue}, NEW: ${event.newValue}"
+			println "NAME: ${event.propertyName}: OLD: ${event.oldValue}, NEW: ${event.newValue}"
 			callCounter++
 		}
 
-		def gpcs = new GroovyPropertyChangeSupport()
-		gpcs.addPropertyChangeListener(listener as PropertyChangeListener)
-		gpcs.firePropertyChangeEvent(this, "name", "adam", "lars")
+		def gpcs = new GroovyPropertyChangeSupport(wrappedObject: this)
+		def pcl = listener as PropertyChangeListener
+		gpcs.addPropertyChangeListener(pcl)
+		assert gpcs.listeners.size() == 1
+		assert gpcs.listeners['@ALL'].size() == 1
+		assert gpcs.listeners['@ALL'][0] == pcl
+
+		gpcs.firePropertyChangeEvent('name', 'adam', 'lars')
 		assert callCounter == 1
 	}
 
