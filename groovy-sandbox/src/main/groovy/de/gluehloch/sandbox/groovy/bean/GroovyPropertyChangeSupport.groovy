@@ -68,7 +68,7 @@ class GroovyPropertyChangeSupport {
 	 * @param oldValue Der alte Wert.
 	 * @param newValue Der neue Wert.
 	 */
-	void firePropertyChangeEvent(def name, def oldValue, def newValue) {
+	protected void firePropertyChangeEvent(def name, def oldValue, def newValue) {
 		PropertyChangeEvent pce =
 			new PropertyChangeEvent(wrappedObject, name, oldValue, newValue)
 
