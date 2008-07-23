@@ -5,7 +5,6 @@ import java.beans.PropertyChangeListener
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
-import org.junit.runner.JUnitCore
 
 /**
  * Testet die Klasse GroovyPropertyChangeSupport.
@@ -58,6 +57,7 @@ class GroovyPropertyChangeSupportTest {
 		assert index == 4
 	}
 
+	@Test
 	void testGroovyPropertyChangeSupportWithNamedListener() {
         def listener1 = { event ->
         	check event
@@ -78,13 +78,26 @@ class GroovyPropertyChangeSupportTest {
         gpcs.addPropertyChangeListener(
             'prop', listener3 as PropertyChangeListener)
 
-        assert gpcs.listeners.size() == 3
+        assert gpcs.listeners.size() == 2
         assert gpcs.listeners['name'].size() == 2
         assert gpcs.listeners['prop'].size() == 1
 
         checkExpectations()
         assert index == 4
 	}
+
+	@Test
+	void testGroovyPropertyChangeSupportInvariantListenerAdding() {
+        def listener = { event ->
+        	check event
+        }
+        def pcl = listener as PropertyChangeListener
+        gpcs.addPropertyChangeListener('name', pcl)
+        gpcs.addPropertyChangeListener('name', pcl)
+        assert gpcs.listeners.size() == 1
+        assert gpcs.listeners['name'].size() == 1
+        assert gpcs.listeners['prop'] == null
+    }
 
 	@Before
 	void setUp() {

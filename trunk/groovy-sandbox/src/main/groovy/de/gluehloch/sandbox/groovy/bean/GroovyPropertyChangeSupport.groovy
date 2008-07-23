@@ -12,8 +12,8 @@ class GroovyPropertyChangeSupport {
 	/** Der Marker für Listener, die alle Eigenschaften belauschen wollen. */
 	private static final def ALL = '@ALL'
 
-	def wrappedObject
-	def listeners = [:]
+	protected def wrappedObject
+	protected def listeners = [:]
 
 	/**
 	 * Hinzufügen eines Listeners, der an allen Eigenschaften interessiert ist.
@@ -39,7 +39,9 @@ class GroovyPropertyChangeSupport {
             forAllProperties = []
             listeners.put(name, forAllProperties)
         }
-        forAllProperties << listener
+        if (!forAllProperties.contains(listener)) {
+        	forAllProperties << listener
+        }
     }
 
 	/**

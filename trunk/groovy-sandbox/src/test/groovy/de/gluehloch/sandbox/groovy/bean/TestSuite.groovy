@@ -7,7 +7,8 @@ class TestSuite {
 	static void main(String[] args) {
 		JUnitCore.main(
 				PersonTest.name,
-				GroovyPropertyChangeSupportTest.name)
+				GroovyPropertyChangeSupportTest.name,
+				GroovyPropertyChangeSupportBuilderTest.name)
 	}
 
 }
