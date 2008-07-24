@@ -102,10 +102,10 @@ class GroovyPropertyChangeSupportTest {
 	@Before
 	void setUp() {
 		expectations = []
-        expectations << [propertyName: 'name', odValue: 'adam', newValue: 'lars']
-        expectations << [propertyName: 'name', odValue: 'lars', newValue: 'andre']
-        expectations << [propertyName: 'name', odValue: 'andre', newValue: 'christine']
-		expectations << [propertyName: 'prop', odValue: 'wurst', newValue: 'salami']
+        expectations << [propertyName: 'name', oldValue: 'adam', newValue: 'lars']
+        expectations << [propertyName: 'name', oldValue: 'lars', newValue: 'andre']
+        expectations << [propertyName: 'name', oldValue: 'andre', newValue: 'christine']
+		expectations << [propertyName: 'prop', oldValue: 'wurst', newValue: 'salami']
 		index = 0
 		gpcs = new GroovyPropertyChangeSupport(wrappedObject: this)
 	}
