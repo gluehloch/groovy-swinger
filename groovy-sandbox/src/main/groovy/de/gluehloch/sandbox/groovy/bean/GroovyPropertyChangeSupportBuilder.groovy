@@ -9,10 +9,14 @@ import java.beans.PropertyChangeSupport
  */
 class GroovyPropertyChangeSupportBuilder {
 
+	/**
+	 * Es wird einer einzelnen bestehenden Objektinstanz Eigenschaften
+	 * hinzugefügt.
+	 * Siehe auch http://groovy.codehaus.org/Per-Instance+MetaClass.
+	 */
     static def preparePCLMechanics(objectToPimp) {
     	def emc = new ExpandoMetaClass( objectToPimp.class, false )
 
-    	// http://groovy.codehaus.org/Per-Instance+MetaClass
         def support = new GroovyPropertyChangeSupport(wrappedObject: objectToPimp)
     	emc.propertyChangeSupport << support
 
