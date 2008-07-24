@@ -9,29 +9,34 @@ import java.beans.PropertyChangeSupport
  */
 class GroovyPropertyChangeSupportBuilder {
 
-    static def preparePCLMechanics(clazzToPimp) {
-    	// http://groovy.codehaus.org/Per-Instance+MetaClass
-        def support = new GroovyPropertyChangeSupport(wrappedObject: null)
-        clazzToPimp.metaClass.propertyChangeSupport << support
+    static def preparePCLMechanics(objectToPimp) {
+    	def emc = new ExpandoMetaClass( objectToPimp.class, false )
 
-        clazzToPimp.metaClass.addPropertyChangeListener << { String key, PropertyChangeListener listener ->
+    	// http://groovy.codehaus.org/Per-Instance+MetaClass
+        def support = new GroovyPropertyChangeSupport(wrappedObject: objectToPimp)
+    	emc.propertyChangeSupport << support
+
+    	emc.addPropertyChangeListener << { String key, PropertyChangeListener listener ->
             support.addPropertyChangeListener(key, listener)
         }
-        clazzToPimp.metaClass.addPropertyChangeListener << { PropertyChangeListener listener ->
+    	emc.addPropertyChangeListener << { PropertyChangeListener listener ->
             support.addPropertyChangeListener(listener)
         }
 
-        clazzToPimp.metaClass.removePropertyChangeListener << { PropertyChangeListener listener ->
+    	emc.removePropertyChangeListener << { PropertyChangeListener listener ->
             support.removePropertyChangeListener(listener)
         }
 
-        clazzToPimp.metaClass.setProperty = { String key, value ->
-            def metaProperty = clazzToPimp.metaClass.getMetaProperty(key);
+    	emc.setProperty = { String key, value ->
+            def metaProperty = objectToPimp.metaClass.getMetaProperty(key);
             def oldValue = delegate.getProperty(key);
             metaProperty.setProperty(delegate, value);
-            support.firePropertyChange(delegate, key, oldValue, value)
+            support.firePropertyChangeEvent(key, oldValue, value)
             // delegate.propertyChangeSupport.firePropertyChange(key, oldValue, value);
         }
+        emc.initialize()
+        objectToPimp.metaClass = emc
+        return objectToPimp
     }
 
 }
