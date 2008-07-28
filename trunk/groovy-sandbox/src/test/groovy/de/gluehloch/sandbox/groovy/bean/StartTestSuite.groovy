@@ -2,7 +2,7 @@ package de.gluehloch.sandbox.groovy.bean
 
 import org.junit.runner.JUnitCore
 //JUnitCore.main(PersonTest.name)
-class TestSuite {
+class StartTestSuite {
 
 	static void main(String[] args) {
 		JUnitCore.main(
