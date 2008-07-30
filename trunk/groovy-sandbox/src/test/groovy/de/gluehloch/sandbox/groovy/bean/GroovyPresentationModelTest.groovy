@@ -46,6 +46,20 @@ class GroovyPresentationModelTest{
 		}
 	}
 
+	@Test
+	void testGroovyPresentationModelUnbind() {
+        def name = gpm.getModel('name')
+        name.value = 'Berlin'
+        assert bean.name == 'Berlin'
+
+        gpm.unbind()
+        name.value = 'Zehlendorf'
+        assert bean.name == 'Berlin'
+
+        bean.name = 'Wusterkamp'
+        assert name.value == 'Zehlendorf'
+	}
+
 	@Before
 	void setUp() {
         bean = new Person(name : 'Winkler', surname : 'Andre', age : 38)
