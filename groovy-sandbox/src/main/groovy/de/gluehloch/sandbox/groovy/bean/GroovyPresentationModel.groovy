@@ -15,6 +15,9 @@ class GroovyPresentationModel {
 	/** Alle angelegten ValueHolders werden hier abgelegt. */
 	def valueHolders = [:]
 
+	/** Die Verbinder zwischen ValueModel und Bean-Eigenschaft. */
+	def connectors = []
+
 	/**
 	 * Das hier übergebene Bean muss PCL Eigenschaften besitzen. Entweder
 	 * auf natürliche Art und Weise oder über
@@ -44,22 +47,17 @@ class GroovyPresentationModel {
 			valueHolders[propertyName] = vh
 		}
 
-        def beanListener = { event ->
-        	vh.value = event.newValue
-        } as PropertyChangeListener
-        bean.addPropertyChangeListener(propertyName, beanListener)
-
-        def valueListener = { event ->
-        	bean.@"$propertyName" = event.newValue
-        } as PropertyChangeListener
-        vh.addValueChangeListener(valueListener)
+		def pvmc = new PropertyValueModelConnector(
+			valueModel: vh, bean: bean, propertyName: propertyName)
+		pvmc.connect()
+		connectors << pvmc
 
 		return vh
 	}
 
 	def unbind() {
-		valueHolders.each { key, value ->
-			valueHolder.removeValueChangeListener
+		connectors.each { pvmc ->
+			pvmc.disconnect()
 		}
  	}
 
