@@ -1,13 +1,13 @@
 package de.gluehloch.sandbox.groovy.bean;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+
+import javax.swing.JTextField;
+
 import org.junit.Test;
 
+import com.jgoodies.binding.adapter.Bindings;
 import com.jgoodies.binding.value.ValueModel;
-
-import de.gluehloch.sandbox.groovy.bean.GroovyPresentationModel;
-import de.gluehloch.sandbox.groovy.bean.GroovyPropertyChangeSupportBuilder;
-import de.gluehloch.sandbox.groovy.bean.Person;
 
 /**
  * Testet die Anbindung unter Java der Groovy Klasse <code>Person</code> in
@@ -24,10 +24,15 @@ public class PresentationModelTest {
 
 		GroovyPropertyChangeSupportBuilder.preparePCLMechanics(person);
 		GroovyPresentationModel gpm = new GroovyPresentationModel(person);
-		Object object = gpm.getModel("name");
-		ValueModel vm = (ValueModel) object;
+		ValueModel vm = (ValueModel) gpm.getModel("name");
 		vm.setValue("Hallo");
 		assertEquals("expected 'Hallo'", vm.getValue(), person.getName());
+
+        JTextField textField = new JTextField();
+        Bindings.bind(textField, vm);
+        assertEquals(person.getName(), textField.getText());
+        textField.setText("Hamburg");
+        assertEquals(person.getName(), "Hamburg");
 	}
 
 }
