@@ -60,6 +60,9 @@ class GroovyPropertyChangeSupport {
 	 * @param listener Ein PropertyChangeListener.
 	 */
     def removePropertyChangeListener(def name, def listener) {
+		if (name == ALL) {
+			
+		}
     	listeners.get(name)?.remove(listener)
     }
 

@@ -53,6 +53,7 @@ class GroovyPresentationModelTest{
         assert bean.name == 'Berlin'
 
         gpm.unbind()
+
         name.value = 'Zehlendorf'
         assert bean.name == 'Berlin'
 
