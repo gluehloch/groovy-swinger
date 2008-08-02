@@ -6,9 +6,11 @@ class StartTestSuite {
 
 	static void main(String[] args) {
 		JUnitCore.main(
-				PersonTest.name,
+				GroovyPresentationModelTest.name,
+				GroovyPropertyChangeSupportBuilderTest.name,
 				GroovyPropertyChangeSupportTest.name,
-				GroovyPropertyChangeSupportBuilderTest.name)
+				JGoodiesDataBindingTest.name,
+				PersonTest.name)
 	}
 
 }
