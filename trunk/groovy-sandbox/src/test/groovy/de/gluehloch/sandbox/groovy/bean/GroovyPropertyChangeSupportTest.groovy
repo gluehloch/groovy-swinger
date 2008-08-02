@@ -87,16 +87,31 @@ class GroovyPropertyChangeSupportTest {
 	}
 
 	@Test
-	void testGroovyPropertyChangeSupportInvariantListenerAdding() {
+	void testGroovyPropertyChangeSupportInvariantListenerAddingAndRemoving() {
+		def eventCounter = 0
         def listener = { event ->
-        	check event
+        	eventCounter++
         }
+
         def pcl = listener as PropertyChangeListener
         gpcs.addPropertyChangeListener('name', pcl)
         gpcs.addPropertyChangeListener('name', pcl)
         assert gpcs.listeners.size() == 1
         assert gpcs.listeners['name'].size() == 1
         assert gpcs.listeners['prop'] == null
+
+        gpcs.addPropertyChangeListener('age', pcl)
+        assert gpcs.listeners.size() == 2
+        assert gpcs.listeners['name'].size() == 1
+        assert gpcs.listeners['age'].size() == 1
+        gpcs.firePropertyChangeEvent('name', 'oldValue', 'newValue')
+        assert eventCounter == 1
+        gpcs.firePropertyChangeEvent('age', 12, 24)
+        assert eventCounter == 2
+
+        gpcs.removePropertyChangeListener(pcl)
+        gpcs.firePropertyChangeEvent('age', 12, 24)
+        assert eventCounter == 2
     }
 
 	@Before

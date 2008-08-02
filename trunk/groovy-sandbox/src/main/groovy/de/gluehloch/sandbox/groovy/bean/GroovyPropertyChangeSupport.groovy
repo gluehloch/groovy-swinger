@@ -12,7 +12,13 @@ class GroovyPropertyChangeSupport {
 	/** Der Marker für Listener, die alle Eigenschaften belauschen wollen. */
 	private static final def ALL = '@ALL'
 
+	/** Das Objekt welches um PCL Eigenschaften ergänzt wird. */
 	protected def wrappedObject
+
+	/**
+	 * Alle PC-Listener mit key gleich dem Namen der Eigenschaft auf die
+	 * gelauscht wird.
+	 */
 	protected def listeners = [:]
 
 	/**
@@ -60,10 +66,12 @@ class GroovyPropertyChangeSupport {
 	 * @param listener Ein PropertyChangeListener.
 	 */
     def removePropertyChangeListener(def name, def listener) {
-		if (name == ALL) {
-			
-		}
     	listeners.get(name)?.remove(listener)
+		if (name == ALL) {
+			listeners.each { key, value ->
+				value.remove(listener)
+			}
+		}    	
     }
 
 	/**
