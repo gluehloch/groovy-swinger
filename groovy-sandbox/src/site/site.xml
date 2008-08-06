@@ -26,6 +26,7 @@
 
     <menu name="Groovy Sandbox Project">
       <item name="Beipackzettel" href="index.html"/>
+      <item name="Idee" href="propertychange.html"/>
     </menu>
     <!-- http://maven.apache.org/images/logos/maven-brewed.png -->
     <menu ref="reports" />
