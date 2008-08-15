@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>de.gluehloch</groupId>
+    <artifactId>gluehloch-maven-parent
+    </artifactId>
+    <version>7</version>
+  </parent>
+  <groupId>de.gluehloch.sandbox</groupId>
+  <artifactId>groovy-sandbox</artifactId>
+  <version>0.1.0</version>
+  <description>Groovier swing programming.</description>
+
+  <scm>
+    <connection>
+      scm:svn:https://groovy-swinger.googlecode.com/svn/trunk/groovy-sandbox
+    </connection>
+    <developerConnection>
+      scm:svn:https://groovy-swinger.googlecode.com/svn/trunk/groovy-sandbox
+    </developerConnection>
+    <url>https://groovy-swinger.googlecode.com/svn/trunk/groovy-sandbox</url>
+  </scm>
+
+  <licenses>
+    <license>
+      <name>LGPL Version 2</name>
+      <url>http://www.gnu.org/licenses/lgpl.txt</url>
+      <distribution>repo</distribution>
+      <comments>A business-friendly OSS license</comments>
+    </license>
+  </licenses>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.groovy.maven</groupId>
+        <artifactId>gmaven-plugin</artifactId>
+        <version>1.0-rc-3</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>generateStubs</goal>
+              <goal>compile</goal>
+              <goal>generateTestStubs</goal>
+              <goal>testCompile</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>cobertura-maven-plugin</artifactId>
+        <configuration>
+          <check>
+            <branchRate>85</branchRate>
+            <lineRate>85</lineRate>
+            <haltOnFailure>false</haltOnFailure>
+            <totalBranchRate>85</totalBranchRate>
+            <totalLineRate>85</totalLineRate>
+            <packageLineRate>85</packageLineRate>
+            <packageBranchRate>85</packageBranchRate>
+          </check>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>clean</goal>
+              <goal>check</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
+  <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>cobertura-maven-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </reporting>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.codehaus.groovy.maven.runtime</groupId>
+      <artifactId>gmaven-runtime-default</artifactId>
+      <version>1.0-rc-3</version>
+    </dependency>
+    <dependency>
+      <groupId>com.jgoodies</groupId>
+      <artifactId>binding</artifactId>
+      <version>2.0.4</version>
+      <scope>compile</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.4</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+</project>
