@@ -7,9 +7,9 @@
     </artifactId>
     <version>7</version>
   </parent>
-  <groupId>groovy-sandbox</groupId>
+  <groupId>de.gluehloch.sandbox</groupId>
   <artifactId>groovy-sandbox</artifactId>
-  <version>0.1.0-SNAPSHOT</version>
+  <version>0.1.0</version>
   <description>Groovier swing programming.</description>
 
   <scm>
@@ -36,6 +36,7 @@
       <plugin>
         <groupId>org.codehaus.groovy.maven</groupId>
         <artifactId>gmaven-plugin</artifactId>
+        <version>1.0-rc-3</version>
         <executions>
           <execution>
             <goals>
@@ -86,7 +87,7 @@
     <dependency>
       <groupId>org.codehaus.groovy.maven.runtime</groupId>
       <artifactId>gmaven-runtime-default</artifactId>
-      <version>1.0-rc-2</version>
+      <version>1.0-rc-3</version>
     </dependency>
     <dependency>
       <groupId>com.jgoodies</groupId>
