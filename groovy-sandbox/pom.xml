@@ -5,11 +5,11 @@
     <groupId>de.gluehloch</groupId>
     <artifactId>gluehloch-maven-parent
     </artifactId>
-    <version>7</version>
+    <version>8</version>
   </parent>
   <groupId>de.gluehloch.sandbox</groupId>
   <artifactId>groovy-sandbox</artifactId>
-  <version>0.1.0</version>
+  <version>0.2.0-SNAPSHOT</version>
   <description>Groovier swing programming.</description>
 
   <scm>

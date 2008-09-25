@@ -36,7 +36,7 @@ class GroovyPresentationModel {
 	 * @param propertyName Der Name der Eigenschaft.
 	 * @return Ein JGoodies ValueModel.
 	 */
-	def getModel(propertyName) {
+	ValueModel getModel(propertyName) {
 		if (!bean.metaClass.properties.find { it.name == propertyName }) {
 			throw new IllegalArgumentException("Unknown property ${propertyName}")
 		}
