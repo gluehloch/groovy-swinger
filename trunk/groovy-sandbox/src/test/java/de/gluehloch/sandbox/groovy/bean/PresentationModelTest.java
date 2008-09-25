@@ -17,14 +17,18 @@ import com.jgoodies.binding.value.ValueModel;
 public class PresentationModelTest {
 
 	@Test
-	public void testGroovy() {
+	public void testGroovierPresentationModel() {
 		Person person = new Person();
 		person.setAge(39);
 		person.setName("Winkler");
 
+		// Das Bean um PropertyChangeListener Eigenschaften anreichern.
 		GroovyPropertyChangeSupportBuilder.preparePCLMechanics(person);
+
+		// Ein PresentationModel ähnlich zu JGoodies.
 		GroovyPresentationModel gpm = new GroovyPresentationModel(person);
-		ValueModel vm = (ValueModel) gpm.getModel("name");
+
+		ValueModel vm = gpm.getModel("name");
 		vm.setValue("Hallo");
 		assertEquals("expected 'Hallo'", vm.getValue(), person.getName());
 
