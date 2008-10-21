@@ -13,10 +13,10 @@ class GroovyJunit4ExampleTest {
 }
 
 //
-// Das neue GMaven Plugin unterstützt diese Art des Scriptings nicht mehr, da
-// für alle Testklassen ein Stub generiert wird. Hier müssten zwei Stubs
+// Das neue GMaven Plugin unterstÃ¼tzt diese Art des Scriptings nicht mehr, da
+// fÃ¼r alle Testklassen ein Stub generiert wird. Hier mÃ¼ssten zwei Stubs
 // generiert werden (einmal die Klasse mit der Main Methode, und dann den Stub
-// fuer GroovyJunit4ExampleTest), was aus Namensgründen nicht unterstützt wird.
+// fuer GroovyJunit4ExampleTest), was aus NamensgrÃ¼nden nicht unterstÃ¼tzt wird.
 //
 //JUnitCore.main(GroovyJunit4ExampleTest.name)
 //
