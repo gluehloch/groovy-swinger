@@ -15,7 +15,7 @@ class Person {
 
   Der folgende Quelltext ist eine typische Anwendung. Person wird mit
   der Klasse GroovyPropertyChangeSupportBuilder um PropertyChangeListener
-  Eigenschaften aufgepeppt. Anschlieﬂend wird mit JGoodies Data Binding die
+  Eigenschaften aufgepeppt. Anschlie√üend wird mit JGoodies Data Binding die
   Groovy Bean an ein Swing TextField angeschlossen.
   
 +------------------------------------------------------------------------------+

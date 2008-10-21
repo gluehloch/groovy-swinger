@@ -25,7 +25,7 @@ public class PresentationModelTest {
 		// Das Bean um PropertyChangeListener Eigenschaften anreichern.
 		GroovyPropertyChangeSupportBuilder.preparePCLMechanics(person);
 
-		// Ein PresentationModel ähnlich zu JGoodies.
+		// Ein PresentationModel Ã¤hnlich zu JGoodies.
 		GroovyPresentationModel gpm = new GroovyPresentationModel(person);
 
 		ValueModel vm = gpm.getModel("name");

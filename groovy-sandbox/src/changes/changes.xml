@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <document>
   <properties>
     <title>Change Notes</title>
@@ -7,9 +7,13 @@
   <body>
     <release version="groovy-swing-0.2.0" date="2008-??-??"
          description="???">
+      <action dev="andrewinkler" type="update" date="2008-10-21">
+        Das Encoding aller Textdateien ist auf UTF-8 umgestellt
+        Kleiner Test: äöü ÄÖÜ ß.
+      </action>
       <action dev="andrewinkler" type="add" date="2008-09-25">
         GroovyPresentationModel#getModel() liefert getyptes Objekt zurueck.
-        Damit entfaellt der unschoene Cast in der Java Welt bei Aufruf dieser
+        Damit entfällt der unschöne Cast in der Java Welt bei Aufruf dieser
         Methode.
       </action>
     </release>
