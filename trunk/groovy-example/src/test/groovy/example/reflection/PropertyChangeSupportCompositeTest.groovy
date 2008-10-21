@@ -7,7 +7,7 @@ import org.junit.Before
 import org.junit.Test
 
 /**
- * Das Delegate wird in ein Composite verpackt. Dieses kümmert sich um das 
+ * Das Delegate wird in ein Composite verpackt. Dieses kÃ¼mmert sich um das 
  * versenden der PropertyChangeEvents.
  */
 class PropertyChangeSupportCompositeTest extends GroovyTestCase {

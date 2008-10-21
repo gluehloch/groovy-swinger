@@ -7,12 +7,12 @@ import org.junit.Test
 import org.junit.runner.JUnitCore
 
 /**
- * Fügt PropertyChangeSupport in ein Java Bean ein.
+ * ErgÃ¤nzt ein Bean um PropertyChangeSupport.
  */
 class AddPropertyChangeSupportTest {
 
     /**
-     * Erweiterung einer Klasse um Methoden für das Verwalten von
+     * Erweiterung einer Klasse um Methoden fÃ¼r das Verwalten von
      * PropertyChangeListener.
      */
     @Test
