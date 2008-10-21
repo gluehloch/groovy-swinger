@@ -9,10 +9,10 @@ import java.beans.PropertyChangeSupport
  */
 class GroovyPropertyChangeSupport {
 
-	/** Der Marker für Listener, die alle Eigenschaften belauschen wollen. */
+	/** Der Marker fÃ¼r Listener, die alle Eigenschaften belauschen wollen. */
 	private static final def ALL = '@ALL'
 
-	/** Das Objekt welches um PCL Eigenschaften ergänzt wird. */
+	/** Das Objekt welches um PCL Eigenschaften ergÃ¤nzt wird. */
 	protected def wrappedObject
 
 	/**
@@ -22,7 +22,7 @@ class GroovyPropertyChangeSupport {
 	protected def listeners = [:]
 
 	/**
-	 * Hinzufügen eines Listeners, der an allen Eigenschaften interessiert ist.
+	 * HinzufÃ¼gen eines Listeners, der an allen Eigenschaften interessiert ist.
 	 *
 	 * @param listener Ein PropertyChangeListener.
 	 */
@@ -31,7 +31,7 @@ class GroovyPropertyChangeSupport {
 	}
 
 	/**
-	 * Hinzufügen eines Listeners, der nur an einer bestimmten Eigenschaft
+	 * HinzufÃ¼gen eines Listeners, der nur an einer bestimmten Eigenschaft
 	 * interessiert ist.
 	 *
 	 * @param name Der Name der Eigenschaft.
@@ -60,7 +60,7 @@ class GroovyPropertyChangeSupport {
 	}
 
 	/**
-	 * Entfernt einen Listener für eine bestimmte Eigenschaft.
+	 * Entfernt einen Listener fÃ¼r eine bestimmte Eigenschaft.
 	 *
 	 * @param name Name der Eigenschaft.
 	 * @param listener Ein PropertyChangeListener.

@@ -19,8 +19,8 @@ class GroovyPresentationModel {
 	def connectors = []
 
 	/**
-	 * Das hier übergebene Bean muss PCL Eigenschaften besitzen. Entweder
-	 * auf natürliche Art und Weise oder über
+	 * Das hier Ã¼bergebene Bean muss PCL Eigenschaften besitzen. Entweder
+	 * auf natÃ¼rliche Art und Weise oder Ã¼ber
 	 * GroovyPropertyChangeSupportBuilder.
 	 *
 	 * @param _bean Das gewrappte Bean.
@@ -30,7 +30,7 @@ class GroovyPresentationModel {
 	}
 
 	/**
-	 * Liefert ein JGoodies ValueModel für eine Eigenschaft des gewrappten
+	 * Liefert ein JGoodies ValueModel fÃ¼r eine Eigenschaft des gewrappten
 	 * Beans.
 	 *
 	 * @param propertyName Der Name der Eigenschaft.

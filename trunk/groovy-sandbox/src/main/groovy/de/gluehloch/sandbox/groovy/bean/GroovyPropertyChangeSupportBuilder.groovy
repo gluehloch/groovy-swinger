@@ -5,13 +5,13 @@ import java.beans.PropertyChangeListener
 import java.beans.PropertyChangeSupport
 
 /**
- * Ergänzt ein Objekt um PropertyChangeSupport Eigenschaften.
+ * ErgÃ¤nzt ein Objekt um PropertyChangeSupport Eigenschaften.
  */
 class GroovyPropertyChangeSupportBuilder {
 
 	/**
 	 * Es wird einer einzelnen bestehenden Objektinstanz Eigenschaften
-	 * hinzugefügt.
+	 * hinzugefÃ¼gt.
 	 * Siehe auch http://groovy.codehaus.org/Per-Instance+MetaClass.
 	 */
     static def preparePCLMechanics(objectToPimp) {

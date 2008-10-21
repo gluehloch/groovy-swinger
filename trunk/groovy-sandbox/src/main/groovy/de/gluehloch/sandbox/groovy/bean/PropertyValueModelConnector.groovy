@@ -4,7 +4,7 @@ import java.beans.PropertyChangeListener
 
 /**
  * Verbindet eine Bean-Eigenschaft und ein ValueModel miteinander. D.h.
- * Änderungen an der Bean-Eigenschaft übertragen sich auf das ValueModel
+ * Ã„nderungen an der Bean-Eigenschaft Ã¼bertragen sich auf das ValueModel
  * und umgekehrt.
  */
 class PropertyValueModelConnector {
