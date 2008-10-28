@@ -3,8 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>de.gluehloch</groupId>
-    <artifactId>gluehloch-maven-parent
-    </artifactId>
+    <artifactId>gluehloch-maven-parent</artifactId>
     <version>8</version>
   </parent>
   <groupId>de.gluehloch.sandbox</groupId>
