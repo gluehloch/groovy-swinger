@@ -87,5 +87,11 @@
       <version>4.4</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>oracle.jdbc.driver</groupId>
+      <artifactId>ojdbc14</artifactId>
+      <version>10.0</version>
+      <scope>compile</scope>
+    </dependency>
   </dependencies>
 </project>
