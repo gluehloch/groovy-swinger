@@ -83,6 +83,10 @@
               <name>groovy.oracle.test.url</name>
               <value>${groovy.oracle.test.url}</value>
             </property>
+            <property>
+              <name>groovy.oracle.purge_recyclebin</name>
+              <value>${groovy.oracle.purge_recyclebin}</value>
+            </property>
           </systemProperties>
         </configuration>
       </plugin>
