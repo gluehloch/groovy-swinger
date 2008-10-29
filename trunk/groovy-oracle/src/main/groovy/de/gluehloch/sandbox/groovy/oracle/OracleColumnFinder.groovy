@@ -8,7 +8,7 @@ class OracleColumnFinder {
     /**
      * Liefert eine Liste aller Spaltenbeschreibungen einer Oracle Datenbank
      * Tabelle. Es wird eine leere Liste zurückgeliefert, wenn eine
-     * enstprechende Tablle nicht gefunden werden konnte.
+     * enstprechende Tabelle nicht gefunden werden konnte.
      *
      * @param sql Ein Groovy SQL
      * @param tableName Der Name der Tabelle.
