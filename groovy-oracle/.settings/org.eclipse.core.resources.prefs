@@ -1,4 +1,25 @@
-#Tue Oct 28 15:02:15 CET 2008
+#Tue Oct 28 17:45:05 CET 2008
 eclipse.preferences.version=1
+encoding//src/main/groovy/de/gluehloch/sandbox/groovy/oracle/DisableConstraints.groovy=UTF-8
+encoding//src/main/groovy/de/gluehloch/sandbox/groovy/oracle/EnableConstraints.groovy=UTF-8
+encoding//src/main/groovy/de/gluehloch/sandbox/groovy/oracle/ForeignKey.groovy=UTF-8
 encoding//src/main/groovy/de/gluehloch/sandbox/groovy/oracle/OraUtils.groovy=UTF-8
+encoding//src/main/groovy/de/gluehloch/sandbox/groovy/oracle/OracleColumn.groovy=UTF-8
+encoding//src/main/groovy/de/gluehloch/sandbox/groovy/oracle/OracleColumnFinder.groovy=UTF-8
+encoding//src/main/groovy/de/gluehloch/sandbox/groovy/oracle/OracleConstraint.groovy=UTF-8
+encoding//src/main/groovy/de/gluehloch/sandbox/groovy/oracle/OracleMetaDataFactory.groovy=UTF-8
+encoding//src/main/groovy/de/gluehloch/sandbox/groovy/oracle/OracleTable.groovy=UTF-8
+encoding//src/main/groovy/de/gluehloch/sandbox/groovy/oracle/OracleTableFinder.groovy=UTF-8
+encoding//src/main/groovy/de/gluehloch/sandbox/groovy/oracle/PrimaryKey.groovy=UTF-8
+encoding//src/test/groovy/de/gluehloch/sandbox/groovy/oracle/ForeignKeyTest.groovy=UTF-8
 encoding//src/test/groovy/de/gluehloch/sandbox/groovy/oracle/OraUtilsTest.groovy=UTF-8
+encoding//src/test/groovy/de/gluehloch/sandbox/groovy/oracle/OracleColumnFinderTest.groovy=UTF-8
+encoding//src/test/groovy/de/gluehloch/sandbox/groovy/oracle/OracleColumnTest.groovy=UTF-8
+encoding//src/test/groovy/de/gluehloch/sandbox/groovy/oracle/OracleConstraintTest.groovy=UTF-8
+encoding//src/test/groovy/de/gluehloch/sandbox/groovy/oracle/OracleMetaDataFactoryTest.groovy=UTF-8
+encoding//src/test/groovy/de/gluehloch/sandbox/groovy/oracle/OracleTableFinderTest.groovy=UTF-8
+encoding//src/test/groovy/de/gluehloch/sandbox/groovy/oracle/OracleTableTest.groovy=UTF-8
+encoding//src/test/groovy/de/gluehloch/sandbox/groovy/oracle/PrepareUnitTestDatabase.groovy=UTF-8
+encoding//src/test/groovy/de/gluehloch/sandbox/groovy/oracle/PrimaryKeyTest.groovy=UTF-8
+encoding//src/test/groovy/de/gluehloch/sandbox/groovy/oracle/TestDatabaseUtility.groovy=UTF-8
+encoding/<project>=UTF-8

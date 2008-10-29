@@ -23,6 +23,7 @@ class OraUtilsTest {
         <groovy.oracle.test.user>user</groovy.oracle.test.user>
         <groovy.oracle.test.password>password</groovy.oracle.test.password>
         <groovy.oracle.test.url>host:port:sid</groovy.oracle.test.url>
+        <groovy.oracle.test.purge_recyclebin>true</groovy.oracle.test.purge_recyclebin>
       </properties>
     </profile>
   </profiles>
