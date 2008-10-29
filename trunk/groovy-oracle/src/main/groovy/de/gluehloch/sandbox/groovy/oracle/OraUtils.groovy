@@ -5,9 +5,15 @@ import java.sql.*
 import groovy.sql.Sql
 
 /**
- * Utitilits für den Umgang mit Oracle
+ * Utitilits für den Umgang mit Oracle. Die Methode <code>purgeRecyclebin</code>
+ * wird nur ausgeführt, wenn die System-Eigenschaft
+ * <code>groovy.oracle.purge_recyclebin</code> gesetzt ist.
  */
 class OraUtils {
+
+	static def createSql(user, password, url, port, sid) {
+		return createSql(user, password, "${url}:${port}:${sid}")
+	}
 
     static def createSql(user, password, url) {
         def sql
@@ -26,7 +32,9 @@ class OraUtils {
     }
 
     static void purgeRecyclebin(sql) {
-        sql.execute "purge recyclebin"
+    	if (System.getProperty('groovy.oracle.purge_recyclebin') == 'true') {
+    		sql.execute "purge recyclebin"
+    	}
     }
 
 }
