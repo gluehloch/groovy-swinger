@@ -11,7 +11,7 @@ class OracleTable {
 
     String tableName;
 
-    /** Eine Liste mit OracleColumn Eintr�gen. */
+    /** Eine Liste mit OracleColumn Einträgen. */
     def columnMetaData = [];
 
     /** Ein OracleConstraint Objekt. */
@@ -38,18 +38,20 @@ class OracleTable {
      * Z.B: attr1, attr2, ..., attrN
      */
     def toColumnList() {
-        def stmt = ""
-        columnMetaData.eachWithIndex { column, index ->
-            stmt += column.columnName
-            if (index < columnMetaData.size() - 1) {
-                stmt += ", "
-            }
-        }
-        return stmt
+        return columnMetaData.collect { it.columnName }.join(", ")
+
+//        def stmt = ""
+//        columnMetaData.eachWithIndex { column, index ->
+//            stmt += column.columnName
+//            if (index < columnMetaData.size() - 1) {
+//                stmt += ", "
+//            }
+//        }
+//        return stmt
     }
 
     /**
-     * Liefert eine kommaseparierte Aufz�hlung aller Spalten.
+     * Liefert eine kommaseparierte Aufzählung aller Spalten.
      * Z.B: attr1, attr2, ..., attrN
      *
      * @param ignoreColumns Eine Liste der zu ignorierenden Spalten.

@@ -70,7 +70,7 @@ class OracleColumn {
             snippet += dataType + "(${dataLength})"
             break
         default:
-            throw new RuntimeException("IFRS-TEST: Unknown datatype: ${dataType}.")
+            throw new RuntimeException("Unknown datatype: ${dataType}.")
         }
 
         if (dataDefault != null) {
