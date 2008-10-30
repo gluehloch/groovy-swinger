@@ -35,43 +35,56 @@ class OracleColumn {
     }
 
     /**
-     * Liefert die Beschreibung der Datenbankspalte. Dieser Beschreibung kann
-     * in einem 'CREATE TABLE' Befehl eingesetzt werden.
+     * Liefert den SQL Typ dieser Spalte.
+     *
+     * @return Der SQL Typ der Spalte.
      */
-    def toScript() {
-        if (columnName == null || columnName == "")
-            throw new IllegalArgumentException("ColumnName not specified!")
-
-        def snippet = "\"${columnName}\" "
+    def toType() {
+    	def snippet = ''
         if (dataType.startsWith("TIMESTAMP")) {
             dataType = "TIMESTAMP"
         }
 
         switch (dataType) {
-        case "VARCHAR2":
+        case 'VARCHAR2':
             snippet += dataType + "(${dataLength} BYTE)"
             break
-        case "CHAR":
+        case 'CHAR':
             snippet += dataType + "(${dataLength} BYTE)"
             break
-        case "DATE":
+        case 'DATE':
             snippet += dataType
             break
-        case "TIMESTAMP":
+        case 'TIMESTAMP':
             snippet += dataType + "(${dataScale})"
             break
-        case "NUMBER":
+        case 'NUMBER':
             snippet += dataType
             if (dataPrecision != null && dataScale != null) {
                 snippet += "(${dataPrecision},${dataScale})"
             }
             break
-        case "UROWID":
+        case 'UROWID':
             snippet += dataType + "(${dataLength})"
             break
         default:
             throw new RuntimeException("Unknown datatype: ${dataType}.")
         }
+        return snippet
+    }
+
+    /**
+     * Liefert die Beschreibung der Datenbankspalte. Diese Beschreibung kann
+     * in einem 'CREATE TABLE' Befehl eingesetzt werden.
+     *
+     * @return SQL Beschreibung der Spalte.
+     */
+    def toScript() {
+        if (!columnName)
+            throw new IllegalArgumentException("ColumnName not specified!")
+
+        def snippet = "\"${columnName}\" "
+        snippet += toType()
 
         if (dataDefault != null) {
             snippet = snippet + " DEFAULT " + dataDefault
