@@ -39,15 +39,6 @@ class OracleTable {
      */
     def toColumnList() {
         return columnMetaData.collect { it.columnName }.join(", ")
-
-//        def stmt = ""
-//        columnMetaData.eachWithIndex { column, index ->
-//            stmt += column.columnName
-//            if (index < columnMetaData.size() - 1) {
-//                stmt += ", "
-//            }
-//        }
-//        return stmt
     }
 
     /**
