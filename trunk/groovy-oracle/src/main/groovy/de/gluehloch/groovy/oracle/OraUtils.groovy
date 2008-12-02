@@ -1,11 +1,11 @@
-package de.gluehloch.sandbox.groovy.oracle
+package de.gluehloch.groovy.oracle
 
 import java.sql.*
 
 import groovy.sql.Sql
 
 /**
- * Utitilits für den Umgang mit Oracle. Die Methode <code>purgeRecyclebin</code>
+ * Utilities für den Umgang mit Oracle. Die Methode <code>purgeRecyclebin</code>
  * wird nur ausgeführt, wenn die System-Eigenschaft
  * <code>groovy.oracle.purge_recyclebin</code> gesetzt ist.
  */

@@ -1,4 +1,4 @@
-package de.gluehloch.sandbox.groovy.oracle
+package de.gluehloch.groovy.oracle.meta
 
 import org.junit.Test
 import org.junit.Before
