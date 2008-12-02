@@ -1,4 +1,6 @@
-package de.gluehloch.sandbox.groovy.oracle
+package de.gluehloch.groovy.oracle.meta
+
+import de.gluehloch.groovy.oracle.OraUtils
 
 import groovy.sql.Sql
 
@@ -39,7 +41,7 @@ Check your maven .settings.xml or update your system properties:
             throw new IllegalStateException()
         }
     
-        return OraUtils.createSql(user, pwd, url)
+        OraUtils.createSql(user, pwd, url)
     }
 
     @Test

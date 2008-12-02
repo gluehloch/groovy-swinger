@@ -1,4 +1,4 @@
-package de.gluehloch.sandbox.groovy.oracle
+package de.gluehloch.groovy.oracle.meta
 
 /**
  * Die Klasse schaltet alle Constraints in einem User-Schema AUS.

@@ -1,4 +1,4 @@
-package de.gluehloch.sandbox.groovy.oracle
+package de.gluehloch.groovy.oracle.meta
 
 /**
  * Informationen �ber den Prim�rschl�ssel in einer Oracle-Datenbank.

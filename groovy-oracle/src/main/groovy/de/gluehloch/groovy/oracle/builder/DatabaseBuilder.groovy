@@ -1,4 +1,4 @@
-package de.gluehloch.sandbox.groovy.builder
+package de.gluehloch.groovy.oracle.builder
 
 class DatabaseBuilder {
 

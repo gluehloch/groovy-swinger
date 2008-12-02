@@ -1,4 +1,4 @@
-package de.gluehloch.sandbox.groovy.oracle
+package de.gluehloch.groovy.oracle.meta
 
 /**
  * Informationen über einen Fremdschlüsselbeziehung in einer Oracle-Datenbank.

@@ -1,4 +1,6 @@
-package de.gluehloch.sandbox.groovy.oracle
+package de.gluehloch.groovy.oracle.meta
+
+import de.gluehloch.groovy.oracle.OraUtils
 
 import groovy.sql.Sql
 
