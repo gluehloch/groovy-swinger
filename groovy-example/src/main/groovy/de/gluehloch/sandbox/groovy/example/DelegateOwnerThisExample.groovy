@@ -35,6 +35,7 @@ class ClassAsExample  {
         assert "de.gluehloch.sandbox.groovy.example.DelegateOwnerThisExample" == delegate.class.name
         println "Delegate: " + delegate.class.name
 
+        // Demo für Owner
         println "Owner: " + owner.class.name
         def nestedClos = {
             println "Owner (in inner closure): " + owner.class.name
