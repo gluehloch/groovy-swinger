@@ -28,17 +28,22 @@ package de.gluehloch.sandbox.groovy.example
 class ClassAsExample  {
     def closure = {
     	// this referenziert das umgebende Objekt. 
-    	assert "de.gluehloch.sandbox.groovy.example.ClassAsExample" == this.class.name
-        println this.class.name
+    	assert 'de.gluehloch.sandbox.groovy.example.ClassAsExample' == this.class.name
+        println 'this: ' + this.class.name
 
-        // Delegate wurde umgebogen.
-        assert "de.gluehloch.sandbox.groovy.example.DelegateOwnerThisExample" == delegate.class.name
-        println "Delegate: " + delegate.class.name
+        // Delegate wurde umgebogen auf das Objekt DelegateOwnerThisExample.
+        assert 'de.gluehloch.sandbox.groovy.example.DelegateOwnerThisExample' == delegate.class.name
+        println 'delegate: ' + delegate.class.name
 
-        // Demo für Owner
-        println "Owner: " + owner.class.name
+        // Demo für Owner. Liefert das gleiche Ergebnis wie this.
+        println 'owner: ' + owner.class.name
         def nestedClos = {
-            println "Owner (in inner closure): " + owner.class.name
+    		assert 'de.gluehloch.sandbox.groovy.example.ClassAsExample$_closure1' == owner.class.name
+            println 'owner (in inner closure): ' + owner.class.name
+            // In einer verschachtelten Closure bleibt this auf das umgebende
+            // Objekt kleben.
+            assert 'de.gluehloch.sandbox.groovy.example.ClassAsExample' == this.class.name
+            println 'this (in inner closure): ' + this.class.name
         }
         nestedClos()
     }
@@ -60,10 +65,6 @@ class DelegateOwnerThisExample {
         // 'delegate' mit der gleichen Referenz wie der 'owner' bestückt.
         clos.delegate = new DelegateOwnerThisExample()
         clos()
-			/*  prints:
-			 Class1
-			 Script1
-			 Class1$_closure1  */
     }
 
 }
