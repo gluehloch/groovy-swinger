@@ -38,7 +38,8 @@ class ChainingExampleTest {
 	 @Test
 	 void testChainingExample() {
 		 def ce = new ChainingExample()
-		 ce.example_1()
+		 ce.closureChain()
+		 ce.curryExample()
 	 }
 
 	
