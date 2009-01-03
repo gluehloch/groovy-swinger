@@ -12,9 +12,15 @@
         Kleiner Test: äöü ÄÖÜ ß.
       </action>
       <action dev="andrewinkler" type="add" date="2008-09-25">
-        GroovyPresentationModel#getModel() liefert getyptes Objekt zurueck.
+        GroovyPresentationModel#getModel() liefert getyptes Objekt zurück.
         Damit entfällt der unschöne Cast in der Java Welt bei Aufruf dieser
         Methode.
+      </action>
+      <action dev="andrewinkler" type="add" date="2009-01-03">
+        GroovyPropertyChangeSupportBuilder#preparePCLMechanics() ergänzt
+        das Bean um eine #addPropertyChangeListener(Closure) Methode. Damit
+        entfällt der explizite Cast auf einen PropertyChangeListener bei
+        Aufruf der Methode 'pcl-bean'#addPropertyChangeListener(...)
       </action>
     </release>
 
