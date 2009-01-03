@@ -23,8 +23,13 @@ class GroovyPropertyChangeSupportBuilder {
     	emc.addPropertyChangeListener << { String key, PropertyChangeListener listener ->
             support.addPropertyChangeListener(key, listener)
         }
+
     	emc.addPropertyChangeListener << { PropertyChangeListener listener ->
             support.addPropertyChangeListener(listener)
+        }
+
+        emc.addPropertyChangeListener << { Closure listener ->
+            support.addPropertyChangeListener(listener as PropertyChangeListener)
         }
 
     	emc.removePropertyChangeListener << { PropertyChangeListener listener ->

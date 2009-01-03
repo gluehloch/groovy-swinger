@@ -41,6 +41,12 @@ class GroovyPropertyChangeSupportBuilderTest {
 		person.name = 'andre'
 		person.name = 'christine'
 		person.age = 24
+
+		person.addPropertyChangeListener({ event ->
+			assert event.newValue == 'newValue'
+			assert event.propertyName == 'name'
+		})
+		person.name = 'newValue'
 	}
 
     @Before
@@ -51,6 +57,7 @@ class GroovyPropertyChangeSupportBuilderTest {
         expectations << [propertyName: 'name', oldValue: 'andre', newValue: 'christine']
         expectations << [propertyName: 'age', oldValue: null, newValue: 24]
         expectations << [propertyName: 'age', oldValue: null, newValue: 24]
+        expectations << [propertyName: 'name', oldValue: 'christine', newValue: 'newValue']
         index = 0
     }
 
