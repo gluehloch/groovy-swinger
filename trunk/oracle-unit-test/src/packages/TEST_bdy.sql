@@ -1,5 +1,5 @@
 CREATE OR REPLACE
-PACKAGE BODY T AS
+PACKAGE BODY TEST AS
 
   FUNCTION boolean_to_char
   (
@@ -14,7 +14,7 @@ PACKAGE BODY T AS
     END CASE;
   END boolean_to_char;
 
-  PROCEDURE throwAssertionException
+  PROCEDURE throw_assertion_exception
   (
      p_expected IN VARCHAR2
     ,p_value    IN VARCHAR2
@@ -29,9 +29,9 @@ PACKAGE BODY T AS
          || ' but was '
          || p_value
     );
-  END throwAssertionException;
+  END throw_assertion_exception;
 
-  FUNCTION assertEquals
+  FUNCTION assert_equals
   (
      p_expected IN DATE
     ,p_value    IN DATE
@@ -44,7 +44,7 @@ PACKAGE BODY T AS
 
     IF v_status = FALSE
     THEN
-      throwAssertionException
+      throw_assertion_exception
       (
           to_char(p_expected)
          ,to_char(p_value)
@@ -52,9 +52,9 @@ PACKAGE BODY T AS
     END IF;
 
     RETURN v_status;
-  END assertEquals;
+  END assert_equals;
 
-  FUNCTION assertEquals
+  FUNCTION assert_equals
   (
      p_expected IN BOOLEAN
     ,p_value    IN BOOLEAN
@@ -67,7 +67,7 @@ PACKAGE BODY T AS
 
     IF v_status = FALSE
     THEN
-      throwAssertionException
+      throw_assertion_exception
       (
          boolean_to_char(p_expected)
         ,boolean_to_char(p_value)
@@ -75,9 +75,9 @@ PACKAGE BODY T AS
     END IF;
 
     RETURN v_status;
-  END assertEquals;
+  END assert_equals;
 
-  FUNCTION assertEquals
+  FUNCTION assert_equals
   (
      p_expected IN CHAR
     ,p_value    IN CHAR
@@ -90,7 +90,7 @@ PACKAGE BODY T AS
 
     IF v_status = FALSE
     THEN
-      throwAssertionException
+      throw_assertion_exception
       (
           to_char(p_expected)
          ,to_char(p_value)
@@ -98,9 +98,9 @@ PACKAGE BODY T AS
     END IF;
 
     RETURN v_status;
-  END assertEquals;
+  END assert_equals;
 
-  FUNCTION assertEquals
+  FUNCTION assert_equals
   (
      p_expected IN VARCHAR2
     ,p_value    IN VARCHAR2
@@ -113,7 +113,7 @@ PACKAGE BODY T AS
 
     IF v_status = FALSE
     THEN
-      throwAssertionException
+      throw_assertion_exception
       (
           to_char(p_expected)
          ,to_char(p_value)
@@ -121,9 +121,9 @@ PACKAGE BODY T AS
     END IF;
 
     RETURN v_status;
-  END assertEquals;
+  END assert_equals;
 
-  FUNCTION assertEquals
+  FUNCTION assert_equals
   (
      p_expected IN NUMBER
     ,p_value    IN NUMBER
@@ -136,7 +136,7 @@ PACKAGE BODY T AS
 
     IF v_status = FALSE
     THEN
-      throwAssertionException
+      throw_assertion_exception
       (
           to_char(p_expected)
          ,to_char(p_value)
@@ -144,9 +144,9 @@ PACKAGE BODY T AS
     END IF;
 
     RETURN v_status;
-  END assertEquals;
+  END assert_equals;
 
-  FUNCTION assertEquals
+  FUNCTION assert_equals
   (
      p_expected IN PLS_INTEGER
     ,p_value    IN PLS_INTEGER
@@ -159,7 +159,7 @@ PACKAGE BODY T AS
 
     IF v_status = FALSE
     THEN
-      throwAssertionException
+      throw_assertion_exception
       (
           to_char(p_expected)
          ,to_char(p_value)
@@ -167,7 +167,7 @@ PACKAGE BODY T AS
     END IF;
 
     RETURN v_status;
-  END assertEquals;
+  END assert_equals;
 
-END T;
+END TEST;
 /
