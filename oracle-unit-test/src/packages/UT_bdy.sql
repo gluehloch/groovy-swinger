@@ -1,5 +1,5 @@
 CREATE OR REPLACE
-PACKAGE BODY TEST AS
+PACKAGE BODY UT AS
 
   FUNCTION boolean_to_char
   (
@@ -19,7 +19,7 @@ PACKAGE BODY TEST AS
      p_expected IN VARCHAR2
     ,p_value    IN VARCHAR2
   )
-  AS
+  IS
   BEGIN
     raise_application_error
     (
@@ -31,13 +31,12 @@ PACKAGE BODY TEST AS
     );
   END throw_assertion_exception;
 
-  FUNCTION assert_equals
+  PROCEDURE assert_equals
   (
      p_expected IN DATE
     ,p_value    IN DATE
   )
-  RETURN BOOLEAN
-  AS
+  IS
      v_status BOOLEAN;
   BEGIN
     v_status := (p_expected = p_value);
@@ -50,17 +49,14 @@ PACKAGE BODY TEST AS
          ,to_char(p_value)
       );
     END IF;
-
-    RETURN v_status;
   END assert_equals;
 
-  FUNCTION assert_equals
+  PROCEDURE assert_equals
   (
      p_expected IN BOOLEAN
     ,p_value    IN BOOLEAN
   )
-  RETURN BOOLEAN
-  AS
+  IS
      v_status BOOLEAN;
   BEGIN
     v_status := (p_expected = p_value);
@@ -73,17 +69,14 @@ PACKAGE BODY TEST AS
         ,boolean_to_char(p_value)
       );
     END IF;
-
-    RETURN v_status;
   END assert_equals;
 
-  FUNCTION assert_equals
+  PROCEDURE assert_equals
   (
      p_expected IN CHAR
     ,p_value    IN CHAR
   )
-  RETURN BOOLEAN
-  AS
+  IS
      v_status BOOLEAN;
   BEGIN
     v_status := (p_expected = p_value);
@@ -96,17 +89,14 @@ PACKAGE BODY TEST AS
          ,to_char(p_value)
       );
     END IF;
-
-    RETURN v_status;
   END assert_equals;
 
-  FUNCTION assert_equals
+  PROCEDURE assert_equals
   (
      p_expected IN VARCHAR2
     ,p_value    IN VARCHAR2
   )
-  RETURN BOOLEAN
-  AS
+  IS
      v_status BOOLEAN;
   BEGIN
     v_status := (p_expected = p_value);
@@ -119,17 +109,14 @@ PACKAGE BODY TEST AS
          ,to_char(p_value)
       );
     END IF;
-
-    RETURN v_status;
   END assert_equals;
 
-  FUNCTION assert_equals
+  PROCEDURE assert_equals
   (
      p_expected IN NUMBER
     ,p_value    IN NUMBER
   )
-  RETURN BOOLEAN
-  AS
+  IS
      v_status BOOLEAN;
   BEGIN
     v_status := (p_expected = p_value);
@@ -142,17 +129,14 @@ PACKAGE BODY TEST AS
          ,to_char(p_value)
       );
     END IF;
-
-    RETURN v_status;
   END assert_equals;
 
-  FUNCTION assert_equals
+  PROCEDURE assert_equals
   (
      p_expected IN PLS_INTEGER
     ,p_value    IN PLS_INTEGER
   )
-  RETURN BOOLEAN
-  AS
+  IS
      v_status BOOLEAN;
   BEGIN
     v_status := (p_expected = p_value);
@@ -165,9 +149,7 @@ PACKAGE BODY TEST AS
          ,to_char(p_value)
       );
     END IF;
-
-    RETURN v_status;
   END assert_equals;
 
-END TEST;
+END UT;
 /
