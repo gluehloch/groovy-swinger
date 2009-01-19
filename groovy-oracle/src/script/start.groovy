@@ -5,12 +5,11 @@ import de.gluehloch.sandbox.groovy.oracle.*
 class DatabaseBuilder {
 
     def name
-    def tables = [:]
 
-    def invokeMethod(String _name, _args) {
-        if (_name == 'tables') {
-            name = _name
-        }
+    private final def tables = [:]
+
+    def tables() {
+    	
     }
 
 }
