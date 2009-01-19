@@ -25,6 +25,9 @@
 
 package de.gluehloch.groovy.oracle.builder
 
+/**
+ * TODO: Create a DSL for database schema generation.
+ */
 class DatabaseBuilder {
 
 	def start() {
