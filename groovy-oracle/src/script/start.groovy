@@ -16,7 +16,7 @@ class DatabaseBuilder {
 
 def database = new DatabaseBuilder()
 
-database.tables(name:'database_name') {
+schema(name:'database_name') {
     table(name: 'table_name_a') {
         column(name: 'column_a', type: 'string', size: 10)
         column(name: 'column_b', type: 'numeric', size: 9, decimalplace: 2)

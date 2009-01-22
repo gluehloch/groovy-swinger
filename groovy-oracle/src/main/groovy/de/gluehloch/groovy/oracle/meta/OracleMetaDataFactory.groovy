@@ -35,7 +35,21 @@ class OracleMetaDataFactory {
     private final OracleColumnFinder ocf = new OracleColumnFinder()
 
     /**
-     * Liefert die Tabellenbeschreibungen für ein Schema. Die Methode liefer
+     * Liefert ein OracleSchema Objekt.
+     * 
+     * @param sql Verbindung zur Datenbank.
+     * @return Ein OracleSchema.
+     */
+    def createOracleSchema(Sql sql) {
+    	def os = new OracleSchema()
+    	createOracleTables(sql).each { table ->
+    		os.tables[table.tableName] = table
+    	}
+    	return os
+    }
+
+    /**
+     * Liefert die Tabellenbeschreibungen für ein Schema. Die Methode liefert
      * eine Liste von OracleTable Objekten zurück.
      *
      * @param sql Verbindung zur Datenbank.
