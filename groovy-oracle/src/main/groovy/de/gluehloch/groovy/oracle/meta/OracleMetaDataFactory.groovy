@@ -2,7 +2,7 @@
  * $Id: DefaultComponentFactory.java 1384 2008-09-14 00:05:09Z andrewinkler $
  * ============================================================================
  * Project groovy-oracle
- * Copyright (c) 2008 by Andre Winkler. All rights reserved.
+ * Copyright (c) 2008-2009 by Andre Winkler. All rights reserved.
  * ============================================================================
  *          GNU LESSER GENERAL PUBLIC LICENSE
  *  TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
@@ -28,16 +28,18 @@ package de.gluehloch.groovy.oracle.meta
 import groovy.sql.Sql
 
 /**
- * Erstellt ein OracleTable Objekt.
+ * Factory für das Erstellen von OracleTable Objekten.
  */
 class OracleMetaDataFactory {
 
     private final OracleColumnFinder ocf = new OracleColumnFinder()
 
     /**
-     * Liefert die Tabellenbeschreibungen für ein Schema.
+     * Liefert die Tabellenbeschreibungen für ein Schema. Die Methode liefer
+     * eine Liste von OracleTable Objekten zurück.
      *
      * @param sql Verbindung zur Datenbank.
+     * @return Ein Liste von OracleTables.
      */
     def createOracleTables(Sql sql) {
     	def oracleTables = createOracleTables(
@@ -50,6 +52,7 @@ class OracleMetaDataFactory {
      *
      * @param sql Verbindung zur Datenbank.
      * @param ignores Die zu ignorierenden Tabellennamen.
+     * @return Eine Liste von OracleTables.
      */
     def createOracleTablesWithIgnore(Sql sql, List ignores) {
     	def tableNames = new OracleTableFinder().getTables(sql) - ignores
@@ -62,6 +65,7 @@ class OracleMetaDataFactory {
      *
      * @param sql Verbindung zur Datenbank.
      * @param tableNames Die Namen der Tabellen.
+     * @return Eine Liste von OracleTables.
      */
     def createOracleTables(Sql sql, List tableNames) {
         def oracleTables = []
@@ -76,6 +80,7 @@ class OracleMetaDataFactory {
      *
      * @param sql Verbindung zur Datenbank.
      * @param tableName Der Name der Tabelle.
+     * @return Ein OracleTable.
      */
     OracleTable createOracleTable(Sql sql, String tableName) {
         def columnData = ocf.getColumns(sql, tableName)
