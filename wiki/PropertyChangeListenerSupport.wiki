@@ -3,7 +3,11 @@
 = Introduction =
 
 Add your content here.
+{{{
+import java.lang.String
 
+StringUtils.isEmpty("Hallo");
+}}}
 
 = Details =
 
