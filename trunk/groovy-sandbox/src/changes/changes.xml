@@ -5,8 +5,8 @@
     <author email="andre.winkler@web.de">Andre Winkler</author>
   </properties>
   <body>
-    <release version="groovy-swing-0.2.0" date="2008-??-??"
-         description="???">
+    <release version="groovy-swing-0.2.0" date="2009-02-02"
+         description="Evolution">
       <action dev="andrewinkler" type="update" date="2008-10-21">
         Das Encoding aller Textdateien ist auf UTF-8 umgestellt
         Kleiner Test: äöü ÄÖÜ ß.
@@ -21,6 +21,10 @@
         das Bean um eine #addPropertyChangeListener(Closure) Methode. Damit
         entfällt der explizite Cast auf einen PropertyChangeListener bei
         Aufruf der Methode 'pcl-bean'#addPropertyChangeListener(...)
+      </action>
+      <action>
+        GroovyPresentationModel#getBeanProperty() erlaubt die direkte
+        Abfrage von Bean Eigenschaften.
       </action>
     </release>
 

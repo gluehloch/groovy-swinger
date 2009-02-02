@@ -61,6 +61,13 @@ class GroovyPresentationModelTest{
         assert name.value == 'Zehlendorf'
 	}
 
+	@Test
+	void testGroovyPresentationModelGetBeanProperty() {
+		assert 'Winkler' == gpm.getBeanProperty('name')
+		assert 'Andre' == gpm.getBeanProperty('surname')
+		assert 38 == gpm.getBeanProperty('age')
+	}
+
 	@Before
 	void setUp() {
         bean = new Person(name : 'Winkler', surname : 'Andre', age : 38)
