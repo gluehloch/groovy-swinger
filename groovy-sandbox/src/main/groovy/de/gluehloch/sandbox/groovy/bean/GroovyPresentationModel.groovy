@@ -55,6 +55,10 @@ class GroovyPresentationModel {
 		return vh
 	}
 
+	def getBeanProperty(propertyName) {
+		return bean.@"$propertyName"
+	}
+
 	def unbind() {
 		connectors.each { pvmc ->
 			pvmc.disconnect()

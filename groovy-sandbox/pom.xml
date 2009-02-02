@@ -8,7 +8,7 @@
   </parent>
   <groupId>de.gluehloch.sandbox</groupId>
   <artifactId>groovy-sandbox</artifactId>
-  <version>0.2.0-SNAPSHOT</version>
+  <version>0.2.0</version>
   <description>Groovier swing programming.</description>
 
   <scm>
@@ -98,7 +98,7 @@
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>4.4</version>
+      <version>4.5</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
