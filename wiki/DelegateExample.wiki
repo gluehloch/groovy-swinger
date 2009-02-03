@@ -1,6 +1,6 @@
 #summary Example of Groovies delegate keyword.
 
-= delgate keyword =
+= The delegate keyword =
 
 {{{
 def clos = {
