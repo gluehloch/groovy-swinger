@@ -47,6 +47,11 @@ class ClassAsExample  {
         }
         nestedClos()
     }
+
+    def closure2 = {
+        println 'delegate: ' + delegate.class.name
+    }
+
 }
 
 /**
@@ -65,6 +70,9 @@ class DelegateOwnerThisExample {
         // 'delegate' mit der gleichen Referenz wie der 'owner' bestückt.
         clos.delegate = new DelegateOwnerThisExample()
         clos()
+
+        def clos2 = new ClassAsExample().closure2
+        clos2()
     }
 
 }
