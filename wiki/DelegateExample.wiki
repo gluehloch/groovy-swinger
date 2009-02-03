@@ -1,8 +1,7 @@
 #summary Example of Groovies delegate keyword.
 
 = The delegate keyword =
-
-Take a look at the following file `DelegateExample.groovy` example:
+The `delegate` keyword is only available in closures! Take a look at the following file `DelegateExample.groovy` example:
 {{{
 def clos = {
     println 'this: ' + this.class.name
@@ -23,4 +22,4 @@ this: DelegateExample
 delegate: java.lang.Integer
 }}}
 
-Per default `delegate` references the same object as `this`. But you have the possibility to change the value `delegate` instead of `this`.
+Per default `delegate` references the same object as `this`. But you have the possibility to change the value `delegate` instead of `this`. The delegate 
