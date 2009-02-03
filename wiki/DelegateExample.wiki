@@ -2,6 +2,7 @@
 
 = The delegate keyword =
 
+Take a look at the following file `DelegateExample.groovy` example:
 {{{
 def clos = {
     println 'this: ' + this.class.name
