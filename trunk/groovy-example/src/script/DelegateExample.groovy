@@ -8,5 +8,3 @@ assert 'DelegateExample' == clos()
 clos.delegate = new Integer(100)
 assert 'java.lang.Integer' == clos()
 
-def ex = new Example()
-assert 'Example' == ex.doSomething()
