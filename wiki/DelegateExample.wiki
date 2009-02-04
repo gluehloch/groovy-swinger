@@ -22,4 +22,4 @@ this: DelegateExample
 delegate: java.lang.Integer
 }}}
 
-Per default `delegate` references the same object as `this`. But you have the possibility to change the value `delegate` instead of `this`. The delegate 
+Per default `delegate` references the same object as `this`. But you have the possibility to change the value `delegate` instead of `this`.
