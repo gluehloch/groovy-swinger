@@ -1,5 +1,5 @@
 /*
- * $Id: DefaultComponentFactory.java 1384 2008-09-14 00:05:09Z andrewinkler $
+ * $Id$
  * ============================================================================
  * Project groovy-oracle
  * Copyright (c) 2008 by Andre Winkler. All rights reserved.
