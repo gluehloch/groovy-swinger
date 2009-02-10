@@ -41,7 +41,7 @@ class LoaderTest {
 
     @Test
     void testDataBuilder() {
-        def data = Data.data('tableName', {
+        def data = Data.createData('tableName', {
             [
                 [col_1: 'value_1', col_2: 'value_2'],
                 [col_1: 'value_3', col_2: 'value_4'],
@@ -60,7 +60,7 @@ class LoaderTest {
 
     @Test
 	void testDataInsertStatement() {
-    	def loaddata = Data.data('testtablename', {
+    	def data = Data.createData('testtablename', {
     		[
     		    [col_1: 'value_col11', col_2: 'value_col12'],
     		    [col_1: 'value_col21', col_2: 'value_col22']
@@ -68,10 +68,10 @@ class LoaderTest {
         })
 
     	def loader = new Loader()
-    	loader.load(sql ,loaddata)
+    	loader.load(sql ,data)
         sql.commit()
 
-        assertRowEquals(sql, loaddata, "select * from testtablename order by col_1")
+        assertRowEquals(sql, data, "select * from testtablename order by col_1")
     }
 
     @BeforeClass

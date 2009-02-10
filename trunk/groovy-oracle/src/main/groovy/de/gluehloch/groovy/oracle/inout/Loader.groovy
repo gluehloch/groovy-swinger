@@ -28,7 +28,7 @@ package de.gluehloch.groovy.oracle.inout
 import groovy.sql.Sql
 
 /**
- * Load data to the database.
+ * Uploads data to the database.
  */
 class Loader {
 

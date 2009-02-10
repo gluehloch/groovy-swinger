@@ -59,7 +59,7 @@ class Data {
      * @param tableName The name of the database table.
      * @param dataset The data set.
      */
-    static def data(tableName, dataset) {
+    static def createData(tableName, dataset) {
         new Data(tableName: tableName, rows: dataset())
     }
 
