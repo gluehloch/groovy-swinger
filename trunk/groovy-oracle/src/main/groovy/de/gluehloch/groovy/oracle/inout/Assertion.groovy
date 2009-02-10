@@ -2,7 +2,7 @@
  * $Id: DefaultComponentFactory.java 1384 2008-09-14 00:05:09Z andrewinkler $
  * ============================================================================
  * Project groovy-oracle
- * Copyright (c) 2008 by Andre Winkler. All rights reserved.
+ * Copyright (c) 2008-2009 by Andre Winkler. All rights reserved.
  * ============================================================================
  *          GNU LESSER GENERAL PUBLIC LICENSE
  *  TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
@@ -25,33 +25,26 @@
 
 package de.gluehloch.groovy.oracle.inout
 
-import de.gluehloch.groovy.oracle.inout.DataBuilder;
-
-import org.junit.Test
-/**
- * Test for class DataBuilder.
+/**
+ * Compares expectations and database reality.
  */
-class DataBuilderTest {
+class Assertion {
 
-	 @Test
-	 void testDataBuilder() {
-		 def builder = new DataBuilder()
-
-	     def data = builder.data('tableName', {
-		     [
-		         [col_1: 'value_1', col_2: 'value_2'],
-		         [col_1: 'value_3', col_2: 'value_4'],
-		         [col_1: 'value_5', col_2: 'value_6']
-		     ]
-         })
-
-         assert 'tableName' == data.tableName
-         assert 'value_1' == data.rows[0].col_1
-		 assert 'value_2' == data.rows[0].col_2
-		 assert 'value_3' == data.rows[1].col_1
-		 assert 'value_4' == data.rows[1].col_2
-		 assert 'value_5' == data.rows[2].col_1
-		 assert 'value_6' == data.rows[2].col_2
-	 }
+	/**
+	 * Compares a database result set with an expection. Throw if necessary
+	 * an assertion exception.
+	 *
+	 * @param sql A Groovy sql object.
+	 * @param expectation A Data object.
+	 * @param query A sql query.
+	 */
+    static def assertRowEquals(sql, expectation, query) {
+	    def index = 0
+	    sql.eachRow(query) { row ->
+	        expectation.rows[index++].each() {
+	            assert it.value == row[it.key]
+	        }
+	    }
+	}
 
 }

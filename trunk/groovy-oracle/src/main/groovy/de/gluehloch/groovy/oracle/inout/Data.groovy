@@ -30,10 +30,37 @@ package de.gluehloch.groovy.oracle.inout
  */
 class Data {
 
-	 /** The name of the table where this data belongs to. */
-	 def tableName
+	/** The name of the table where this data belongs to. */
+	def tableName
 
-	 /** A list of maps. */
-	 def rows = []
+	/** A list of maps. */
+	def rows = []
+
+    /**
+     * Create a new Data object:
+     * <pre>
+     * // Define a data set...
+     * def dataset = data('tableName', {
+     *   [
+     *     [col_1: 'value_1', col_2: 'value_2'],
+     *     [col_1: 'value_3', col_2: 'value_4'],
+     *     [col_1: 'value_5', col_2: 'value_6']
+     *   ]
+     * })
+     * 
+     * // Upload to the database table... 
+     * new Loader().load(sql, dataset)
+     * sql.commit()
+     * 
+     * // Make an assertion...
+     * assertRowEquals(sql, data, "select * from testtablename order by col_1")
+     * </pre>
+     *
+     * @param tableName The name of the database table.
+     * @param dataset The data set.
+     */
+    static def data(tableName, dataset) {
+        new Data(tableName: tableName, rows: dataset())
+    }
 
 }
