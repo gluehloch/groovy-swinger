@@ -25,35 +25,27 @@
 
 package de.gluehloch.groovy.oracle.inout
 
+import groovy.sql.Sql
+
 /**
  * Load data to the database.
  */
 class Loader {
 
-	 /**
-	  * table = data 'tablename' {
-	  *   [
-      *     [col_1: 'value_1', col_2: 'value_2'],
-      *     [col_1: 'value_3', col_2: 'value_4'],
-      *     [col_1: 'value_5', col_2: 'value_6']
-	  *   ]
-	  * } 
-	  */
-
-	 /**
-	  * table = [
-	  *     new Data(table: 'tablename', [
-	  *         [col_1: 'value_1', col_2: 'value_2'],
-	  *         [col_1: 'value_3', col_2: 'value_4'],
-	  *         [col_1: 'value_5', col_2: 'value_6']
-	  *     ])
-	  * ]
-	  */
-	 def load = { data  ->
-	     data.rows.each { row ->
-             insert = "INSERT INTO ${data.tableName}("
-             insert row.keySet().join(',')
-	     }
-	 }
+    /**
+	 * table = [
+	 *     new Data(tableName: 'tablename', rows: [
+	 *         [col_1: 'value_1', col_2: 'value_2'],
+	 *         [col_1: 'value_3', col_2: 'value_4'],
+	 *         [col_1: 'value_5', col_2: 'value_6']
+	 *     ])
+	 * ]
+	 */
+	def load = { sql, data ->
+	    def dataSet = sql.dataSet(data.tableName)
+	    data.rows.each { row ->
+	        dataSet.add(row)
+	    }
+	}
 
 }
