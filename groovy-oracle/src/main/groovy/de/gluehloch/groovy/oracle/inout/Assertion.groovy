@@ -31,8 +31,8 @@ package de.gluehloch.groovy.oracle.inout
 class Assertion {
 
 	/**
-	 * Compares a database result set with an expection. Throw if necessary
-	 * an assertion exception.
+	 * Compares a database result set with an expectation. Throwss an assertion
+	 * exception if necessary.
 	 *
 	 * @param sql A Groovy sql object.
 	 * @param expectation A Data object.
