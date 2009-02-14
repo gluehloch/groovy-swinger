@@ -26,6 +26,7 @@
 package de.gluehloch.groovy.oracle.inout
 
 import static de.gluehloch.groovy.oracle.inout.Assertion.assertRowEquals
+import static de.gluehloch.groovy.oracle.inout.Data.createData
 
 import groovy.sql.Sql
 
@@ -60,10 +61,10 @@ class LoaderTest {
 
     @Test
 	void testDataInsertStatement() {
-    	def data = Data.createData('testtablename', {
+    	def data = createData('testtablename', {
     		[
-    		    [col_1: 'value_col11', col_2: 'value_col12'],
-    		    [col_1: 'value_col21', col_2: 'value_col22']
+    		    [col_1: 'value_col11', col_2: 'value_col12', col_3:  10.2],
+    		    [col_1: 'value_col21', col_2: 'value_col22', col_3: 123.5],
     		]
         })
 
@@ -80,6 +81,7 @@ class LoaderTest {
     	sql.execute('''create table testtablename(
                           col_1 varchar2(20)
                          ,col_2 varchar2(20)
+                         ,col_3 number(10,2)
                        )''')
     }
 
@@ -87,6 +89,7 @@ class LoaderTest {
     static void tearDown() {
     	sql.execute('drop table testtablename')
     	sql?.close()
+        sql = null
     }
 
 }
