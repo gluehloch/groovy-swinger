@@ -42,6 +42,8 @@ import org.junit.Test;
 
 /**
  * Testet den Umgang mit Oracles VARRAYs.
+ * <pre>Code in Pre</pre>
+ * Oder direkt im Text: <code>Code in Code</code>.
  * 
  * @author  $Author: andrewinkler $
  * @version $Revision: 1472 $ $Date: 2008-10-21 15:24:34 +0200 (Di, 21 Okt 2008) $

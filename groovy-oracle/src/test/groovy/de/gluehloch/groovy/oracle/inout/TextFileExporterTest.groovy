@@ -35,6 +35,15 @@ import org.junit.Test
 class TextFileExporterTest {
 
 	 @Test
+	 void testTextFileExporterToText() {
+		 def tfe = new TextFileExporter()
+		 assert 'value_1|value_2' == tfe.toText([col_1: 'value_1', col_2: 'value_2'])
+		 assert "value_1||value_3" == tfe.toText([col_1: 'value_1', col_2: null, col_3: 'value_3'])
+		 assert "value_1|value_2|" == tfe.toText([col_1: 'value_1', col_2: 'value_2', col_3: null])
+		 assert "|value_2|value_3" == tfe.toText([col_1: null, col_2: 'value_2', col_3: 'value_3'])
+	 }
+
+	 @Test
 	 void testTextFileExporterExport() {
          def data = Data.createData('tableName', {
 	         [
