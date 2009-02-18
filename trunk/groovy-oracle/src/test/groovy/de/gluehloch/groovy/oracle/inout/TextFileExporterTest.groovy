@@ -1,5 +1,5 @@
 /*
- * $Id$
+ * $Id: Assertion.groovy 88 2009-02-10 20:09:37Z andre.winkler@web.de $
  * ============================================================================
  * Project groovy-oracle
  * Copyright (c) 2008-2009 by Andre Winkler. All rights reserved.
@@ -25,30 +25,30 @@
 
 package de.gluehloch.groovy.oracle.inout
 
-import groovy.sql.Sql
-
-/**
- * Uploads data to the database.
- *
+import org.junit.Test
+/**
+ * Test of class TextFileExporter.
+ * 
  * @author  $Author$
  * @version $Revision$ $Date$
  */
-class Loader {
+class TextFileExporterTest {
 
-    /**
-	 * table = [
-	 *     new Data(tableName: 'tablename', rows: [
-	 *         [col_1: 'value_1', col_2: 'value_2'],
-	 *         [col_1: 'value_3', col_2: 'value_4'],
-	 *         [col_1: 'value_5', col_2: 'value_6']
-	 *     ])
-	 * ]
-	 */
-	def load(sql, data) {
-	    def dataSet = sql.dataSet(data.tableName)
-	    data.rows.each { row ->
-	        dataSet.add(row)
-	    }
-	}
+	 @Test
+	 void testTextFileExporterExport() {
+         def data = Data.createData('tableName', {
+	         [
+	             [col_1: 'value_1',  col_2: 'value_2'],
+	             [col_1: 'value_3',  col_2: 'value_4'],
+	             [col_1: 'value_5',  col_2: 'value_6'],
+	             [col_1: 'value_7',  col_2: 'value_8',  col3: 'value9'],
+	             [col_1: 'value_7',  col_2: null,       col3: 'value9'],
+	             [col_1: 'value_10', col_2: 'value_11', col3: null]
+	         ]
+	     })
+
+	     def tfe = new TextFileExporter()
+	     tfe.export('testexport.txt', data)
+	 }
 
 }
