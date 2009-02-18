@@ -82,9 +82,9 @@ class TextFileExporter {
         def length = row.values().size()
         row.values().eachWithIndex() { value, index ->
             if (index >= length - 1) {
-                text += (value != null) ? value : ""
+                text += (value == null) ? "" : value
             } else {
-                text += (value != null) ? "${value}${columnSeperator}" : columnSeperator
+                text += (value == null) ? columnSeperator : "${value}${columnSeperator}"
             }
         }
         return "${text}${lineSeperator}"
