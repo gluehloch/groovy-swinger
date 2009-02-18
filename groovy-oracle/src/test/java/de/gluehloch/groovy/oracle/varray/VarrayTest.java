@@ -25,18 +25,17 @@
 
 package de.gluehloch.groovy.oracle.varray;
 
+import static org.junit.Assert.assertEquals;
+
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
 
-import oracle.jdbc.oracore.OracleTypeCOLLECTION;
 import oracle.sql.ARRAY;
 import oracle.sql.ArrayDescriptor;
-import oracle.sql.SQLName;
 
 import org.apache.commons.lang.StringUtils;
-import static org.junit.Assert.*;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -125,6 +124,9 @@ public class VarrayTest {
 			.execute("CREATE TYPE t_string_varray AS VARRAY(10) OF VARCHAR2(100)");
 		stmt
 			.execute("CREATE PROCEDURE call_me(p_strings IN t_string_varray, p_retcode OUT NUMBER) IS BEGIN p_retcode := p_strings.COUNT; END call_me;");
+		// Doesn´t work:
+//		stmt.execute("CREATE OR REPLACE PACKAGE TEST_PACKAGE IS PROCEDURE log(p_stichmon IN NUMBER); END;");
+//		stmt.execute("CREATE OR REPLACE PACKAGE BODY TEST_PACKAGE IS PROCEDURE log(p_stichmon IN NUMBER) IS BEGIN NULL; END log; END ;");
 		stmt.execute("ALTER PROCEDURE call_me COMPILE");
 	}
 

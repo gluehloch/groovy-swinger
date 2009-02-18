@@ -1,5 +1,5 @@
 /*
- * $Id$
+ * $Id: Assertion.groovy 88 2009-02-10 20:09:37Z andre.winkler@web.de $
  * ============================================================================
  * Project groovy-oracle
  * Copyright (c) 2008-2009 by Andre Winkler. All rights reserved.
@@ -25,30 +25,49 @@
 
 package de.gluehloch.groovy.oracle.inout
 
-import groovy.sql.Sql
-
 /**
- * Uploads data to the database.
- *
+ * Exports database data to a flat text file.
+ * 
  * @author  $Author$
  * @version $Revision$ $Date$
  */
-class Loader {
+class TextFileExporter {
 
-    /**
+	def columnSeperator = '|'
+
+	def lineSeperator = System.getProperty('line.separator')
+
+	/**
 	 * table = [
-	 *     new Data(tableName: 'tablename', rows: [
+	 *     new Data(tableName: 'tableName', rows: [
 	 *         [col_1: 'value_1', col_2: 'value_2'],
 	 *         [col_1: 'value_3', col_2: 'value_4'],
 	 *         [col_1: 'value_5', col_2: 'value_6']
 	 *     ])
 	 * ]
 	 */
-	def load(sql, data) {
-	    def dataSet = sql.dataSet(data.tableName)
-	    data.rows.each { row ->
-	        dataSet.add(row)
-	    }
+    def export(filename, data) {
+        def fw = new FileWriter(filename, true)
+        try {
+        	fw.write("### ${data.tableName} ###")
+        	fw.write(lineSeperator)
+            data.rows.each() { row ->
+                def text = ""
+                def length = row.values().size()
+                row.values().eachWithIndex() { value, index ->
+                    if (index >= length - 1) {
+                        text += (value != null) ? value : ""
+                    } else {
+                	    text += (value != null) ? "${value}${columnSeperator}" : columnSeperator
+                    }
+                }
+                //def text = row.values().join(columnSeperator)
+                fw.write(text)
+                fw.write(lineSeperator)
+            }
+        } finally {
+        	fw.close()
+        }
 	}
 
 }
