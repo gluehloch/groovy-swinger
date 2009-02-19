@@ -52,17 +52,7 @@ class TextFileExporter {
         	fw.write("### ${data.tableName} ###")
         	fw.write(lineSeperator)
             data.rows.each() { row ->
-                def text = ""
-                def length = row.values().size()
-                row.values().eachWithIndex() { value, index ->
-                    if (index >= length - 1) {
-                        text += (value != null) ? value : ""
-                    } else {
-                	    text += (value != null) ? "${value}${columnSeperator}" : columnSeperator
-                    }
-                }
-                //def text = row.values().join(columnSeperator)
-                fw.write(text)
+                fw.write(toText(row))
                 fw.write(lineSeperator)
             }
         } finally {
@@ -87,7 +77,7 @@ class TextFileExporter {
                 text += (value == null) ? columnSeperator : "${value}${columnSeperator}"
             }
         }
-        return "${text}${lineSeperator}"
+        return text
 	}
 
 }
