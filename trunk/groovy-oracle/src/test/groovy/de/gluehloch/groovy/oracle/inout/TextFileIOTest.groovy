@@ -25,6 +25,8 @@
 
 package de.gluehloch.groovy.oracle.inout
 
+import org.apache.commons.lang.StringUtils
+
 import org.junit.Test
 /**
  * Test of class TextFileExporter.
@@ -32,19 +34,19 @@ import org.junit.Test
  * @author  $Author$
  * @version $Revision$ $Date$
  */
-class TextFileExporterTest {
+class TextFileIOTest {
 
 	 @Test
-	 void testTextFileExporterToText() {
-		 def tfe = new TextFileExporter()
-		 assert 'value_1|value_2' == tfe.toText(['col_1': 'value_1', 'col_2': 'value_2'])
-		 assert "value_1||value_3" == tfe.toText([col_1: 'value_1', col_2: null, col_3: 'value_3'])
-		 assert "value_1|value_2|" == tfe.toText([col_1: 'value_1', col_2: 'value_2', col_3: null])
-		 assert "|value_2|value_3" == tfe.toText([col_1: null, col_2: 'value_2', col_3: 'value_3'])
+	 void testTextFileIOToText() {
+		 def tfio = new TextFileIO()
+		 assert 'value_1|value_2' == tfio.toText(['col_1': 'value_1', 'col_2': 'value_2'])
+		 assert "value_1||value_3" == tfio.toText([col_1: 'value_1', col_2: null, col_3: 'value_3'])
+		 assert "value_1|value_2|" == tfio.toText([col_1: 'value_1', col_2: 'value_2', col_3: null])
+		 assert "|value_2|value_3" == tfio.toText([col_1: null, col_2: 'value_2', col_3: 'value_3'])
 	 }
 
 	 @Test
-	 void testTextFileExporterExport() {
+	 void testTextFileIOExport() {
          def data = Data.createData('tableName', {
 	         [
 	             [col_1: 'value_1',  col_2: 'value_2'],
@@ -59,8 +61,21 @@ class TextFileExporterTest {
 	         ]
 	     })
 
-	     def tfe = new TextFileExporter()
-	     tfe.export('testexport.txt', data)
+	     def tfio = new TextFileIO()
+         tfio.export('testexport.txt', data)
+	 }
+
+	 @Test
+	 void testTextFileIOSplitText() {
+		 assert StringUtils.splitPreserveAllTokens('|a|b|c|', '|') == ['', 'a', 'b', 'c', '']
+	     assert StringUtils.splitPreserveAllTokens('a|b|c|', '|') == ['a', 'b', 'c', '']
+	 }
+
+	 @Test
+	 void testTextFileIOToData() {
+		 def tfio = new TextFileIO()
+		 def dataMap = tfio.toData('a|b|c', ['col_a', 'col_b', 'col_c'])
+		 assert dataMap == ['col_a': 'a', 'col_b': 'b', 'col_c': 'c']
 	 }
 
 }
