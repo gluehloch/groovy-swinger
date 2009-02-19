@@ -25,47 +25,60 @@
 
 package de.gluehloch.groovy.oracle.inout
 
+import org.apache.commons.lang.StringUtils
+
 /**
- * Exports database data to a flat text file.
+ * Exports (database) data to a flat text file.
  * 
  * @author  $Author$
  * @version $Revision$ $Date$
  */
-class TextFileExporter {
+class TextFileIO {
+
+	def comment = '#'
 
 	def columnSeperator = '|'
 
 	def lineSeperator = System.getProperty('line.separator')
 
 	/**
-	 * table = [
+	 * <pre>
+	 * date = [
 	 *     new Data(tableName: 'tableName', rows: [
 	 *         [col_1: 'value_1', col_2: 'value_2'],
 	 *         [col_1: 'value_3', col_2: 'value_4'],
 	 *         [col_1: 'value_5', col_2: 'value_6']
 	 *     ])
 	 * ]
+	 * </pre>
 	 */
     def export(filename, data) {
         def fw = new FileWriter(filename, true)
         try {
         	fw.write("### ${data.tableName} ###")
         	fw.write(lineSeperator)
-            data.rows.each() { row ->
+            data.rows.each { row ->
                 fw.write(toText(row))
                 fw.write(lineSeperator)
             }
         } finally {
-        	fw.close()
+        	fw?.close()
         }
 	}
+
+    def upload(filename, data) {
+    	new FileInputStream(filename).eachLine { line ->
+    		
+    	}
+    }
 
 	/**
 	 * Transforms a single data row to a string.
 	 *
 	 * @param row A data row. Something like
 	 *     <code>[col_1: 'value_1', col_2: 'value_2']</code> becomes to
-	 *     <code>value_1|value_2</code>
+	 *     <code>value_1|value_2</code> string.
+	 * @return The data as a String.
 	 */
 	def toText(row) {
         def text = ""
@@ -79,5 +92,37 @@ class TextFileExporter {
         }
         return text
 	}
+
+	 /**
+	  * Transforms a text into a data object. Example:
+	  * <pre>
+	  * text = 'v1|v2|v3'
+	  * columns = ['c1', 'c2', 'c3']
+	  * assert toData(text, columns) == [c1: 'v1', c2: 'v2', c3: 'v3']
+	  * </pre>
+	  * It is possible to return <code>null</code>, if the text parmeters
+	  * starts as a comment line.
+	  *
+	  * @param text An input text.
+	  * @param columns The column names as a key for the values.
+	  * @return A data map.
+	  */
+	 def toData(text, columns) {
+		 if (text.startsWith(comment)) {
+			 return null
+		 }
+
+    	 def tokens = StringUtils.splitPreserveAllTokens(text, columnSeperator)
+		 if (columns.size() != tokens.size()) {
+			 throw new IllegalStateException(
+					 "ERROR: tokens.size() != columns.size(): Tokens=${tokens}; Columns=${columns}")
+		 }
+
+         def data = [:]
+		 tokens.eachWithIndex() { value, index ->
+			 data[columns[index]] = value
+		 }
+         return data
+	 }
 
 }
