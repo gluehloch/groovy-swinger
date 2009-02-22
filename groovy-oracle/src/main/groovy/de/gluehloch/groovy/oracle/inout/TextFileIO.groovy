@@ -25,7 +25,7 @@
 
 package de.gluehloch.groovy.oracle.inout
 
-import org.apache.commons.lang.StringUtils
+import static de.gluehloch.groovy.oracle.inout.InOutUtils.split;
 
 /**
  * Exports (database) data to a flat text file.
@@ -73,7 +73,7 @@ class TextFileIO {
     }
 
 	/**
-	 * Transforms a single data row to a string.
+	 * Transforms a single data row into a string.
 	 *
 	 * @param row A data row. Something like
 	 *     <code>[col_1: 'value_1', col_2: 'value_2']</code> becomes to
@@ -112,7 +112,7 @@ class TextFileIO {
 			 return null
 		 }
 
-    	 def tokens = StringUtils.splitPreserveAllTokens(text, columnSeperator)
+    	 def tokens = split(text, columnSeperator)
 		 if (columns.size() != tokens.size()) {
 			 throw new IllegalStateException(
 					 "ERROR: tokens.size() != columns.size(): Tokens=${tokens}; Columns=${columns}")
