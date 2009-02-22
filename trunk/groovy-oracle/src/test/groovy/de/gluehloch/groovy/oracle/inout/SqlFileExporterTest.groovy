@@ -25,26 +25,22 @@
 
 package de.gluehloch.groovy.oracle.inout
 
-/**
- * Compares expectations and database reality.
- */
-class Assertion {
+import org.junit.Test
 
-	/**
-	 * Compares a database result set with an expectation. Throws an assertion
-	 * exception if necessary.
-	 *
-	 * @param sql A Groovy sql object.
-	 * @param expectation A Data object.
-	 * @param query A sql query.
-	 */
-    static def assertRowEquals(sql, expectation, query) {
-	    def index = 0
-	    sql.eachRow(query) { row ->
-	        expectation.rows[index++].each() {
-	            assert it.value == row[it.key]
-	        }
-	    }
-	}
+import de.gluehloch.groovy.oracle.meta.TestDatabaseUtility
+/**
+ * TODO
+ * 
+ * @author  $Author$
+ * @version $Revision$ $Date$
+ */
+class SqlFileExporterTest extends TestDatabaseUtility {
+
+	 @Test
+	 void testDatabaseExport() {
+		 def sql = TestDatabaseUtility.createConnection()
+		 def ex = new SqlFileExporter(sql: sql, query: 'select * from cptasklist', fileName: 'cptasklist.dat')
+	     ex.export()
+	 }
 
 }

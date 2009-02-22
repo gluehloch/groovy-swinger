@@ -38,6 +38,7 @@ import oracle.sql.ArrayDescriptor;
 import org.apache.commons.lang.StringUtils;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -78,7 +79,7 @@ public class VarrayTest {
 
 	}
 
-	@Test
+	@Test @Ignore
 	public void testOraclesVarrayWithPackage() throws Exception {
 		CallableStatement cs = null;
 		try {

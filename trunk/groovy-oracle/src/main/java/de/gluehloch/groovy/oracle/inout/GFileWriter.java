@@ -23,28 +23,43 @@
  *
  */
 
-package de.gluehloch.groovy.oracle.inout
+package de.gluehloch.groovy.oracle.inout;
+
+import java.io.IOException;
+
+import org.apache.commons.io.output.FileWriterWithEncoding;
 
 /**
- * Compares expectations and database reality.
+ * Acts as a wrapper for writing to a file.
+ * 
+ * @author $Author$
+ * @version $Revision$ $Date$
  */
-class Assertion {
+public class GFileWriter {
 
-	/**
-	 * Compares a database result set with an expectation. Throws an assertion
-	 * exception if necessary.
-	 *
-	 * @param sql A Groovy sql object.
-	 * @param expectation A Data object.
-	 * @param query A sql query.
-	 */
-    static def assertRowEquals(sql, expectation, query) {
-	    def index = 0
-	    sql.eachRow(query) { row ->
-	        expectation.rows[index++].each() {
-	            assert it.value == row[it.key]
-	        }
-	    }
+	private String lineSeperator = System.getProperty("line.separator");
+
+	private final FileWriterWithEncoding fileWriter;
+
+	public GFileWriter(final String _fileName) throws IOException {
+		this(_fileName, System.getProperty("file.encoding"));
+	}
+
+	public GFileWriter(final String _fileName, final String _encoding)
+			throws IOException {
+
+		fileWriter = new FileWriterWithEncoding(_fileName, _encoding);
+	}
+
+	public GFileWriter write(final String _text) throws IOException {
+		fileWriter.write(_text);
+		return this;
+	}
+
+	public GFileWriter writeln(final String _text) throws IOException {
+		fileWriter.write(_text);
+		fileWriter.write(lineSeperator);
+		return this;
 	}
 
 }

@@ -30,7 +30,7 @@ import de.gluehloch.groovy.oracle.OraUtils
 import groovy.sql.Sql
 
 /**
- * Präpariert die Datenbank zur Ausf�hrung von Unit-Tests. Vorausgesetzt
+ * Präpariert die Datenbank zur Ausführung von Unit-Tests. Vorausgesetzt
  * wird ein Account TOOLBOXTEST auf der TITICACA. Wird das Skript mit dem
  * Parameter 'clean' aufgerufen, werden die Tabellen des Benutzers gelöscht.
  */
