@@ -30,6 +30,10 @@ package de.gluehloch.groovy.oracle.inout
  */
 class Data {
 
+    def comment = '#'
+    def columnSeperator = '|'
+    def lineSeperator = System.getProperty('line.separator')
+
 	/** The name of the table where this data belongs to. */
 	def tableName
 
@@ -62,5 +66,51 @@ class Data {
     static def createData(tableName, dataset) {
         new Data(tableName: tableName, rows: dataset())
     }
+
+    // ------------------------------------------------------------------------
+
+    /**
+     * <pre>
+     * date = [
+     *     new Data(tableName: 'tableName', rows: [
+     *         [col_1: 'value_1', col_2: 'value_2'],
+     *         [col_1: 'value_3', col_2: 'value_4'],
+     *         [col_1: 'value_5', col_2: 'value_6']
+     *     ])
+     * ]
+     * </pre>
+     */
+    def export(filename) {
+        def fw = new GFileWriter(filename)
+        try {
+            fw.writeln("### ${data.tableName} ###")
+            data.rows.each { row ->
+                fw.writeln(toText(row))
+            }
+        } finally {
+            fw?.close()
+        }
+    }
+
+     /**
+      * Transforms a single data row into a string.
+      *
+      * @param row A data row. Something like
+      *     <code>[col_1: 'value_1', col_2: 'value_2']</code> becomes to
+      *     <code>value_1|value_2</code> string.
+      * @return The data as a String.
+      */
+     def toText(row) {
+         def text = ""
+         def length = row.values().size()
+         row.values().eachWithIndex() { value, index ->
+             if (index >= length - 1) {
+                 text += (value == null) ? "" : value
+             } else {
+                 text += (value == null) ? columnSeperator : "${value}${columnSeperator}"
+             }
+         }
+         return text
+     }
 
 }

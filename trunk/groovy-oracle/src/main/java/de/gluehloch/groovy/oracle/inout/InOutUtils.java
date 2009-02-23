@@ -32,7 +32,7 @@ import java.util.Map;
 import org.apache.commons.lang.StringUtils;
 
 /**
- * Utility class.
+ * Utility class for IO processing of database data.
  * 
  * @author $Author$
  * @version $Revision$ $Date$
@@ -43,8 +43,9 @@ public class InOutUtils {
 	 * Splits a text String into pieces. Example:
 	 * 
 	 * <pre>
-	 * String[] expected = new String[] { &quot;&quot;, &quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;&quot; };
-	 * assertEquals(expected, InOutUtils.split(&quot;|a|b|c|&quot;, &quot;|&quot;));
+	 * Groovy:
+	 * def expected = [&quot;&quot;, &quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;&quot;]
+	 * assert expected == InOutUtils.split(&quot;|a|b|c|&quot;, &quot;|&quot;)
 	 * </pre>
 	 * 
 	 * @param _text
@@ -58,11 +59,39 @@ public class InOutUtils {
 	}
 
 	/**
+	 * Concatenats a string list into a single string. Example:
+	 * <pre>Groovy:
+	 * assert "a|b|c||" == InOutUtils.toString(['a', 'b', 'c', ''])
+	 * </pre>
+	 *
+	 * @param _strings The strings to concatenate.
+	 * @param _seperator The seperator for concatenation.
+	 * @return The concatenated string.
+	 */
+	public static String toString(final List<String> _strings,
+			final String _seperator) {
+
+		StringBuilder sb = new StringBuilder();
+		int counter = 0;
+		for (String str : _strings) {
+			if (StringUtils.isNotEmpty(str)) {
+				sb.append(str);	
+			}
+			counter++;
+			if (counter < _strings.size()) {
+				sb.append(_seperator);
+			}
+		}
+		return sb.toString();
+	}
+
+	/**
 	 * Transforms a text into a data map. Example:
 	 * 
 	 * <pre>
-	 * String text = &quot;v1|v2|v3&quot;;
-	 * List&lt;String&gt; columns = InOutUtils.arrayList(&quot;col_a&quot;, &quot;col_b&quot;, &quot;col_c&quot;);
+	 * Groovy:
+	 * def text = &quot;v1|v2|v3&quot;
+	 * def columns = [&quot;col_a&quot;, &quot;col_b&quot;, &quot;col_c&quot;]
 	 * assert mapping(text, columns) == [c1: 'v1', c2: 'v2', c3: 'v3'];
 	 * </pre>
 	 * 

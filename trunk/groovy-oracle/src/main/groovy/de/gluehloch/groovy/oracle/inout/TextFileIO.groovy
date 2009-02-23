@@ -41,58 +41,6 @@ class TextFileIO {
 
 	def lineSeperator = System.getProperty('line.separator')
 
-	/**
-	 * <pre>
-	 * date = [
-	 *     new Data(tableName: 'tableName', rows: [
-	 *         [col_1: 'value_1', col_2: 'value_2'],
-	 *         [col_1: 'value_3', col_2: 'value_4'],
-	 *         [col_1: 'value_5', col_2: 'value_6']
-	 *     ])
-	 * ]
-	 * </pre>
-	 */
-    def export(filename, data) {
-        def fw = new FileWriter(filename, true)
-        try {
-        	fw.write("### ${data.tableName} ###")
-        	fw.write(lineSeperator)
-            data.rows.each { row ->
-                fw.write(toText(row))
-                fw.write(lineSeperator)
-            }
-        } finally {
-        	fw?.close()
-        }
-	}
-
-    def upload(filename, data) {
-    	new FileInputStream(filename).eachLine { line ->
-    		
-    	}
-    }
-
-	/**
-	 * Transforms a single data row into a string.
-	 *
-	 * @param row A data row. Something like
-	 *     <code>[col_1: 'value_1', col_2: 'value_2']</code> becomes to
-	 *     <code>value_1|value_2</code> string.
-	 * @return The data as a String.
-	 */
-	def toText(row) {
-        def text = ""
-        def length = row.values().size()
-        row.values().eachWithIndex() { value, index ->
-            if (index >= length - 1) {
-                text += (value == null) ? "" : value
-            } else {
-                text += (value == null) ? columnSeperator : "${value}${columnSeperator}"
-            }
-        }
-        return text
-	}
-
 	 /**
 	  * Transforms a text into a data object. Example:
 	  * <pre>
