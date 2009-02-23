@@ -62,4 +62,8 @@ public class GFileWriter {
 		return this;
 	}
 
+	public void close() throws IOException {
+		fileWriter.close();
+	}
+
 }

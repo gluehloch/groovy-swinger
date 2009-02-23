@@ -45,6 +45,30 @@ import org.junit.Test;
 public class InOutUtilsTest {
 
 	@Test
+	public void testInOutUtilsToString() {
+		List<String> strings = new ArrayList<String>();
+		strings.add("a");
+		strings.add("b");
+		strings.add("c");
+		strings.add("");
+		assertEquals("a|b|c|", InOutUtils.toString(strings, "|"));
+
+		strings.clear();
+		strings.add("a");
+		strings.add("b");
+		strings.add("c");
+		strings.add("d");
+		assertEquals("a|b|c|d", InOutUtils.toString(strings, "|"));
+
+		strings.clear();
+		strings.add(null);
+		strings.add("b");
+		strings.add("c");
+		strings.add(null);
+		assertEquals("|b|c|", InOutUtils.toString(strings, "|"));
+	}
+
+	@Test
 	public void testInOutUtilsSplit() {
 		String[] expected = new String[] { "", "a", "b", "c", "" };
 		assertArrayEquals(expected, InOutUtils.split("|a|b|c|", "|"));
