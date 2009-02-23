@@ -94,17 +94,17 @@ class Data {
         }
     }
 
-     /**
-      * Transforms a single data row into a string.
-      *
-      * @param row A data row. Something like
-      *     <code>[col_1: 'value_1', col_2: 'value_2']</code> becomes to
-      *     <code>value_1|value_2</code> string.
-      * @return The data as a String.
-      */
-     def toText(row) {
-         return InOutUtils.toString(row.values() as List, columnSeperator)
-     }
+    /**
+     * Transforms a single data row into a string.
+     *
+     * @param row A data row. Something like
+     *     <code>[col_1: 'value_1', col_2: 'value_2']</code> becomes to
+     *     <code>value_1|value_2</code> string.
+     * @return The data as a String.
+     */
+    def toText(row) {
+        return InOutUtils.toString(row.values() as List, columnSeperator)
+    }
 
     /**
      * Transforms a text into a data object. Example:
