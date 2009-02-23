@@ -122,23 +122,6 @@ class Data {
      */
     def toData(text, columns) {
     	return InOutUtils.mapping(text, columns, columnSeperator)
-    	/*
-        if (text.startsWith(comment)) {
-            return null
-        }
-
-        def tokens = split(text, columnSeperator)
-        if (columns.size() != tokens.size()) {
-            throw new IllegalStateException(
-                    "ERROR: tokens.size() != columns.size(): Tokens=${tokens}; Columns=${columns}")
-        }
-
-        def data = [:]
-        tokens.eachWithIndex() { value, index ->
-            data[columns[index]] = value
-        }
-        return data
-        */
     }
 
 }
