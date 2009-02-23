@@ -60,12 +60,16 @@ public class InOutUtils {
 
 	/**
 	 * Concatenats a string list into a single string. Example:
-	 * <pre>Groovy:
-	 * assert "a|b|c||" == InOutUtils.toString(['a', 'b', 'c', ''])
+	 * 
+	 * <pre>
+	 * Groovy:
+	 * assert &quot;a|b|c||&quot; == InOutUtils.toString(['a', 'b', 'c', ''])
 	 * </pre>
-	 *
-	 * @param _strings The strings to concatenate.
-	 * @param _seperator The seperator for concatenation.
+	 * 
+	 * @param _strings
+	 *            The strings to concatenate.
+	 * @param _seperator
+	 *            The seperator for concatenation.
 	 * @return The concatenated string.
 	 */
 	public static String toString(final List<String> _strings,
@@ -75,7 +79,7 @@ public class InOutUtils {
 		int counter = 0;
 		for (String str : _strings) {
 			if (StringUtils.isNotEmpty(str)) {
-				sb.append(str);	
+				sb.append(str);
 			}
 			counter++;
 			if (counter < _strings.size()) {

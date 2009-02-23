@@ -44,28 +44,20 @@ import org.junit.Test;
  */
 public class InOutUtilsTest {
 
+	private List<String> toList(String... strings) {
+		List<String> list = new ArrayList<String>();
+		for (String str : strings) {
+			list.add(str);
+		}
+		return list;
+	}
+	
 	@Test
 	public void testInOutUtilsToString() {
-		List<String> strings = new ArrayList<String>();
-		strings.add("a");
-		strings.add("b");
-		strings.add("c");
-		strings.add("");
-		assertEquals("a|b|c|", InOutUtils.toString(strings, "|"));
-
-		strings.clear();
-		strings.add("a");
-		strings.add("b");
-		strings.add("c");
-		strings.add("d");
-		assertEquals("a|b|c|d", InOutUtils.toString(strings, "|"));
-
-		strings.clear();
-		strings.add(null);
-		strings.add("b");
-		strings.add("c");
-		strings.add(null);
-		assertEquals("|b|c|", InOutUtils.toString(strings, "|"));
+		assertEquals("a|b|c|", InOutUtils.toString(toList("a", "b", "c", ""), "|"));
+		assertEquals("a|b|c|d", InOutUtils.toString(toList("a", "b", "c", "d"), "|"));
+		assertEquals("|b|c|", InOutUtils.toString(toList("", "b", "c", ""), "|"));
+		assertEquals("|b|c|", InOutUtils.toString(toList(null, "b", "c", null), "|"));
 	}
 
 	@Test

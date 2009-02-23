@@ -70,6 +70,8 @@ class Data {
     // ------------------------------------------------------------------------
 
     /**
+     * Exports a representation of this object to a data file.
+     *
      * <pre>
      * date = [
      *     new Data(tableName: 'tableName', rows: [
@@ -83,8 +85,8 @@ class Data {
     def export(filename) {
         def fw = new GFileWriter(filename)
         try {
-            fw.writeln("### ${data.tableName} ###")
-            data.rows.each { row ->
+            fw.writeln("### ${tableName} ###")
+            rows.each { row ->
                 fw.writeln(toText(row))
             }
         } finally {
@@ -101,16 +103,42 @@ class Data {
       * @return The data as a String.
       */
      def toText(row) {
-         def text = ""
-         def length = row.values().size()
-         row.values().eachWithIndex() { value, index ->
-             if (index >= length - 1) {
-                 text += (value == null) ? "" : value
-             } else {
-                 text += (value == null) ? columnSeperator : "${value}${columnSeperator}"
-             }
-         }
-         return text
+         return InOutUtils.toString(row.values() as List, columnSeperator)
      }
+
+    /**
+     * Transforms a text into a data object. Example:
+     * <pre>
+     * text = 'v1|v2|v3'
+     * columns = ['c1', 'c2', 'c3']
+     * assert toData(text, columns) == [c1: 'v1', c2: 'v2', c3: 'v3']
+     * </pre>
+     * It is possible to return <code>null</code>, if the text parmeters
+     * starts as a comment line.
+     *
+     * @param text An input text.
+     * @param columns The column names as a key for the values.
+     * @return A data map.
+     */
+    def toData(text, columns) {
+    	return InOutUtils.mapping(text, columns, columnSeperator)
+    	/*
+        if (text.startsWith(comment)) {
+            return null
+        }
+
+        def tokens = split(text, columnSeperator)
+        if (columns.size() != tokens.size()) {
+            throw new IllegalStateException(
+                    "ERROR: tokens.size() != columns.size(): Tokens=${tokens}; Columns=${columns}")
+        }
+
+        def data = [:]
+        tokens.eachWithIndex() { value, index ->
+            data[columns[index]] = value
+        }
+        return data
+        */
+    }
 
 }

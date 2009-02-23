@@ -34,19 +34,19 @@ import org.junit.Test
  * @author  $Author$
  * @version $Revision$ $Date$
  */
-class TextFileIOTest {
+class DataTest {
 
 	 @Test
-	 void testTextFileIOToText() {
-		 def tfio = new TextFileIO()
-		 assert 'value_1|value_2' == tfio.toText(['col_1': 'value_1', 'col_2': 'value_2'])
-		 assert "value_1||value_3" == tfio.toText([col_1: 'value_1', col_2: null, col_3: 'value_3'])
-		 assert "value_1|value_2|" == tfio.toText([col_1: 'value_1', col_2: 'value_2', col_3: null])
-		 assert "|value_2|value_3" == tfio.toText([col_1: null, col_2: 'value_2', col_3: 'value_3'])
+	 void testDataToText() {
+		 def data = new Data()
+		 assert 'value_1|value_2' == data.toText(['col_1': 'value_1', 'col_2': 'value_2'])
+		 assert "value_1||value_3" == data.toText([col_1: 'value_1', col_2: null, col_3: 'value_3'])
+		 assert "value_1|value_2|" == data.toText([col_1: 'value_1', col_2: 'value_2', col_3: null])
+		 assert "|value_2|value_3" == data.toText([col_1: null, col_2: 'value_2', col_3: 'value_3'])
 	 }
 
 	 @Test
-	 void testTextFileIOExport() {
+	 void testDataExport() {
          def data = Data.createData('tableName', {
 	         [
 	             [col_1: 'value_1',  col_2: 'value_2'],
@@ -61,20 +61,19 @@ class TextFileIOTest {
 	         ]
 	     })
 
-	     def tfio = new TextFileIO()
-         tfio.export('testexport.txt', data)
+         data.export('testexport.txt')
 	 }
 
 	 @Test
-	 void testTextFileIOSplitText() {
+	 void testDataSplitText() {
 		 assert StringUtils.splitPreserveAllTokens('|a|b|c|', '|') == ['', 'a', 'b', 'c', '']
 	     assert StringUtils.splitPreserveAllTokens('a|b|c|', '|') == ['a', 'b', 'c', '']
 	 }
 
 	 @Test
-	 void testTextFileIOToData() {
-		 def tfio = new TextFileIO()
-		 def dataMap = tfio.toData('a|b|c', ['col_a', 'col_b', 'col_c'])
+	 void testDataToData() {
+		 def data = new Data()
+		 def dataMap = data.toData('a|b|c', ['col_a', 'col_b', 'col_c'])
 		 assert dataMap == ['col_a': 'a', 'col_b': 'b', 'col_c': 'c']
 	 }
 
