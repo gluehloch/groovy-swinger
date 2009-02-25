@@ -69,11 +69,11 @@ public class InOutUtils {
 	 * @param _strings
 	 *            The strings to concatenate.
 	 * @param _seperator
-	 *            The seperator for concatenation.
+	 *            The separator for concatenation.
 	 * @return The concatenated string.
 	 */
 	public static String toString(final List<String> _strings,
-			final String _seperator) {
+			final String _separator) {
 
 		StringBuilder sb = new StringBuilder();
 		int counter = 0;
@@ -83,7 +83,7 @@ public class InOutUtils {
 			}
 			counter++;
 			if (counter < _strings.size()) {
-				sb.append(_seperator);
+				sb.append(_separator);
 			}
 		}
 		return sb.toString();
@@ -109,14 +109,14 @@ public class InOutUtils {
 	 * @return A data map.
 	 */
 	public static Map<String, String> mapping(final String _text,
-			final List<String> _columns, final String _seperator) {
+			final List<String> _columns, final String _separator) {
 
 		if (_text.trim().startsWith("#")) {
 			return null;
 		}
 
 		Map<String, String> keyValues = new LinkedHashMap<String, String>();
-		String[] values = split(_text, _seperator);
+		String[] values = split(_text, _separator);
 
 		if (_columns.size() != values.length) {
 			throw new IllegalArgumentException(
