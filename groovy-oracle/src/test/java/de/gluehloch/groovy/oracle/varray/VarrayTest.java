@@ -1,5 +1,5 @@
 /*
- * $Id: VarrayTest.java 87 2009-02-10 19:57:53Z andre.winkler@web.de $
+ * $Id$
  * ============================================================================
  * Project groovy-oracle
  * Copyright (c) 2008-2009 by Andre Winkler. All rights reserved.
@@ -46,8 +46,8 @@ import org.junit.Test;
  * <pre>Code in Pre</pre>
  * Oder direkt im Text: <code>Code in Code</code>.
  * 
- * @author  $Author: andrewinkler $
- * @version $Revision: 1472 $ $Date: 2008-10-21 15:24:34 +0200 (Di, 21 Okt 2008) $
+ * @author  $Author$
+ * @version $Revision$ $Date$
  */
 public class VarrayTest {
 

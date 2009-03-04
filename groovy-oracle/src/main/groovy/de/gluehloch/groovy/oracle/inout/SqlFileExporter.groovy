@@ -1,5 +1,5 @@
 /*
- * $Id: TestDatabaseUtility.groovy 87 2009-02-10 19:57:53Z andre.winkler@web.de $
+ * $Id$
  * ============================================================================
  * Project groovy-oracle
  * Copyright (c) 2008 by Andre Winkler. All rights reserved.
@@ -25,6 +25,8 @@
 
 package de.gluehloch.groovy.oracle.inout
 
+import groovy.sql.Sql
+
 import de.gluehloch.groovy.oracle.meta.*
 
 /**
@@ -41,7 +43,7 @@ class SqlFileExporter {
 	def columnSeperator = '|'
 
 	def export() {
-		def fileWriter = new GFileWriter('testexport.txt')
+		def fileWriter = new GFileWriter(fileName)
 
 		sql.eachRow(query) { row ->
 		    def data = [:]
@@ -51,6 +53,40 @@ class SqlFileExporter {
 		    }
 		    fileWriter.writeln(toText(data))
 		}
+	}
+
+    /**
+     * Transforms a single data row into a string.
+     *
+     * @param row A data row. Something like a Map:
+     *     <code>[col_1: 'value_1', col_2: 'value_2']</code> becomes to
+     *     <code>value_1|value_2</code> string.
+     * @return The data as a String.
+     */
+    def toText(row) {
+        def text = ""
+        def length = row.values().size()
+        row.values().eachWithIndex() { value, index ->
+            if (index >= length - 1) {
+                text += (value == null) ? "" : value
+            } else {
+                text += (value == null) ? columnSeperator : "${value}${columnSeperator}"
+            }
+        }
+        return text
+    }
+
+	static void main(String[] args) {
+		InOutOptions ioo = InOutOptions.options(args)
+        def sql = Sql.newInstance(
+            "jdbc:oracle:thin:${ioo.user}/${ioo.password}@${ioo.url}",
+            ioo.user,
+            ioo.password,
+            "oracle.jdbc.driver.OracleDriver")
+
+        def exporter = new SqlFileExporter(
+        	sql: sql, query: 'select * from cptasklist', fileName: 'testexport.dat')
+        exporter.export()
 	}
 
 }
