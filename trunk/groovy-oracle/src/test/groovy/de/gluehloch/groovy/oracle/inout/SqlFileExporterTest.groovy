@@ -39,7 +39,8 @@ class SqlFileExporterTest extends TestDatabaseUtility {
 	 @Test
 	 void testDatabaseExport() {
 		 def sql = TestDatabaseUtility.createConnection()
-		 def ex = new SqlFileExporter(sql: sql, query: 'select * from cptasklist', fileName: 'cptasklist.dat')
+		 def ex = new SqlFileExporter(
+			 sql: sql, query: 'select * from cptasklist', fileName: 'cptasklist.dat')
 	     ex.export()
 	 }
 
