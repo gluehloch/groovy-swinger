@@ -29,6 +29,8 @@ public class PresentationModelTest {
 		GroovyPresentationModel gpm = new GroovyPresentationModel(person);
 
 		ValueModel vm = gpm.getModel("name");
+		assertEquals("Winkler", vm.getValue());
+
 		vm.setValue("Hallo");
 		assertEquals("expected 'Hallo'", vm.getValue(), person.getName());
 
