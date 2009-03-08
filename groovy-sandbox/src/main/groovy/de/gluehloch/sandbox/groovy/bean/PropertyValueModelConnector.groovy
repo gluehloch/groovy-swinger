@@ -18,12 +18,14 @@ class PropertyValueModelConnector {
 
 	void connect() {
         propertyListener = { event ->
-        	valueModel.value = event.newValue
+        	valueModel.setValue(event.newValue)
         } as PropertyChangeListener
         bean.addPropertyChangeListener(propertyName, propertyListener)
 
+        valueModel.setValue(bean.@"${propertyName}")
+
         valueListener = { event ->
-        	bean.@"$propertyName" = event.newValue
+        	bean.@"${propertyName}" = event.newValue
         } as PropertyChangeListener
         valueModel.addValueChangeListener(valueListener)
 	}
