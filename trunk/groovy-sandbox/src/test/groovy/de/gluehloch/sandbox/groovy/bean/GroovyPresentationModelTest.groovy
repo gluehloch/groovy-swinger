@@ -34,6 +34,11 @@ class GroovyPresentationModelTest{
         Bindings.bind(textField, name)
         textField.setText('Hamburg')
         assert bean.name == 'Hamburg'
+
+        def ok = false
+        bean.addPropertyChangeListener { ok = true}
+        bean.name = "Alles in Ordnung"
+        assert ok
 	}
 
 	@Test
@@ -66,6 +71,14 @@ class GroovyPresentationModelTest{
 		assert 'Winkler' == gpm.getBeanProperty('name')
 		assert 'Andre' == gpm.getBeanProperty('surname')
 		assert 38 == gpm.getBeanProperty('age')
+	}
+
+	@Test
+	void testGroovyPresentationModelAddPropertyChangeListenerToBean() {
+		def value = null
+		bean.addPropertyChangeListener({ event -> value = event.propertyName == 'name' ? event.newValue : null})
+		bean.name = 'Hallo Andre'
+		assert value == 'Hallo Andre' 
 	}
 
 	@Before

@@ -45,12 +45,12 @@ class GroovyPresentationModel {
 		if (!vh) {
 			vh = new ValueHolder()
 			valueHolders[propertyName] = vh
-		}
 
-		def pvmc = new PropertyValueModelConnector(
-			valueModel: vh, bean: bean, propertyName: propertyName)
-		pvmc.connect()
-		connectors << pvmc
+	        def pvmc = new PropertyValueModelConnector(
+	                valueModel: vh, bean: bean, propertyName: propertyName)
+	        pvmc.connect()
+	        connectors << pvmc
+		}
 
 		return vh
 	}

@@ -28,14 +28,23 @@ class JGoodiesDataBindingTest {
         pb.metaClass.properties.each { metaProperty ->
         	ValueHolder vh = new ValueHolder()
         	valueHolders[metaProperty.name] = vh
+
         	def listener = { event ->
         		vh.value = event.newValue
         	} as PropertyChangeListener
         	pb.addPropertyChangeListener(metaProperty.name, listener)
+
+            def valueListener = { event ->
+                pb.@"${metaProperty.name}" = event.newValue
+            } as PropertyChangeListener
+            vh.addValueChangeListener(valueListener)
         }
 
         pb.name = 'Winkler_Neu'
         assert valueHolders['name'].value == 'Winkler_Neu'
+
+        valueHolders['name'].value = 'Winkler_Noch_Neuer'
+        assert pb.name == 'Winkler_Noch_Neuer'
 
         /* Das geht nicht:
         PresentationModel pm = new PresentationModel(pb);

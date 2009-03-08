@@ -41,7 +41,7 @@ class GroovyPropertyChangeSupportBuilder {
             def oldValue = delegate.getProperty(key);
             metaProperty.setProperty(delegate, value);
             support.firePropertyChangeEvent(key, oldValue, value)
-            // delegate.propertyChangeSupport.firePropertyChange(key, oldValue, value);
+            //delegate.propertyChangeSupport.firePropertyChange(key, oldValue, value);
         }
         emc.initialize()
         objectToPimp.metaClass = emc
