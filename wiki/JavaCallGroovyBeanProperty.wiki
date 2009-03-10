@@ -1,4 +1,4 @@
-# Shows a problem if Java calls a Groovy bean property.
+#summary Shows a problem if Java calls a Groovy bean property.
 
 = Problem description =
 
