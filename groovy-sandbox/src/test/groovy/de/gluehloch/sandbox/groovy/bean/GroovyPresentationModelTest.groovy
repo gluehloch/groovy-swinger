@@ -35,6 +35,9 @@ class GroovyPresentationModelTest{
         textField.setText('Hamburg')
         assert bean.name == 'Hamburg'
 
+        bean.name = 'Essen'
+        assert bean.name == textField.getText()
+
         def ok = false
         bean.addPropertyChangeListener { ok = true}
         bean.name = "Alles in Ordnung"
