@@ -1,4 +1,4 @@
-#Problem if Java calls a Groovy bean property
+# Problem if Java calls a Groovy bean property
 
 = Problem description =
 
