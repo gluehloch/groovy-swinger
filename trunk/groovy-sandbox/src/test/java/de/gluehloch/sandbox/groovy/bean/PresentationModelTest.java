@@ -2,9 +2,6 @@ package de.gluehloch.sandbox.groovy.bean;
 
 import static org.junit.Assert.assertEquals;
 
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
-
 import javax.swing.JTextField;
 
 import org.junit.Test;
@@ -37,27 +34,25 @@ public class PresentationModelTest {
 
 		// ValueModel -> Bean
 		vm.setValue("Hallo");
-		assertEquals("expected 'Hallo'", vm.getValue(), person.getName());
+		assertEquals(vm.getValue(), person.getName());
 
 		// Bean -> ValueModel
-		//person.setName("Winkler-the-new");
 		person.setProperty("name", "Winkler-the-new");
 		assertEquals("Winkler-the-new", vm.getValue());
 		assertEquals("Winkler-the-new", gpm.getModel("name").getValue());
+		
+		person.setName("Was_anderes");
+		assertEquals("Was_anderes", person.getName());
+		// Das ValueModel hält noch den alten Wert.
+		assertEquals("Winkler-the-new", vm.getValue());
+		assertEquals("Winkler-the-new", gpm.getModel("name").getValue());
+		person.setProperty("name", "Winkler-the-new");
 
         JTextField textField = new JTextField();
         Bindings.bind(textField, vm);
         assertEquals(person.getName(), textField.getText());
         textField.setText("Hamburg");
         assertEquals(person.getName(), "Hamburg");
-	}
-
-	private class MyPropertyChangeListener implements PropertyChangeListener {
-
-		@Override
-		public void propertyChange(PropertyChangeEvent evt) {
-		}
-		
 	}
 
 }
