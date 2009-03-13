@@ -27,6 +27,7 @@ package de.gluehloch.groovy.oracle.inout
 
 import groovy.sql.Sql
 
+import de.gluehloch.groovy.oracle.*
 import de.gluehloch.groovy.oracle.meta.*
 
 /**
@@ -78,12 +79,7 @@ class SqlFileExporter {
 
 	static void main(String[] args) {
 		InOutOptions ioo = InOutOptions.options(args)
-        def sql = Sql.newInstance(
-            "jdbc:oracle:thin:${ioo.user}/${ioo.password}@${ioo.url}",
-            ioo.user,
-            ioo.password,
-            "oracle.jdbc.driver.OracleDriver")
-
+        def sql = OraUtils.createSql(ioo.user, ioo.password, ioo.url)
         def exporter = new SqlFileExporter(
         	sql: sql, query: 'select * from cptasklist', fileName: 'testexport.dat')
         exporter.export()
