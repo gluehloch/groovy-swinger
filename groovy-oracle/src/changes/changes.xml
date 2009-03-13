@@ -7,8 +7,20 @@
   <body>
     <release version="groovy-oracle-0.2.0" date="2009-??-??"
          description="Evolution">
-      <action dev="andrewinkler" type="add" date="2008-09-25">
-        Loader and Data scripts for holding/importing table data.
+      <action dev="andrewinkler" type="add" date="2009-03-12">
+        TableColumn with new method: #isNumber().
+      </action>
+      <action dev="andrewinkler" type="add" date="2009-??-??">
+        TODO: Loader and Data scripts for holding/importing table data.
+      </action>
+      <action dev="andrewinkler" type="add" date="2009-??-??">
+        TODO: SQL*plus Wrapper:
+def tempFile = File.createTempFile('andre_winkler_temp', '.txt')
+println "$tempFile"
+
+FileUtils.copyFile(new File("select.sql"), tempFile)
+tempFile.append("exit;${System.getProperty('line.separator')}")
+tempFile.eachLine { println it }
       </action>
     </release>
 

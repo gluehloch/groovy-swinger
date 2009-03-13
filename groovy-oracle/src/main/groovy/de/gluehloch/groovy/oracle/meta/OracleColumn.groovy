@@ -98,6 +98,37 @@ class OracleColumn {
         return snippet
     }
 
+    def isNumber() {
+    	def number = false
+        if (dataType.startsWith("TIMESTAMP")) {
+            dataType = "TIMESTAMP"
+        }
+
+        switch (dataType) {
+            case 'VARCHAR2':
+                number = false
+                break
+            case 'CHAR':
+            	number = false
+                break
+            case 'DATE':
+            	number = false
+                break
+            case 'TIMESTAMP':
+            	number = false
+                break
+            case 'NUMBER':
+            	number = true
+                break
+            case 'UROWID':
+            	number = true
+                break
+            default:
+                throw new RuntimeException("Unknown datatype: ${dataType}.")
+        }
+        return number
+    }
+
     /**
      * Liefert die Beschreibung der Datenbankspalte. Diese Beschreibung kann
      * in einem 'CREATE TABLE' Befehl eingesetzt werden.
