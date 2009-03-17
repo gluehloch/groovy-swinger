@@ -30,6 +30,7 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -70,7 +71,7 @@ public class InOutUtilsTest {
 	}
 
 	@Test
-	public void tesInOutUtilsMapping() {
+	public void testInOutUtilsMapping() {
 		List<String> values = new ArrayList<String>();
 		Collections.addAll(values, "col_a", "col_b", "col_c");
 
@@ -85,4 +86,11 @@ public class InOutUtilsTest {
 			assertEquals(expected.get(key), dataMap.get(key));
 		}
 	}
+
+	@Test
+	public void testInOutUtilsToDateAndToString() {
+		Date date = InOutUtils.toDate("2008.03.24 05:05:05");
+		assertEquals("2008.03.24 05:05:05", InOutUtils.toString(date));
+	}
+
 }
