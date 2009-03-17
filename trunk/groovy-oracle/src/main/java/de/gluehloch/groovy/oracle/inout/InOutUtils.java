@@ -25,6 +25,10 @@
 
 package de.gluehloch.groovy.oracle.inout;
 
+import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -39,6 +43,120 @@ import org.apache.commons.lang.StringUtils;
  */
 public class InOutUtils {
 
+	private static final String DATE_FORMAT = "yyyy.MM.dd HH:mm:ss";
+
+	/**
+	 * Convert a string into a date type. Throws a runtime exception if string
+	 * is unparseable.
+	 *
+	 * @param _text The string to parse.
+	 * @return The date object.
+	 */
+	public static Date toDate(final String _text) {
+		SimpleDateFormat formatter = new SimpleDateFormat(DATE_FORMAT);
+		try {
+			return formatter.parse(_text);
+		} catch (ParseException ex) {
+			throw new RuntimeException(ex);
+		}
+	}
+
+	/**
+	 * Convert a date type into a <code>java.sql.Date</code>.
+	 *
+	 * @param _date The date to convert.
+	 * @return The java.sql.Date object.
+	 */
+	public static java.sql.Date toSqlDate(final Date _date) {
+		return new java.sql.Date(_date.getTime());
+	}
+
+	/**
+	 * Convert a string into a <code>java.sql.Date</code>.
+	 *
+	 * @param _text The string to parse.
+	 * @return The java.sql.Date object.
+	 */
+	public static java.sql.Date toSqlDate(final String _text) {
+		return toSqlDate(toDate(_text));
+	}
+
+	/**
+	 * Convert a date type into a <code>oracle.sql.DATE</code>.
+	 *
+	 * @param _date The date to convert.
+	 * @return The java.sql.Date object.
+	 */
+	public static oracle.sql.DATE toOracleDate(final Date _date) {
+		return new oracle.sql.DATE(toSqlDate(_date));
+	}
+
+	/**
+	 * Convert a string into a <code>oracle.sql.DATE</code>.
+	 *
+	 * @param _text The string to parse.
+	 * @return The java.sql.Date object.
+	 */
+	public static oracle.sql.DATE toOracleDate(final String _text) {
+		return new oracle.sql.DATE(toSqlDate(_text));
+	}
+
+	/**
+	 * Convert a date type into a <code>oracle.sql.TIMESTAMP</code>.
+	 *
+	 * @param _date The date type to convert.
+	 * @return A oracle.sql.TIMESTAMP object.
+	 */
+	public static oracle.sql.TIMESTAMP toOracleTimeStamp(final Date _date) {
+		return new oracle.sql.TIMESTAMP(toOracleDate(_date));
+	}
+
+	/**
+	 * Convert a date type into a <code>oracle.sql.TIMESTAMP</code>.
+	 *
+	 * @param _text The string to parse.
+	 * @return A oracle.sql.TIMESTAMP object.
+	 */
+	public static oracle.sql.TIMESTAMP toOracleTimeStamp(final String _text) {
+		return new oracle.sql.TIMESTAMP(toOracleDate(_text));
+	}
+
+	/**
+	 * Convert a date type into a string.
+	 *
+	 * @param _date The date to convert.
+	 * @return The converted string.
+	 */
+	public static String toString(final Date _date) {
+		SimpleDateFormat formatter = new SimpleDateFormat(DATE_FORMAT);
+		return formatter.format(_date);
+	}
+
+	/**
+	 * Convert a java.sql.Date type into a string.
+	 *
+	 * @param _date The date to convert.
+	 * @return The converted string.
+	 */
+	public static String toString(final java.sql.Date _date) {
+		SimpleDateFormat formatter = new SimpleDateFormat(DATE_FORMAT);
+		return formatter.format(_date);
+	}
+
+	/**
+	 * Convert a java.sql.Timestamp type into a string.
+	 *
+	 * @param _timestamp The TIMESTAMP to convert.
+	 * @return The converted string.
+	 */
+	public static String toString(final oracle.sql.TIMESTAMP _timestamp) {
+		try {
+			return InOutUtils.toString(_timestamp.dateValue());
+		} catch (SQLException ex) {
+			throw new RuntimeException(ex);
+		}
+	}
+
 	/**
 	 * Splits a text String into pieces. Example:
 	 * 
@@ -48,10 +166,8 @@ public class InOutUtils {
 	 * assert expected == InOutUtils.split(&quot;|a|b|c|&quot;, &quot;|&quot;)
 	 * </pre>
 	 * 
-	 * @param _text
-	 *            The text for splitting.
-	 * @param _seperator
-	 *            The seperator.
+	 * @param _text The text for splitting.
+	 * @param _seperator The seperator.
 	 * @return The splitted string.
 	 */
 	public static String[] split(final String _text, final String _seperator) {
@@ -66,10 +182,8 @@ public class InOutUtils {
 	 * assert &quot;a|b|c||&quot; == InOutUtils.toString(['a', 'b', 'c', ''])
 	 * </pre>
 	 * 
-	 * @param _strings
-	 *            The strings to concatenate.
-	 * @param _seperator
-	 *            The separator for concatenation.
+	 * @param _strings The strings to concatenate.
+	 * @param _seperator The separator for concatenation.
 	 * @return The concatenated string.
 	 */
 	public static String toString(final List<String> _strings,
@@ -102,10 +216,8 @@ public class InOutUtils {
 	 * It is possible to return <code>null</code>, if the text parameters starts
 	 * as a comment line.
 	 * 
-	 * @param _text
-	 *            An input text.
-	 * @param _columns
-	 *            The column names as a key for the values.
+	 * @param _text An input text.
+	 * @param _columns The column names as a key for the values.
 	 * @return A data map.
 	 */
 	public static Map<String, String> mapping(final String _text,
@@ -120,7 +232,7 @@ public class InOutUtils {
 
 		if (_columns.size() != values.length) {
 			throw new IllegalArgumentException(
-					"Number of tokens is not equal to number of columns.");
+				"Number of tokens is not equal to number of columns.");
 		}
 
 		for (int i = 0; i < _columns.size(); i++) {
