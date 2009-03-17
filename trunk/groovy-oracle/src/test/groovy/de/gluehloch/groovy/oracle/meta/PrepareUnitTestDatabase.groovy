@@ -94,9 +94,25 @@ class PrepareUnitTestDatabase {
                        values(
                            1,
                            'M',
-                           to_date('29.03.71', 'dd.mm.yyyy'),
+                           to_date('29.03.1971', 'dd.mm.yyyy'),
                            'eh2wdre',
-                           to_date('29.03.71', 'dd.mm.yyyy'),
+                           to_date('29.03.1971', 'dd.mm.yyyy'),
+                           4711,
+                           1001)""")
+        sql.execute("""insert into XXX_TEST_RUN(
+                           ID,
+                           TRIGGER_TYPE,
+                           STICHTAG,
+                           DB_USER,
+                           DATUM_START,
+                           VKEY_BL,
+                           BL_RUN_ID)
+                       values(
+                           2,
+                           'M',
+                           to_date('30.03.1971', 'dd.mm.yyyy'),
+                           'eh2wdre',
+                           to_date('30.03.1971', 'dd.mm.yyyy'),
                            4711,
                            1001)""")
         sql.execute("""insert into XXX_HIERARCHIE(

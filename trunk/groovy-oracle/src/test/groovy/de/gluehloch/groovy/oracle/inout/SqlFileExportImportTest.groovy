@@ -27,21 +27,36 @@ package de.gluehloch.groovy.oracle.inout
 
 import org.junit.Test
 
-import de.gluehloch.groovy.oracle.meta.TestDatabaseUtility
+import de.gluehloch.groovy.oracle.meta.*
 /**
  * TODO
  * 
  * @author  $Author$
  * @version $Revision$ $Date$
  */
-class SqlFileExporterTest extends TestDatabaseUtility {
+class SqlFileExportImportTest extends TestDatabaseUtility {
 
 	 @Test
-	 void testDatabaseExport() {
+	 void testDatabaseExportImport() {
 		 def sql = TestDatabaseUtility.createConnection()
 		 def ex = new SqlFileExporter(
-			 sql: sql, query: 'select * from cptasklist', fileName: 'cptasklist.dat')
+			 sql: sql, query: 'select * from XXX_TEST_RUN', fileName: 'XXX_TEST_RUN.dat')
 	     ex.export()
+
+	     def tableXXXTestRun = new OracleMetaDataFactory().createOracleTable(sql, 'XXX_TEST_RUN')
+	     def tableXXXTestRun_2 = tableXXXTestRun.copy()
+	     tableXXXTestRun_2.tableName = 'XXX_TEST_RUN_2'
+	     sql.execute(tableXXXTestRun_2.toScript().toString())
+	     
+	     def loader = new SqlFileImporter(
+	    	 sql: sql, tableName: 'XXX_TEST_RUN_2', fileName: 'XXX_TEST_RUN.dat')
+		 loader.load();
+
+		 def counter = sql.firstRow("SELECT COUNT(*) as counter FROM XXX_TEST_RUN_2").counter
+		 assert counter == 2
+		 sql.commit()
+	
+		 sql.execute('DROP TABLE XXX_TEST_RUN_2')
 	 }
 
 }
