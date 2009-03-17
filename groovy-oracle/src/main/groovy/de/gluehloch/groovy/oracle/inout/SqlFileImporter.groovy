@@ -56,12 +56,19 @@ class SqlFileImporter {
             def insert = "INSERT INTO ${tableName}(${tableMetaData.toColumnList()}) VALUES("
             def columns = tableMetaData.columnMetaData.size()
             tableMetaData.columnMetaData.eachWithIndex { column, index ->
-                //if (index < )
+                if (column.isNumber()) {
+                	insert += "${values.getAt(index)}"
+                } else {
+                	insert += "'${values.getAt(index)}'"
+                }
+                if (columns < index) {
+                	insert += ", "
+                }
             }
             insert += ")"
-            //sql.executeInsert(insert)
-            println insert
+            sql.executeInsert(insert.toString())
         }
+    	sql.commit()
     }
 
     static void main(String[] args) {
