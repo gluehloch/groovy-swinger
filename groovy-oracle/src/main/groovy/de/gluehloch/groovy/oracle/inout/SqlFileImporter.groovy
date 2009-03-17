@@ -58,14 +58,17 @@ class SqlFileImporter {
             tableMetaData.columnMetaData.eachWithIndex { column, index ->
                 if (column.isNumber()) {
                 	insert += "${values.getAt(index)}"
+                } else if (column.isDate()) {
+                	insert += "to_date(${values.getAt(index)}, '${InOutUtils.ORACLE_DATE_FORMAT}')"
                 } else {
                 	insert += "'${values.getAt(index)}'"
                 }
-                if (columns < index) {
+                if (index + 1 < columns) {
                 	insert += ", "
                 }
             }
             insert += ")"
+            println insert.toString()
             sql.executeInsert(insert.toString())
         }
     	sql.commit()

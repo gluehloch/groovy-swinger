@@ -44,9 +44,9 @@ class SqlFileExportImportTest extends TestDatabaseUtility {
 	     ex.export()
 
 	     def tableXXXTestRun = new OracleMetaDataFactory().createOracleTable(sql, 'XXX_TEST_RUN')
-	     def tableXXXTestRun_2 = tableXXXTestRun.copy()
-	     tableXXXTestRun_2.tableName = 'XXX_TEST_RUN_2'
-	     sql.execute(tableXXXTestRun_2.toScript().toString())
+	     //def tableXXXTestRun_2 = tableXXXTestRun.copy()
+	     //tableXXXTestRun_2.tableName = 'XXX_TEST_RUN_2'
+	     //sql.execute(tableXXXTestRun_2.toScript().toString())
 	     
 	     def loader = new SqlFileImporter(
 	    	 sql: sql, tableName: 'XXX_TEST_RUN_2', fileName: 'XXX_TEST_RUN.dat')
