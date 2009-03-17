@@ -43,7 +43,15 @@ import org.apache.commons.lang.StringUtils;
  */
 public class InOutUtils {
 
-	private static final String DATE_FORMAT = "yyyy.MM.dd HH:mm:ss";
+	/**
+	 * Konvertierungsformat Oracle-Date-Type -> String
+	 */
+	public static final String DATE_FORMAT = "yyyy.MM.dd HH:mm:ss";
+
+	/**
+	 * Konvertierungsformat String -> Oracle-Date-Type
+	 */
+	public static final String ORACLE_DATE_FORMAT = "yyyy.MM.dd HH:MI:ss";
 
 	/**
 	 * Convert a string into a date type. Throws a runtime exception if string

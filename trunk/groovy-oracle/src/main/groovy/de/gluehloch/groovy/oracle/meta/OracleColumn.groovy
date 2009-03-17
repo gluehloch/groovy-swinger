@@ -104,7 +104,11 @@ class OracleColumn {
             dataType = "TIMESTAMP"
         }
    
-        return (dataType == 'NUMBER' || dataType == 'UROWID') ? true : false
+        return (dataType == 'NUMBER' || dataType == 'UROWID')
+    }
+
+    def isDate() {
+    	return (dataType == 'DATE' || dataType == 'TIMESTAMP')
     }
 
     /**
