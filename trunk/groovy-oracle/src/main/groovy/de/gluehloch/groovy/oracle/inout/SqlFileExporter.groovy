@@ -27,6 +27,8 @@ package de.gluehloch.groovy.oracle.inout
 
 import groovy.sql.Sql
 
+import oracle.sql.*
+
 import de.gluehloch.groovy.oracle.*
 import de.gluehloch.groovy.oracle.meta.*
 
@@ -47,15 +49,36 @@ class SqlFileExporter {
 		def fileWriter = new GFileWriter(fileName)
 
 		sql.eachRow(query) { row ->
-		    def data = [:]
+		    def string = ""
 		    for (i in 1 .. row.getMetaData().getColumnCount()) {
 		    	def columnName = row.getMetaData().getColumnName(i)
-		    	data[columnName] = row."${columnName}"
+		    	def columnType = row.getMetaData().getColumnType(i)
+		    	switch (columnType)
+		    	{
+		    	case java.sql.Types.DATE:
+		    		string += InOutUtils.toString(row."${columnName}")
+		    		break
+                case java.sql.Types.TIMESTAMP:
+                    string += InOutUtils.toString(row."${columnName}")
+                    break
+                default:
+                	string += row."${columnName}"
+		    	}
+		    	
+		    	if (i < row.getMetaData().getColumnCount()) {
+		    		string += columnSeperator
+		    	}
+		    	//data[columnName] = row."${columnName}"
 		    }
-		    fileWriter.writeln(toText(data))
+		    fileWriter.writeln(string)
 		}
+		fileWriter.close()
 	}
 
+	private toWrite() {
+		
+	}
+	
     /**
      * Transforms a single data row into a string.
      *
@@ -63,7 +86,7 @@ class SqlFileExporter {
      *     <code>[col_1: 'value_1', col_2: 'value_2']</code> becomes to
      *     <code>value_1|value_2</code> string.
      * @return The data as a String.
-     */
+     *
     def toText(row) {
         def text = ""
         def length = row.values().size()
@@ -76,6 +99,7 @@ class SqlFileExporter {
         }
         return text
     }
+     */
 
 	static void main(String[] args) {
 		InOutOptions ioo = InOutOptions.options(args)

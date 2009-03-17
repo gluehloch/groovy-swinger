@@ -28,7 +28,7 @@ package de.gluehloch.groovy.oracle.meta
 /**
  * Verwaltet das Schema eines Oracle Users. 
  */
-public class OracleSchema{
+public class OracleSchema {
 
 	def tables = [:]
 
