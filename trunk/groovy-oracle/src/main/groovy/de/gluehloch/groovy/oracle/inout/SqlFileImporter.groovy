@@ -67,7 +67,6 @@ class SqlFileImporter {
                 }
             }
             insert += ")"
-            println insert.toString()
             sql.executeInsert(insert.toString())
         }
     	sql.commit()
