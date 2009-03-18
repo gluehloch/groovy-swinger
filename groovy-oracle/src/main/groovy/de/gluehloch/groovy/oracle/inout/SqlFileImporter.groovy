@@ -50,7 +50,6 @@ class SqlFileImporter {
     	sql.getConnection().setAutoCommit(false)
     
         new File(fileName).eachLine { line ->
-            println line
             def values = InOutUtils.split(line, columnSeperator)
             def insert = "INSERT INTO ${tableName}(${tableMetaData.toColumnList()}) VALUES("
             def columns = tableMetaData.columnMetaData.size()

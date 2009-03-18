@@ -72,7 +72,7 @@ class LoaderTest {
     	loader.load(sql ,data)
         sql.commit()
 
-        assertRowEquals(sql, data, "select * from testtablename order by col_1")
+        assertRowEquals sql, data, "select * from testtablename order by col_1"
     }
 
     @BeforeClass
