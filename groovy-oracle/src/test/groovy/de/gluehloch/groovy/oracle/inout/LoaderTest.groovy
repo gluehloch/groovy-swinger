@@ -34,7 +34,7 @@ import org.junit.Test
 import org.junit.AfterClassimport org.junit.BeforeClass
 import de.gluehloch.groovy.oracle.meta.TestDatabaseUtility
 /**
- * Test of class Loader.
+ * Test of class Data.
  */
 class LoaderTest {
 

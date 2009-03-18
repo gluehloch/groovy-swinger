@@ -75,38 +75,4 @@ class SqlFileExporter {
 		fileWriter.close()
 	}
 
-	private toWrite() {
-		
-	}
-	
-    /**
-     * Transforms a single data row into a string.
-     *
-     * @param row A data row. Something like a Map:
-     *     <code>[col_1: 'value_1', col_2: 'value_2']</code> becomes to
-     *     <code>value_1|value_2</code> string.
-     * @return The data as a String.
-     *
-    def toText(row) {
-        def text = ""
-        def length = row.values().size()
-        row.values().eachWithIndex() { value, index ->
-            if (index >= length - 1) {
-                text += (value == null) ? "" : value
-            } else {
-                text += (value == null) ? columnSeperator : "${value}${columnSeperator}"
-            }
-        }
-        return text
-    }
-     */
-
-	static void main(String[] args) {
-		InOutOptions ioo = InOutOptions.options(args)
-        def sql = OraUtils.createSql(ioo.user, ioo.password, ioo.url)
-        def exporter = new SqlFileExporter(
-        	sql: sql, query: 'select * from cptasklist', fileName: 'testexport.dat')
-        exporter.export()
-	}
-
 }

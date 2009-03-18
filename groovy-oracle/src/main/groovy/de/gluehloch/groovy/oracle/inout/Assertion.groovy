@@ -32,7 +32,11 @@ class Assertion {
 
 	/**
 	 * Compares a database result set with an expectation. Throws an assertion
-	 * exception if necessary.
+	 * exception if necessary.<br/>
+	 * Example:
+	 * <pre>
+	 * 
+	 * </pre>
 	 *
 	 * @param sql A Groovy sql object.
 	 * @param expectation A Data object.
