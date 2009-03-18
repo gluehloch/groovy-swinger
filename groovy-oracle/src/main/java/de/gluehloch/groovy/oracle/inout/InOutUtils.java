@@ -51,7 +51,7 @@ public class InOutUtils {
 	/**
 	 * Konvertierungsformat String -> Oracle-Date-Type
 	 */
-	public static final String ORACLE_DATE_FORMAT = "yyyy.MM.dd HH:MI:ss";
+	public static final String ORACLE_DATE_FORMAT = "yyyy.MM.dd HH24:MI:ss";
 
 	/**
 	 * Convert a string into a date type. Throws a runtime exception if string

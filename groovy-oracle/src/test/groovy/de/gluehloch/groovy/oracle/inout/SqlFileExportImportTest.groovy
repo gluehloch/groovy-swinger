@@ -29,7 +29,7 @@ import org.junit.Test
 
 import de.gluehloch.groovy.oracle.meta.*
 /**
- * TODO
+ * Testet die Klassen SqlFileExporter und SqlFileImporter.
  * 
  * @author  $Author$
  * @version $Revision$ $Date$
@@ -44,16 +44,16 @@ class SqlFileExportImportTest extends TestDatabaseUtility {
 	     ex.export()
 
 	     def tableXXXTestRun = new OracleMetaDataFactory().createOracleTable(sql, 'XXX_TEST_RUN')
-	     //def tableXXXTestRun_2 = tableXXXTestRun.copy()
-	     //tableXXXTestRun_2.tableName = 'XXX_TEST_RUN_2'
-	     //sql.execute(tableXXXTestRun_2.toScript().toString())
+	     def tableXXXTestRun_2 = tableXXXTestRun.copy()
+	     tableXXXTestRun_2.tableName = 'XXX_TEST_RUN_2'
+	     sql.execute(tableXXXTestRun_2.toScript().toString())
 	     
-	     def loader = new SqlFileImporter(
-	    	 sql: sql, tableName: 'XXX_TEST_RUN_2', fileName: 'XXX_TEST_RUN.dat')
-		 loader.load();
+	     new SqlFileImporter(sql: sql, tableName: 'XXX_TEST_RUN_2', fileName: 'XXX_TEST_RUN.dat').load()
 
 		 def counter = sql.firstRow("SELECT COUNT(*) as counter FROM XXX_TEST_RUN_2").counter
 		 assert counter == 2
+	     assert sql.firstRow("SELECT v_numeric FROM XXX_TEST_RUN_2 where id = 1").v_numeric == 123.456
+	     assert sql.firstRow("SELECT v_numeric FROM XXX_TEST_RUN_2 where id = 2").v_numeric == 666.626
 		 sql.commit()
 	
 		 sql.execute('DROP TABLE XXX_TEST_RUN_2')
