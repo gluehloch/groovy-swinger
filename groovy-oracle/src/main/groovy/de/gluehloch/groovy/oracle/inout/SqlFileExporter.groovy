@@ -68,7 +68,6 @@ class SqlFileExporter {
 		    	if (i < row.getMetaData().getColumnCount()) {
 		    		string += columnSeperator
 		    	}
-		    	//data[columnName] = row."${columnName}"
 		    }
 		    fileWriter.writeln(string)
 		}
