@@ -63,6 +63,7 @@ class PrepareUnitTestDatabase {
                            DATUM_START TIMESTAMP (6) DEFAULT SYSTIMESTAMP,
                            VKEY_BL VARCHAR2(10 BYTE),
                            BL_RUN_ID NUMBER(38,0),
+                           V_NUMERIC NUMBER(10,3),
                            CONSTRAINT PK_XXX_TEST_RUN PRIMARY KEY (ID))""")
         sql.execute("""CREATE TABLE XXX_HIERARCHIE (
                            TEST_ID NUMBER(38,0) NOT NULL ENABLE,
@@ -90,7 +91,8 @@ class PrepareUnitTestDatabase {
                            DB_USER,
                            DATUM_START,
                            VKEY_BL,
-                           BL_RUN_ID)
+                           BL_RUN_ID,
+                           V_NUMERIC)
                        values(
                            1,
                            'M',
@@ -98,7 +100,8 @@ class PrepareUnitTestDatabase {
                            'eh2wdre',
                            to_date('29.03.1971', 'dd.mm.yyyy'),
                            4711,
-                           1001)""")
+                           1001,
+                           123.456)""")
         sql.execute("""insert into XXX_TEST_RUN(
                            ID,
                            TRIGGER_TYPE,
@@ -106,7 +109,8 @@ class PrepareUnitTestDatabase {
                            DB_USER,
                            DATUM_START,
                            VKEY_BL,
-                           BL_RUN_ID)
+                           BL_RUN_ID,
+                           V_NUMERIC)
                        values(
                            2,
                            'M',
@@ -114,7 +118,8 @@ class PrepareUnitTestDatabase {
                            'eh2wdre',
                            to_date('30.03.1971', 'dd.mm.yyyy'),
                            4711,
-                           1001)""")
+                           1001,
+                           666.6262)""")
         sql.execute("""insert into XXX_HIERARCHIE(
                            TEST_ID,
                            FK_RUN_ID,

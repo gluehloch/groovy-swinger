@@ -47,7 +47,6 @@ class SqlFileImporter {
 	def load() {
     	def omdf = new OracleMetaDataFactory()
     	def tableMetaData = omdf.createOracleTable(sql, tableName as String)
-    	//def columnNames = tableMetaData.columnMetaData.collect { it.columnName }
     	sql.getConnection().setAutoCommit(false)
     
         new File(fileName).eachLine { line ->
@@ -59,7 +58,7 @@ class SqlFileImporter {
                 if (column.isNumber()) {
                 	insert += "${values.getAt(index)}"
                 } else if (column.isDate()) {
-                	insert += "to_date(${values.getAt(index)}, '${InOutUtils.ORACLE_DATE_FORMAT}')"
+                	insert += "to_date('${values.getAt(index)}', '${InOutUtils.ORACLE_DATE_FORMAT}')"
                 } else {
                 	insert += "'${values.getAt(index)}'"
                 }
