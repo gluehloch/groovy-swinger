@@ -73,12 +73,4 @@ class SqlFileImporter {
     	sql.commit()
     }
 
-    static void main(String[] args) {
-        InOutOptions ioo = InOutOptions.options(args)
-        def sql = OraUtils.createSql(ioo.user, ioo.password, ioo.url)
-        def importer = new SqlFileImporter(
-        	sql: sql, tableName: 'CPTASKLIST_COPY', fileName: 'testexport.dat')
-        importer.load()
-    }
-
 }
