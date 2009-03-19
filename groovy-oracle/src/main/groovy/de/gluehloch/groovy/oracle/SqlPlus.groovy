@@ -33,8 +33,32 @@ package de.gluehloch.groovy.oracle
  */
 class SqlPlus {
 
+	def sqlplusExecutable = 'sqlplus'
+	def user
+	def password
+	def script
+	def tnsName
+
+	/** Output StringBuffer. */
+	def sout
+
+	/** Error-Output as StringBuffer. */
+	def serr
+
     def start() {
-    	
+        sout = new StringBuffer()
+        serr = new StringBuffer()
+
+        try {
+            Process p = "${sqlplusExecutable} ${user}/${password}@${tnsName}".execute()
+            p.consumeProcessOutput(sout, serr)
+            p.withWriter { writer ->
+                writer << 'exit;'
+            }
+            p.waitFor()            
+        } catch (IOException ex) {
+            println 'Executable of sqlplus not found!'
+        }   
     }
 
 }
