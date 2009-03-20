@@ -45,6 +45,11 @@ class SqlPlus {
 	/** Error-Output as StringBuffer. */
 	def serr
 
+	/**
+	 * Executes a sql script with SQL*Plus.
+	 * 
+	 * @return Returns 0, if everything was fine. 
+	 */
     def start() {
         sout = new StringBuffer()
         serr = new StringBuffer()
@@ -53,11 +58,14 @@ class SqlPlus {
             Process p = "${sqlplusExecutable} ${user}/${password}@${tnsName}".execute()
             p.consumeProcessOutput(sout, serr)
             p.withWriter { writer ->
+                writer << "@${script}${System.getProperty('')}"
                 writer << 'exit;'
             }
-            p.waitFor()            
+            p.waitFor()
+            return 0
         } catch (IOException ex) {
             println 'Executable of sqlplus not found!'
+            return -1
         }   
     }
 
