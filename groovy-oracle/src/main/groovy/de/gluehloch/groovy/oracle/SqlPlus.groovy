@@ -38,6 +38,7 @@ class SqlPlus {
 	def password
 	def script
 	def tnsName
+	def dir
 
 	/** Output StringBuffer. */
 	def sout
@@ -51,6 +52,22 @@ class SqlPlus {
 	 * @return Returns 0, if everything was fine. 
 	 */
     def start() {
+		def ant = new AntBuilder()
+		ant.exec(outputproperty: "cmdOut",
+			errorproperty: "cmdErr",
+		    resultproperty:"cmdExit",
+		    failonerror: "true",
+		    dir: "${dir}",
+		    executable: "${sqlplusExecutable}") {
+		        arg(line: "${user}/${password}@${tnsName} @${script}")
+		    }
+
+		serr = ant.project.properties.cmdErr
+		sout = ant.project.properties.cmdOut
+
+		return ant.project.properties.cmdExit
+
+		/*
         sout = new StringBuffer()
         serr = new StringBuffer()
 
@@ -58,7 +75,7 @@ class SqlPlus {
             Process p = "${sqlplusExecutable} ${user}/${password}@${tnsName}".execute()
             p.consumeProcessOutput(sout, serr)
             p.withWriter { writer ->
-                writer << "@${script}${System.getProperty('')}"
+                writer << "@${script}${System.getProperty('line.separator')}"
                 writer << 'exit;'
             }
             p.waitFor()
@@ -66,7 +83,8 @@ class SqlPlus {
         } catch (IOException ex) {
             println 'Executable of sqlplus not found!'
             return -1
-        }   
+        }
+        */   
     }
 
 }
