@@ -35,9 +35,10 @@ person.setProperty("name", "Winkler-the-new");
 assertEquals("Winkler-the-new", vm.getValue());
 assertEquals("Winkler-the-new", gpm.getModel("name").getValue());
 		
-// !!! The added property change support doesn´t work !!!
+// !!! The added property change support doesn´t work here !!!
 person.setName("Was_anderes");
 assertEquals("Was_anderes", person.getName());
+// --> The property change was not propagated to the value model. <--
 assertEquals("Winkler-the-new", vm.getValue()); 
 assertEquals("Winkler-the-new", gpm.getModel("name").getValue());
 person.setProperty("name", "Winkler-the-new");
