@@ -69,7 +69,7 @@ WHERE  a.constraint_name = b.constraint_name AND a.table_name = ${tableName} ord
         sql.eachRow(query) {
             if (it.constraint_type == "P") {
                 if (constraint.primaryKey == null) {
-                    constraint.primaryKey = new PrimaryKey(name : it.constraint_name);
+                    constraint.primaryKey = new PrimaryKey(name: it.constraint_name);
                 }
                 constraint.primaryKey.columnNames.add(it.column_name);
 
@@ -84,8 +84,9 @@ WHERE  a.constraint_name = b.constraint_name AND a.table_name = ${tableName} ord
                     }
                 }
                 if (foreignKey == null) {
-                    foreignKey = new ForeignKey(name : it.constraint_name,
-                            rConstraintName : it.r_constraint_name);
+                    foreignKey = new ForeignKey(name: it.constraint_name,
+                            rConstraintName: it.r_constraint_name,
+                            referencedTableName: null);
                     constraint.foreignKeys.add(foreignKey);
                 }
 
@@ -103,6 +104,14 @@ WHERE  a.constraint_name = b.constraint_name AND b.constraint_name = ${foreignKe
             }
         }
 
+        constraint.foreignKeys.each { foreignKey ->
+            def findReferencedTableQuery = """SELECT table_name FROM user_constraints
+WHERE constraint_name = ${foreignKey.rConstraintName} AND constraint_type = 'P'
+"""
+            def referencedTableName = sql.firstRow(findReferencedTableQuery)?.table_name
+            foreignKey.referencedTableName = referencedTableName 
+        }
+        
         return constraint;
     }
 
