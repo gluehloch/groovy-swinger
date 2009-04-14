@@ -9,7 +9,7 @@
   <groupId>de.gluehloch.sandbox</groupId>
   <artifactId>groovy-oracle</artifactId>
   <packaging>jar</packaging>
-  <version>0.2.0</version>
+  <version>0.2.1-SNAPSHOT</version>
   <name>groovy-oracle</name>
   <description>Groovier Oracle Meta-Programming.</description>
   <scm>
