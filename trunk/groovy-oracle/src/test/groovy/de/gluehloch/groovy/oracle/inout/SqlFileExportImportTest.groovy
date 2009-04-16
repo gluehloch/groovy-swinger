@@ -55,7 +55,18 @@ class SqlFileExportImportTest extends TestDatabaseUtility {
 
 	 @Before
 	 void setUp() {
-	     sql = TestDatabaseUtility.createConnection()
+		 sql = TestDatabaseUtility.createConnection()
+         sql.execute("""CREATE TABLE XXX_TEST_RUN (
+                          ID NUMBER(38,0),
+                          TRIGGER_TYPE CHAR(1 BYTE) NOT NULL ENABLE,
+                          STICHTAG DATE NOT NULL ENABLE,
+                          DB_USER VARCHAR2(256 BYTE),
+                          DATUM_START TIMESTAMP (6) DEFAULT SYSTIMESTAMP,
+                          VKEY_BL VARCHAR2(10 BYTE),
+                          BL_RUN_ID NUMBER(38,0),
+                          V_NUMERIC NUMBER(10,3),
+                          CONSTRAINT PK_XXX_TEST_RUN PRIMARY KEY (ID))""")
+
          def tableXXXTestRun = new OracleMetaDataFactory().createOracleTable(sql, 'XXX_TEST_RUN')
          def tableXXXTestRun_2 = tableXXXTestRun.copy()
          tableXXXTestRun_2.tableName = 'XXX_TEST_RUN_2'
@@ -64,6 +75,7 @@ class SqlFileExportImportTest extends TestDatabaseUtility {
 
 	 @After
 	 void tearDown() {
+	     sql.execute('DROP TABLE XXX_TEST_RUN')
 	     sql.execute('DROP TABLE XXX_TEST_RUN_2')
 	 }
 
