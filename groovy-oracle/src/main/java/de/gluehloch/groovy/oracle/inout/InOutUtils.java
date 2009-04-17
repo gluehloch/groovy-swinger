@@ -46,12 +46,12 @@ public class InOutUtils {
 	/**
 	 * Konvertierungsformat Oracle-Date-Type -> String
 	 */
-	public static final String DATE_FORMAT = "yyyy.MM.dd HH:mm:ss";
+	public static final String DATE_FORMAT = "yyyy-MM-dd HH:mm:ss";
 
 	/**
 	 * Konvertierungsformat String -> Oracle-Date-Type
 	 */
-	public static final String ORACLE_DATE_FORMAT = "yyyy.MM.dd HH24:MI:ss";
+	public static final String ORACLE_DATE_FORMAT = "yyyy-MM-dd HH24:MI:ss";
 
 	/**
 	 * Convert a string into a date type. Throws a runtime exception if string
