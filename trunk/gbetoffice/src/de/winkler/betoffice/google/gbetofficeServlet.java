@@ -77,28 +77,9 @@ public class gbetofficeServlet extends HttpServlet {
 		throws IOException {
 
 		resp.setContentType("text/plain");
-
-		String year = req.getAttribute("year").toString();
-		String round = req.getAttribute("round").toString();
-
-		resp.getWriter().println("<html><body>");
-		resp.getWriter().println(
-			"Searching for : " + year + ", " + round + "<br/>");
-
-		StringBuffer sb = new StringBuffer();
 		try {
-			URL url = new URL(
-				"http://www.dfb.de/bliga/bundes/archiv/2008/xml/blm_e_23_08.xml");
-			BufferedReader reader = new BufferedReader(new InputStreamReader(
-				url.openStream()));
-
-			String line;
-			while ((line = reader.readLine()) != null) {
-				resp.getWriter().println(line);
-			}
 			resp.getWriter().println();
-			resp.getWriter().println("</body></html>");
-			reader.close();
+			resp.getWriter().println("Hallo Andre");
 
 		} catch (MalformedURLException ex) {
 			throw new RuntimeException(ex);
