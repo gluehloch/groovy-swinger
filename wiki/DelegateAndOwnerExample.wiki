@@ -1,4 +1,4 @@
-#Tutorial or Example of Groovies owner and delegate keywords.
+#summary or Example of Groovies owner and delegate keywords.
 
 = Introduction =
 
