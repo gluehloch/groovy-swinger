@@ -39,12 +39,12 @@ assertEquals("Winkler-the-new", gpm.getModel("name").getValue());
 person.setName("Was_anderes");
 assertEquals("Was_anderes", person.getName());
 // --> The property change was not propagated to the value model. <--
-assertEquals("Winkler-the-new", vm.getValue()); 
+assertEquals("Winkler-the-new", vm.getValue()); // The ValueModel has the old value
 assertEquals("Winkler-the-new", gpm.getModel("name").getValue());
 person.setProperty("name", "Winkler-the-new");
 }}}
 
-If your Java code want to benefit from GroovyPropertyChangeSupportBuilder, then you has to call the `#setProperty(String,Object)` method. The direct call of `#setName(String)` isn´t catched by the GroovyPropertyChangeSupportBuilder.
+If your Java code wants to benefit from GroovyPropertyChangeSupportBuilder, then you has to call the `#setProperty(String,Object)` method. The direct call of `#setName(String)` isn´t catched by the GroovyPropertyChangeSupportBuilder.
 
 I expected another behavior. But this is the reality.
 
