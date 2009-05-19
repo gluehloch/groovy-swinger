@@ -1,7 +1,7 @@
 #summary Example of Groovies delegate keyword.
 
 = The delegate keyword =
-The `delegate` keyword is only available in closures! Take a look at the following file `DelegateExample.groovy` example:
+The `delegate` keyword is only available in closures! Take a look at the following example file `DelegateExample.groovy`:
 {{{
 def clos = {
     println 'this: ' + this.class.name
