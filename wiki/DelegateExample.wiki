@@ -22,4 +22,7 @@ this: DelegateExample
 delegate: java.lang.Integer
 }}}
 
-Per default `delegate` references the same object as `this`. But you have the possibility to change the value `delegate` instead of `this`. This [http://naleid.com/blog/2009/06/25/groovy-closures-make-unit-testing-with-soft-asserts-simple article] gives interesting informations about closures and delegate.
+Per default `delegate` references the same object as `this`. But you have the possibility to change the value `delegate` instead of `this`.
+
+= Advanced explanations =
+This [http://naleid.com/blog/2009/06/25/groovy-closures-make-unit-testing-with-soft-asserts-simple article] gives interesting informations about closures and delegate.
