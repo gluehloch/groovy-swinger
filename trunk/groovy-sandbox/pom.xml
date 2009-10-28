@@ -4,7 +4,7 @@
   <parent>
     <groupId>de.gluehloch</groupId>
     <artifactId>gluehloch-maven-parent</artifactId>
-    <version>8</version>
+    <version>10</version>
   </parent>
   <groupId>de.gluehloch.sandbox</groupId>
   <artifactId>groovy-sandbox</artifactId>
@@ -30,14 +30,39 @@
     </license>
   </licenses>
 
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.codehaus.groovy.maven.gmaven-mojo</groupId>
+        <artifactId>gmaven-mojo</artifactId>
+        <version>1.0</version>
+      </dependency>
+      <dependency>
+        <groupId>org.codehaus.groovy.maven.runtime</groupId>
+        <artifactId>gmaven-runtime-1.6</artifactId>
+        <version>1.0</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
   <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.codehaus.groovy.maven</groupId>
+          <artifactId>gmaven-plugin</artifactId>
+          <version>1.0</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
     <plugins>
       <plugin>
         <groupId>org.codehaus.groovy.maven</groupId>
         <artifactId>gmaven-plugin</artifactId>
-        <version>1.0-rc-3</version>
+        <!-- <version>1.0</version>-->
         <executions>
           <execution>
+            <id>compile</id>
             <goals>
               <goal>generateStubs</goal>
               <goal>compile</goal>
@@ -84,22 +109,16 @@
 
   <dependencies>
     <dependency>
-      <groupId>org.codehaus.groovy.maven.runtime</groupId>
-      <artifactId>gmaven-runtime-default</artifactId>
-      <version>1.0-rc-3</version>
+      <groupId>org.codehaus.groovy</groupId>
+      <artifactId>groovy-all</artifactId>
+      <version>1.6.4</version>
+      <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>com.jgoodies</groupId>
       <artifactId>binding</artifactId>
       <version>2.0.4</version>
       <scope>compile</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.5</version>
-      <scope>test</scope>
     </dependency>
   </dependencies>
 
