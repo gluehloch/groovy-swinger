@@ -27,11 +27,17 @@ package de.gluehloch.sandbox.groovy.bean;
 
 import static org.junit.Assert.assertEquals;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.math.BigInteger;
+
 import javax.swing.JTextField;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import com.jgoodies.binding.adapter.Bindings;
+import com.jgoodies.binding.value.ValueHolder;
 import com.jgoodies.binding.value.ValueModel;
 
 /**
@@ -44,43 +50,92 @@ import com.jgoodies.binding.value.ValueModel;
  */
 public class PresentationModelTest {
 
-	@Test
-	public void testGroovierPresentationModel() {
-		Person person = new Person();
+	private Person person;
+	private GroovyPresentationModel gpm;
+	private ValueModel vm;
+
+	@Before
+	public void setUp() {
+		person = new Person();
 		person.setAge(40);
 		person.setName("Winkler");
 
-		// Das Bean um PropertyChangeListener Eigenschaften anreichern.
 		GroovyPropertyChangeSupportBuilder.preparePCLMechanics(person);
+		gpm = new GroovyPresentationModel(person);
+		vm = gpm.getModel("name");
+	}
 
-		// Ein PresentationModel ähnlich zu JGoodies.
-		GroovyPresentationModel gpm = new GroovyPresentationModel(person);
+	@Test
+	public void testGroovyPresentationModel_bean_to_model() {
+		final String theOldValue = "the_old_value";
+		final String theNewValue = "the_new_value";
 
-		ValueModel vm = gpm.getModel("name");
+		// That works fine with #setProperty("name", value)
+		person.setProperty("name", theOldValue);
+		assertEquals(theOldValue, vm.getValue());
+		assertEquals(theOldValue, gpm.getModel("name").getValue());
+
+		// Direct method call of the property does not work #setName(...)
+		person.setName(theNewValue);
+		assertEquals(theNewValue, person.getName());
+
+		// ... but the ValueModel holds the old value!
+		assertEquals(theOldValue, vm.getValue());
+		assertEquals(theOldValue, gpm.getModel("name").getValue());
+
+		person.setProperty("name", theNewValue);
+		assertEquals(theNewValue, vm.getValue());
+	}
+
+	@Test
+	public void testGroovyPresentationModel_model_to_bean() {
 		assertEquals(vm, gpm.getModel("name"));
 		assertEquals("Winkler", vm.getValue());
 
-		// ValueModel -> Bean
 		vm.setValue("Hallo");
 		assertEquals(vm.getValue(), person.getName());
+	}
 
-		// Bean -> ValueModel
-		person.setProperty("name", "Winkler-the-new");
-		assertEquals("Winkler-the-new", vm.getValue());
-		assertEquals("Winkler-the-new", gpm.getModel("name").getValue());
-		
-		person.setName("Was_anderes");
-		assertEquals("Was_anderes", person.getName());
-		// Das ValueModel hält noch den alten Wert.
-		assertEquals("Winkler-the-new", vm.getValue());
-		assertEquals("Winkler-the-new", gpm.getModel("name").getValue());
-		person.setProperty("name", "Winkler-the-new");
+	@Test
+	public void testGroovyPresentationModel_with_textfield() {
+		ValueModel vm = gpm.getModel("name");
 
         JTextField textField = new JTextField();
         Bindings.bind(textField, vm);
         assertEquals(person.getName(), textField.getText());
         textField.setText("Hamburg");
         assertEquals(person.getName(), "Hamburg");
+	}
+
+	@Test
+	public void testGroovyPresentationModel_addPropertyChangeListener() {
+		final ValueHolder i = new ValueHolder(BigInteger.ONE);
+		final ValueHolder expectation = new ValueHolder("Hamburg");
+
+		PropertyChangeListener pcl = new PropertyChangeListener() {
+			public void propertyChange(PropertyChangeEvent evt) {
+				assertEquals(expectation.getValue(), vm.getValue());
+				assertEquals(expectation.getValue(), evt.getNewValue());
+				i.setValue(((BigInteger) i.getValue()).add(BigInteger.ONE));
+			}
+		};
+
+		gpm.addPropertyChangeListener("name", pcl);
+
+		person.setName("Hamburg"); // Does not work!
+		assertEquals(BigInteger.valueOf(1), i.getValue());
+
+		person.setProperty("name", "Hamburg"); // This work!
+        assertEquals(BigInteger.valueOf(2), i.getValue());
+
+        expectation.setValue("Essen");
+        vm.setValue("Essen");
+        assertEquals(BigInteger.valueOf(3), i.getValue());
+        assertEquals("Essen", person.getName());
+
+        gpm.removePropertyChangeListener(pcl);
+		person.setProperty("name", "Hamburg"); // This work!
+        assertEquals(BigInteger.valueOf(3), i.getValue());
 	}
 
 }
