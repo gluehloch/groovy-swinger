@@ -82,6 +82,16 @@ class GroovyPresentationModel {
 		return vh
 	}
 
+    def addPropertyChangeListener(name, listener) {
+    	getModel(name).addValueChangeListener(listener)
+    }
+
+    def removePropertyChangeListener(listener) {
+    	valueHolders.each { key, value ->
+    		value.removeValueChangeListener(listener)
+    	}
+    }
+
 	def getBeanProperty(propertyName) {
 		return bean.@"$propertyName"
 	}

@@ -7,7 +7,9 @@
   <body>
     <release version="groovy-swing-0.3.0" date="2009-??-??"
          description="Evolution">
-      <action>
+      <action dev="andrewinkler" type="add" date="2009-10-28">
+        Die Klasse GroovyPresentationModel mit folgender Methode erweitert:
+        GroovyPresentationModel#addPropertyChangeListener()
       </action>
     </release>
 
