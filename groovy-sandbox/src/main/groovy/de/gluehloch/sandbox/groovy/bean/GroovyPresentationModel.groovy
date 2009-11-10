@@ -81,6 +81,12 @@ class GroovyPresentationModel {
 
 		return vh
 	}
+	
+	def addPropertyChangeListener(listener) {
+		bean.metaClass.properties.each { propertyName ->
+			getModel(propertyName).addValueChangeListener(listener)	
+		}
+	}
 
     def addPropertyChangeListener(name, listener) {
     	getModel(name).addValueChangeListener(listener)

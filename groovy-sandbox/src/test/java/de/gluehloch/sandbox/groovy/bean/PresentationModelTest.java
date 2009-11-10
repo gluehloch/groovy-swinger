@@ -138,4 +138,18 @@ public class PresentationModelTest {
         assertEquals(BigInteger.valueOf(3), i.getValue());
 	}
 
+	@Test
+	public void testGroovyPresentationModel_addPropertyChangeListener_to_all() {
+		PropertyChangeListener pcl = new PropertyChangeListener() {
+			public void propertyChange(PropertyChangeEvent evt) {
+				assertEquals("Hamburg", evt.getNewValue());
+				assertEquals("name", evt.getPropertyName());
+			}
+		};
+
+		gpm.addPropertyChangeListener(pcl);
+		person.setProperty("name", "Hamburg");
+		gpm.removePropertyChangeListener(pcl);
+	}
+
 }
