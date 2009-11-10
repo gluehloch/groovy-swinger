@@ -39,7 +39,7 @@ import com.jgoodies.binding.adapter.Bindings;
  * @author  $Author$
  * @version $Revision$ $Date$
  */
-class GroovyPresentationModelTest{
+class GroovyPresentationModelTest {
 
 	def bean
 	def gpm
