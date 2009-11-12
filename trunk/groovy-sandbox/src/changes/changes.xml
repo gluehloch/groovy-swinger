@@ -11,6 +11,15 @@
         Die Klasse GroovyPresentationModel mit folgender Methode erweitert:
         GroovyPresentationModel#addPropertyChangeListener()
       </action>
+      <action dev="andrewinkler" type="fix" date="2009-11-12">
+        Im alten Ansatz war das ValueModel für das Versenden der
+        PropertyChangeEvents zuständig, wenn sich eine Eigenschaft an der
+        Bean änderte. Das hatte den Nachteil, dass ein falscher
+        PropertyName mit versendet wurde (hier war der Name 'value' in Anlehnung
+        an die einzige Eigenschaft der ValueModels). Nun werden die
+        PropertyChangeListener direkt an die Bean gebunden und damit der
+        korrekte PropertyName mit versendet.
+      </action>
     </release>
 
     <release version="groovy-swing-0.2.0" date="2009-02-02"

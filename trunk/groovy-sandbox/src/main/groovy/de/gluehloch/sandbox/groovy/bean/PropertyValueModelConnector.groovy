@@ -46,18 +46,16 @@ class PropertyValueModelConnector {
 
 	void connect() {
         propertyListener = { event ->
-        	valueModel.setValue(event.newValue)
+            valueModel.setValue(event.newValue)
         } as PropertyChangeListener
         bean.addPropertyChangeListener(propertyName, propertyListener)
 
         valueModel.setValue(bean.@"${propertyName}")
 
         valueListener = { event ->
-            // TODO
-        	bean.@"${propertyName}" = event.newValue
-        	// Property is set directly, so fire a event manually.
-        	bean.firePropertyChangeEvent(propertyName, event.oldValue, event.newValue)
-            //bean.setProperty(propertyName, event.newValue)
+            if (event.newValue != bean."${propertyName}") {
+	            bean.setProperty(propertyName, event.newValue)
+            }
         } as PropertyChangeListener
         valueModel.addValueChangeListener(valueListener)
 	}
