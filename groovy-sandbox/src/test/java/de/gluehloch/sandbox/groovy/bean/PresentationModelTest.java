@@ -122,7 +122,7 @@ public class PresentationModelTest {
 
 		gpm.addPropertyChangeListener("name", pcl);
 
-		person.setName("Hamburg"); // Does not work!
+		person.setName("Hamburg"); // Does not work!!!
 		assertEquals(BigInteger.valueOf(1), i.getValue());
 
 		person.setProperty("name", "Hamburg"); // This work!
@@ -130,8 +130,8 @@ public class PresentationModelTest {
 
         expectation.setValue("Essen");
         vm.setValue("Essen");
-        assertEquals(BigInteger.valueOf(3), i.getValue());
         assertEquals("Essen", person.getName());
+        assertEquals(BigInteger.valueOf(3), i.getValue());
 
         gpm.removePropertyChangeListener(pcl);
 		person.setProperty("name", "Hamburg"); // This work!

@@ -81,20 +81,38 @@ class GroovyPresentationModel {
 
 		return vh
 	}
-	
+
+	/**
+	 * Add a PropertyChangeListener to the bean.
+	 *
+	 * @param listener A PropertyChangeListener.
+	 */
 	def addPropertyChangeListener(listener) {
-		bean.metaClass.properties.each { propertyName ->
-			getModel(propertyName).addValueChangeListener(listener)	
+	    def propertyNames = bean.metaClass.properties.collect { it.name } - ['class', 'metaClass']
+
+	    propertyNames.each { propertyName ->
+			bean.addPropertyChangeListener(listener)	
 		}
 	}
 
+    /**
+     * Add a named PropertyChangeListener to the bean.
+     *
+     * @param name The name of the property.
+     * @param listener A named PropertyChangeListener.
+     */
     def addPropertyChangeListener(name, listener) {
-    	getModel(name).addValueChangeListener(listener)
+    	bean.addPropertyChangeListener(listener)
     }
 
+    /**
+     * Remove a PropertyChangeListener from the bean.
+     *
+     * @param listener The PropertyChangeListener to remove.
+     */
     def removePropertyChangeListener(listener) {
     	valueHolders.each { key, value ->
-    		value.removeValueChangeListener(listener)
+    		bean.removePropertyChangeListener(listener)
     	}
     }
 

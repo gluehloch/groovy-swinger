@@ -48,6 +48,10 @@ class GroovyPropertyChangeSupportBuilder {
         def support = new GroovyPropertyChangeSupport(wrappedObject: objectToPimp)
     	emc.propertyChangeSupport << support
 
+    	emc.firePropertyChangeEvent << { String name, oldValue, newValue ->
+    	    support.firePropertyChangeEvent(name, oldValue, newValue)
+    	}
+
     	emc.addPropertyChangeListener << { String key, PropertyChangeListener listener ->
             support.addPropertyChangeListener(key, listener)
         }
