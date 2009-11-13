@@ -91,7 +91,7 @@ class GroovyPresentationModel {
 	    def propertyNames = bean.metaClass.properties.collect { it.name } - ['class', 'metaClass']
 
 	    propertyNames.each { propertyName ->
-			bean.addPropertyChangeListener(listener)	
+			bean.addPropertyChangeListener(propertyName, listener)	
 		}
 	}
 
@@ -102,7 +102,7 @@ class GroovyPresentationModel {
      * @param listener A named PropertyChangeListener.
      */
     def addPropertyChangeListener(name, listener) {
-    	bean.addPropertyChangeListener(listener)
+    	bean.addPropertyChangeListener(name, listener)
     }
 
     /**
