@@ -111,9 +111,10 @@ class GroovyPresentationModel {
      * @param listener The PropertyChangeListener to remove.
      */
     def removePropertyChangeListener(listener) {
-    	valueHolders.each { key, value ->
-    		bean.removePropertyChangeListener(listener)
-    	}
+        bean.removePropertyChangeListener(listener)
+//    	valueHolders.each { key, value ->
+//    		bean.removePropertyChangeListener(listener)
+//    	}
     }
 
 	def getBeanProperty(propertyName) {
