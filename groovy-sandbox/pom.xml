@@ -120,6 +120,13 @@
       <version>2.0.4</version>
       <scope>compile</scope>
     </dependency>
+
+    <dependency>
+      <groupId>ca.odell</groupId>
+      <artifactId>glazedlists-java5</artifactId>
+      <version>1.7.0</version>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
 
 </project>
