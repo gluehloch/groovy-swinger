@@ -25,6 +25,10 @@
 
 package de.gluehloch.sandbox.groovy.bean;
 
+import static org.junit.Assert.assertEquals;
+
+import java.util.Arrays;
+
 import javax.swing.JComboBox;
 
 import org.junit.Test;
@@ -48,11 +52,23 @@ public class SelectionInListTest {
     public void testSelectionInListWithGroovyPresentationModel() {
         final String[] fruits = new String[] { "apfel", "birne", "pflaume"};
         SelectionInListModel silm = new SelectionInListModel();
-        GroovyPresentationModel gpm = new GroovyPresentationModel(silm);
+        silm.getSelectionList().clear();
+        silm.getSelectionList().addAll(Arrays.asList(fruits));
+        silm.setSelectedItem(fruits[0]);
+
+        GroovyPropertyChangeSupportBuilder.preparePCLMechanics(silm);
+        GroovyPresentationModel gpm = new GroovyPresentationModel(silm);        
 
         EventListModel elm = new EventListModel(silm.getSelectionList());
         SelectionInList sil = new SelectionInList(elm, gpm.getModel("selectedItem"));
         JComboBox combobox = new JComboBox(new ComboBoxAdapter(sil));
+
+        assertEquals(0, combobox.getSelectedIndex());
+        assertEquals("apfel", combobox.getSelectedItem());
+
+        silm.setProperty("selectedItem", "birne");
+        assertEquals(1, combobox.getSelectedIndex());
+        assertEquals("birne", combobox.getSelectedItem());
     }
 
 }
