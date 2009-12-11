@@ -1,5 +1,5 @@
 /*
- * $Id: PresentationModelTest.java 157 2009-11-12 07:42:42Z andre.winkler@web.de $
+ * $Id$
  * ============================================================================
  * Project groovy-swinger
  * Copyright (c) 2008-2009 by Andre Winkler. All rights reserved.
@@ -42,8 +42,8 @@ import com.jgoodies.binding.list.SelectionInList;
  * Testet die JGoodies Klasse {@link SelectionInList} im Zusammenspiel mit
  * {@link GroovyPresentationModel}.
  *
- * @author  $Author: andre.winkler@web.de $
- * @version $Revision: 157 $ $Date: 2009-11-12 08:42:42 +0100 (Do, 12 Nov 2009) $
+ * @author  $Author$
+ * @version $Revision$ $Date$
  */
 public class SelectionInListTest {
 

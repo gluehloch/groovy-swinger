@@ -1,5 +1,5 @@
 /*
- * $Id: SelectionInListModel.java 157 2009-11-12 07:42:42Z andre.winkler@web.de $
+ * $Id$
  * ============================================================================
  * Project groovy-swinger
  * Copyright (c) 2008-2009 by Andre Winkler. All rights reserved.
@@ -31,8 +31,8 @@ import ca.odell.glazedlists.EventList;
 /**
  * Ein Groovy GUI Modell für <code>SelectionInListTest</code>.
  *
- * @author  $Author: andre.winkler@web.de $
- * @version $Revision: 157 $ $Date: 2009-11-12 08:42:42 +0100 (Do, 12 Nov 2009) $
+ * @author  $Author$
+ * @version $Revision$ $Date$
  */
 class SelectionInListModel {
 
