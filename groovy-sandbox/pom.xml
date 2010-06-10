@@ -4,11 +4,11 @@
   <parent>
     <groupId>de.gluehloch</groupId>
     <artifactId>gluehloch-maven-parent</artifactId>
-    <version>10</version>
+    <version>13</version>
   </parent>
   <groupId>de.gluehloch.sandbox</groupId>
   <artifactId>groovy-sandbox</artifactId>
-  <version>0.3.0</version>
+  <version>0.4.0-SNAPSHOT</version>
   <description>Groovier swing programming.</description>
 
   <scm>
@@ -33,14 +33,9 @@
   <dependencyManagement>
     <dependencies>
       <dependency>
-        <groupId>org.codehaus.groovy.maven.gmaven-mojo</groupId>
-        <artifactId>gmaven-mojo</artifactId>
-        <version>1.0</version>
-      </dependency>
-      <dependency>
-        <groupId>org.codehaus.groovy.maven.runtime</groupId>
-        <artifactId>gmaven-runtime-1.6</artifactId>
-        <version>1.0</version>
+        <groupId>org.codehaus.groovy</groupId>
+        <artifactId>groovy-all</artifactId>
+        <version>${groovy.version}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
@@ -49,16 +44,38 @@
     <pluginManagement>
       <plugins>
         <plugin>
-          <groupId>org.codehaus.groovy.maven</groupId>
+          <groupId>org.codehaus.gmaven</groupId>
           <artifactId>gmaven-plugin</artifactId>
-          <version>1.0</version>
+          <version>1.2</version>
         </plugin>
       </plugins>
     </pluginManagement>
     <plugins>
       <plugin>
-        <groupId>org.codehaus.groovy.maven</groupId>
+        <groupId>org.codehaus.gmaven</groupId>
         <artifactId>gmaven-plugin</artifactId>
+        <version>1.2</version>
+        <configuration> 
+          <providerSelection>1.7</providerSelection> 
+        </configuration> 
+        <dependencies>
+          <dependency>
+            <groupId>org.codehaus.gmaven.runtime</groupId>
+            <artifactId>gmaven-runtime-1.7</artifactId>
+            <version>1.2</version>
+            <exclusions>
+              <exclusion>
+                <groupId>org.codehaus.groovy</groupId>
+                <artifactId>groovy-all</artifactId>
+              </exclusion>
+            </exclusions>
+          </dependency>
+          <dependency>
+            <groupId>org.codehaus.groovy</groupId>
+            <artifactId>groovy-all</artifactId>
+            <version>1.7.0</version>
+          </dependency>
+        </dependencies>
         <executions>
           <execution>
             <id>compile</id>
@@ -119,7 +136,6 @@
       <version>2.0.4</version>
       <scope>compile</scope>
     </dependency>
-
     <dependency>
       <groupId>ca.odell</groupId>
       <artifactId>glazedlists-java5</artifactId>
@@ -127,5 +143,10 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+
+   <properties>
+     <gmaven.version>1.2</gmaven.version>
+     <groovy.version>1.7.0</groovy.version>
+   </properties>
 
 </project>
