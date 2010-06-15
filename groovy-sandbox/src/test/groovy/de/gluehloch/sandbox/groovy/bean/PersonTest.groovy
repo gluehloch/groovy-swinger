@@ -38,8 +38,9 @@ class PersonTest {
 
     @Test
 	void testPerson() {
-		Person person = new Person(name: 'Winkler',
+		def person = new Person(name: 'Winkler',
 		        surname: 'Andre', age: 37, gender: 'male')
+
 		assert person.surname == 'Andre'
 		assert person.name == 'Winkler'
 		assert person.age == 37
