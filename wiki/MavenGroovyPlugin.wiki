@@ -1,6 +1,6 @@
 #summary Shows the usage of the Maven Groovy plugin.
 
-= GMAven Plugin =
+= GMaven Plugin =
 
 The documentation of the offical web site is behind the time. If you need an example of the configuration of the 1.2.0 plugin version, you find it here (The code snippet was copied from [http://btilford.blogspot.com/2010/02/groovy-170-and-gmaven-12-multi-module.html btilford.blogspot.com]):
 
