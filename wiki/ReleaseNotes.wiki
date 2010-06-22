@@ -1,0 +1,8 @@
+#summary Release Notes.
+
+== Changed in groovy-swinger-0.4.0 ==
+ * Many interesting thinks or starvation?!?
+
+== Changed in groovy-swinger-0.3.0 ==
+ * First development release.
+ * Introduction of {{{GroovyPresentationModel}}} and {{{GroovyPropertyChangeSupportBuilder}}}
