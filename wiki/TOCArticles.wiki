@@ -1,0 +1,6 @@
+#sidebar TableOfContents
+
+== Groovy ==
+ * [ReleaseNotes Release Notes]
+ * [MavenGroovyPlugin Maven Groovy Plugin]
+ * [DelegateAndOwnerExample Delegate And Owner Example]
