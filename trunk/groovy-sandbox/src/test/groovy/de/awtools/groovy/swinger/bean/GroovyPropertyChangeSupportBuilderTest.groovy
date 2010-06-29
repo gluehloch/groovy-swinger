@@ -23,13 +23,15 @@
  *
  */
 
-package de.gluehloch.sandbox.groovy.bean
+package de.awtools.groovy.swinger.bean
 
 import java.beans.PropertyChangeListener
 
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
+
+import de.gluehloch.sandbox.groovy.bean.GroovyPropertyChangeSupportBuilder;
 
 /**
  * Testet die Klasse GroovyPropertyChangeSupportBuilder.

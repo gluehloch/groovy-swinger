@@ -23,28 +23,19 @@
  *
  */
 
-package de.gluehloch.sandbox.groovy.bean
-
-import org.junit.Test
-import org.junit.runner.JUnitCore
+package de.awtools.groovy.swinger.bean
 
 /**
- * Testet die Klasse Person.
- *
+ * Test Bean.
+ * 
  * @author  $Author$
  * @version $Revision$ $Date$
  */
-class PersonTest {
+class Person {
 
-    @Test
-	void testPerson() {
-		def person = new Person(name: 'Winkler',
-		        surname: 'Andre', age: 37, gender: 'male')
-
-		assert person.surname == 'Andre'
-		assert person.name == 'Winkler'
-		assert person.age == 37
-		assert person.gender == 'male'
-	}
+    def name
+    def surname
+    def age
+    def gender
 
 }

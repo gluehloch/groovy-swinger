@@ -23,7 +23,7 @@
  *
  */
 
-package de.gluehloch.sandbox.groovy.bean;
+package de.awtools.groovy.swinger.bean;
 
 import ca.odell.glazedlists.BasicEventList;
 import ca.odell.glazedlists.EventList;

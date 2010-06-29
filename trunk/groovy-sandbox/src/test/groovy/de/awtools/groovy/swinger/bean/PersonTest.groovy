@@ -23,24 +23,28 @@
  *
  */
 
-package de.gluehloch.sandbox.groovy.bean
+package de.awtools.groovy.swinger.bean
 
+import org.junit.Test
 import org.junit.runner.JUnitCore
 
 /**
- * TestSuite.
+ * Testet die Klasse Person.
  *
  * @author  $Author$
  * @version $Revision$ $Date$
- */class StartTestSuite {
+ */
+class PersonTest {
 
-	static void main(String[] args) {
-		JUnitCore.main(
-				GroovyPresentationModelTest.name,
-				GroovyPropertyChangeSupportBuilderTest.name,
-				GroovyPropertyChangeSupportTest.name,
-				JGoodiesDataBindingTest.name,
-				PersonTest.name)
+    @Test
+	void testPerson() {
+		def person = new Person(name: 'Winkler',
+		        surname: 'Andre', age: 37, gender: 'male')
+
+		assert person.surname == 'Andre'
+		assert person.name == 'Winkler'
+		assert person.age == 37
+		assert person.gender == 'male'
 	}
 
 }

@@ -1,4 +1,6 @@
 /*
+
+import de.gluehloch.sandbox.groovy.bean.GroovyPropertyChangeSupportBuilder;
  * $Id$
  * ============================================================================
  * Project groovy-swinger
@@ -23,7 +25,9 @@
  *
  */
 
-package de.gluehloch.sandbox.groovy.bean
+package de.awtools.groovy.swinger.bean
+
+import de.gluehloch.sandbox.groovy.bean.GroovyPropertyChangeSupportBuilder
 
 import java.beans.PropertyChangeListener
 

@@ -23,7 +23,7 @@
 *
 */
 
-package de.gluehloch.groovy.swinger.beanbinding
+package de.awtools.groovy.swinger.beanbinding
 
 import java.beans.PropertyChangeListener
 
