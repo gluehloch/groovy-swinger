@@ -5,7 +5,7 @@
     <author email="andre.winkler@web.de">Andre Winkler</author>
   </properties>
   <body>
-    <release version="groovy-swing-0.4.0" date="201?-??-??"
+    <release version="groovy-swing-0.4.0" date="2010-??-??"
          description="Evolution">
       <action dev="andrewinkler" type="update" date="2010-06-15">
         Update to jgoodies-binding-2.0.6 and glazedlists_java15-1.8.0.

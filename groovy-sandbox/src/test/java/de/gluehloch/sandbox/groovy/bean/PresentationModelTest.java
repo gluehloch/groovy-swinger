@@ -40,6 +40,8 @@ import com.jgoodies.binding.adapter.Bindings;
 import com.jgoodies.binding.value.ValueHolder;
 import com.jgoodies.binding.value.ValueModel;
 
+import de.awtools.groovy.swinger.bean.Person;
+
 /**
  * Testet die Anbindung unter Java der Groovy Klasse <code>Person</code> in
  * Zusammenarbeit mit <code>GroovyPropertyChangeSupportBuilder</code> und

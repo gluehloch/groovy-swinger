@@ -23,7 +23,7 @@
  *
  */
 
-package de.gluehloch.sandbox.groovy.bean
+package de.awtools.groovy.swinger.bean
 
 import javax.swing.JTextField
 
@@ -33,6 +33,9 @@ import org.junit.Before
 import org.junit.Test
 
 import com.jgoodies.binding.adapter.Bindings;
+
+import de.gluehloch.sandbox.groovy.bean.GroovyPresentationModel;
+import de.gluehloch.sandbox.groovy.bean.GroovyPropertyChangeSupportBuilder;
 /**
  * Testet die Klasse GroovyPresentationModel.
  *
