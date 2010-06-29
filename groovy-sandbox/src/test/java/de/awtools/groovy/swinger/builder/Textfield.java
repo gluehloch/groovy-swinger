@@ -30,7 +30,7 @@ import javax.swing.JTextField;
 import com.jgoodies.binding.adapter.Bindings;
 import com.jgoodies.validation.view.ValidationComponentUtils;
 
-import de.gluehloch.sandbox.groovy.bean.GroovyPresentationModel;
+import de.awtools.groovy.swinger.bean.GroovyPresentationModel;
 
 /**
  * TODO: Create a Groovy.

@@ -38,9 +38,9 @@ import ca.odell.glazedlists.swing.EventListModel;
 import com.jgoodies.binding.adapter.ComboBoxAdapter;
 import com.jgoodies.binding.list.SelectionInList;
 
+import de.awtools.groovy.swinger.bean.GroovyPresentationModel;
+import de.awtools.groovy.swinger.bean.GroovyPropertyChangeSupportBuilder;
 import de.awtools.groovy.swinger.bean.SelectionInListModel;
-import de.gluehloch.sandbox.groovy.bean.GroovyPresentationModel;
-import de.gluehloch.sandbox.groovy.bean.GroovyPropertyChangeSupportBuilder;
 
 /**
  * Testet die JGoodies Klasse {@link SelectionInList} im Zusammenspiel mit

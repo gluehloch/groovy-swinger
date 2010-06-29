@@ -40,9 +40,9 @@ import com.jgoodies.binding.adapter.Bindings;
 import com.jgoodies.binding.value.ValueHolder;
 import com.jgoodies.binding.value.ValueModel;
 
+import de.awtools.groovy.swinger.bean.GroovyPresentationModel;
+import de.awtools.groovy.swinger.bean.GroovyPropertyChangeSupportBuilder;
 import de.awtools.groovy.swinger.bean.Person;
-import de.gluehloch.sandbox.groovy.bean.GroovyPresentationModel;
-import de.gluehloch.sandbox.groovy.bean.GroovyPropertyChangeSupportBuilder;
 
 /**
  * Testet die Anbindung unter Java der Groovy Klasse <code>Person</code> in
