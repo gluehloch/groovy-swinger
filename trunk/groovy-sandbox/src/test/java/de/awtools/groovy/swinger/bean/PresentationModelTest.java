@@ -23,7 +23,7 @@
  *
  */
 
-package de.gluehloch.sandbox.groovy.bean;
+package de.awtools.groovy.swinger.bean;
 
 import static org.junit.Assert.assertEquals;
 
@@ -41,6 +41,8 @@ import com.jgoodies.binding.value.ValueHolder;
 import com.jgoodies.binding.value.ValueModel;
 
 import de.awtools.groovy.swinger.bean.Person;
+import de.gluehloch.sandbox.groovy.bean.GroovyPresentationModel;
+import de.gluehloch.sandbox.groovy.bean.GroovyPropertyChangeSupportBuilder;
 
 /**
  * Testet die Anbindung unter Java der Groovy Klasse <code>Person</code> in
