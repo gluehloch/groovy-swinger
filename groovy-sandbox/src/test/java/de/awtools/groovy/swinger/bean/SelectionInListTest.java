@@ -23,7 +23,7 @@
  *
  */
 
-package de.gluehloch.sandbox.groovy.bean;
+package de.awtools.groovy.swinger.bean;
 
 import static org.junit.Assert.assertEquals;
 
@@ -39,6 +39,8 @@ import com.jgoodies.binding.adapter.ComboBoxAdapter;
 import com.jgoodies.binding.list.SelectionInList;
 
 import de.awtools.groovy.swinger.bean.SelectionInListModel;
+import de.gluehloch.sandbox.groovy.bean.GroovyPresentationModel;
+import de.gluehloch.sandbox.groovy.bean.GroovyPropertyChangeSupportBuilder;
 
 /**
  * Testet die JGoodies Klasse {@link SelectionInList} im Zusammenspiel mit
