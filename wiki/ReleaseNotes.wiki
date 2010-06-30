@@ -1,7 +1,8 @@
 #summary Release Notes.
 
 == Changed in groovy-swinger-0.4.0 ==
- * Many interesting thinks or starvation?!?
+ * Changed the package naming to de.awtools.groovy.swinger.
+ * Something to do.
 
 == Changed in groovy-swinger-0.3.0 ==
  * First development release.
