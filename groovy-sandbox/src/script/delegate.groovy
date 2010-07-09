@@ -8,17 +8,17 @@ class Example {
     }
 
     def invokeMethod(String name, args) {
-        println "invokeMethod ${name}"
+        println "    Example#invokeMethod ${name}()"
         super.invokeMethod(name, args)
     }
 
     def propertyMissing(String name) {
-        println "missingProperty ${name}"
+        println "    Example#missingProperty ${name}"
         "missingProperty"
     }
 
     def propertyMissing(String name, value) {
-        println "missingProperty ${name}"
+        println "    Example#missingProperty ${name}"
     }
 }
 
@@ -34,6 +34,10 @@ def example = new Example()
 println "1: ${example.func()}"
 example.func.delegate = new AnotherClass()
 println "2: ${example.func()}"
+
+println """
+# Change the resolveStrategy and call func() again:
+"""
 
 example.func.resolveStrategy = Closure.DELEGATE_FIRST
 println "3: ${example.func()}"
