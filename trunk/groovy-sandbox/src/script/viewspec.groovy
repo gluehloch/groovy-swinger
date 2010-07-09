@@ -1,17 +1,27 @@
 class ViewSpecification {
 
     def name = 'ViewSpecification_Part_I'
+    def model = new ViewModel()
 
     def view = {
-        bean { new ViewModel() }
+        bean { model }
+
         textfield {
+            name '_name_'
             columns 10
             mandatory true
             editable true
             bind 'name'
         }
-        
-        'Ok'
+
+        textfield {
+            name '_forename_'
+            columns 10
+            mandatory true
+            editable true
+            bind 'forename'
+        }
+
     }
     
 }
@@ -25,7 +35,15 @@ class  Textfield {
     def binding
 
     String toString() {
-        "columns: ${columns}, mandatory: ${mandatory}, editable: ${editable}, binding: ${binding}"
+        """
+    [Textfield.class
+        name: ${name},
+        columns: ${columns},
+        mandatory: ${mandatory},
+        editable: ${editable},
+        binding: ${binding}
+    ]
+        """
     }
 
 }
@@ -44,11 +62,21 @@ class DSLReader {
 
     def elements = [:]
     def currentElement
+    def model
 
     String toString() {
+        println "View defintion:"
+        println "    model: ${model}"
+        println "    elements:"
         elements.each { key, value ->
-            println "key: ${key}, value: ${value}"
+            println "${value}"
         }
+    }
+
+    def name(value) {
+        println "    DSLReader#name(${value})"
+        currentElement.name = value
+        elements[currentElement.name] = currentElement
     }
 
     def columns(value) {
@@ -72,10 +100,13 @@ class DSLReader {
     }
 
     def invokeMethod(String name, args) {
-        if (name == 'textfield') {
+        if (name == 'bean') {
+            println "    bind to a model"
+            model = args[0]()
+            println "    The model: ${model}"
+        } else if (name == 'textfield') {
             println "    create a textfield definition"
             currentElement = new Textfield()
-            elements['textfield'] = currentElement
         }
 
         println "    DSLReader#invokeMethod ${name}(...)"
@@ -103,10 +134,7 @@ viewSpec.view.resolveStrategy = Closure.DELEGATE_FIRST
 
 println "Execute: ${viewSpec.view()}"
 
-println "Result: ${dslReader.toString()}"
+println "Result: ${dslReader}"
 
-//viewSpec.view.resolveStrategy = Closure.DELEGATE_FIRST
-//
-//println "Execute: ${viewSpec.view()}"
-
+return 0
 
