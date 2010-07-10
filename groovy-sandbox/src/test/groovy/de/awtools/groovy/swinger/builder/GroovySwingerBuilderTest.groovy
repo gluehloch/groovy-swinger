@@ -1,5 +1,5 @@
 /*
- * $Id: GroovyPresentationModel.groovy 181 2010-06-29 12:39:18Z andre.winkler@web.de $
+ * $Id$
  * ============================================================================
  * Project groovy-swinger
  * Copyright (c) 2008-2010 by Andre Winkler. All rights reserved.
@@ -30,8 +30,8 @@ import org.junit.Test;
 /**
  * Test of class {@link GroovySwingerBuilder}.
  *
- * @author  $Author: andre.winkler@web.de $
- * @version $Revision: 181 $ $Date: 2010-06-29 14:39:18 +0200 (Di, 29 Jun 2010) $
+ * @author  $Author$
+ * @version $Revision$ $Date$
  */
 class GroovySwingerBuilderTest {
 
