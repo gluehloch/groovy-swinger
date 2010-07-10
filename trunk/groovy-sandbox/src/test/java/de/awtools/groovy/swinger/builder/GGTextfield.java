@@ -1,5 +1,5 @@
 /*
- * $Id: Textfield.java 1968 2010-01-21 20:26:23Z andrewinkler $
+ * $Id$
  * ============================================================================
  * Project groovy-swinger
  * Copyright (c) 2008-2010 by Andre Winkler. All rights reserved.
@@ -42,10 +42,10 @@ import de.awtools.groovy.swinger.bean.GroovyPresentationModel;
  * Textfield tf2 = textfield("vintage").columns(5).nonEditable();
  * </pre>
  * 
- * @author by Andre Winkler, $LastChangedBy: andrewinkler $
- * @version $LastChangedRevision: 1968 $ $LastChangedDate: 2010-01-21 21:26:23 +0100 (Do, 21 Jan 2010) $
+ * @author by Andre Winkler, $LastChangedBy$
+ * @version $LastChangedRevision$ $LastChangedDate$
  */
-public class Textfield {
+public class GGTextfield {
 
     public static class TextfieldBuilder {
         private final String name;
@@ -74,13 +74,13 @@ public class Textfield {
             return this;
         }
 
-        public Textfield editable() {
-            return new Textfield(name, columns, mandatory, editable);
+        public GGTextfield editable() {
+            return new GGTextfield(name, columns, mandatory, editable);
         }
 
-        public Textfield nonEditable() {
+        public GGTextfield nonEditable() {
             editable = false;
-            return new Textfield(name, columns, mandatory, editable);
+            return new GGTextfield(name, columns, mandatory, editable);
         }
     }
 
@@ -94,7 +94,7 @@ public class Textfield {
 
     private boolean editable = true;
 
-    private Textfield(final String _name, final int _columns,
+    private GGTextfield(final String _name, final int _columns,
             final boolean _mandatory, final boolean _editable) {
 
         name = _name;

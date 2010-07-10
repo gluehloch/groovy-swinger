@@ -1,5 +1,5 @@
 /*
- * $Id$
+ * $Id: GroovyPresentationModel.groovy 181 2010-06-29 12:39:18Z andre.winkler@web.de $
  * ============================================================================
  * Project groovy-swinger
  * Copyright (c) 2008-2010 by Andre Winkler. All rights reserved.
@@ -23,22 +23,21 @@
  *
  */
 
-package de.awtools.groovy.swinger.builder;
-
-import org.junit.Test;
+package de.awtools.groovy.swinger.builder
 
 /**
- * TODO: Test of class {@link Textfield}.
+ * Create views.
  *
- * @author by Andre Winkler, $LastChangedBy$
- * @version $LastChangedRevision$ $LastChangedDate$
+ * @author  $Author: andre.winkler@web.de $
+ * @version $Revision: 181 $ $Date: 2010-06-29 14:39:18 +0200 (Di, 29 Jun 2010) $
  */
-public class TextfieldTest {
+class GroovySwingerBuilder {
 
-    @Test
-    public void testTextfield() {
-        GGTextfield textfield = GGTextfield.TextfieldBuilder.textfield("name")
-            .columns(20).mandatory().editable();
+    static def build(viewSpec) {
+        def dslReader = new DSLReader()
+        viewSpec.view.delegate = dslReader      
+        viewSpec.view()
+        dslReader.view
     }
 
 }
