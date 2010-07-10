@@ -1,5 +1,5 @@
 /*
- * $Id$
+ * $Id: GroovyPresentationModel.groovy 181 2010-06-29 12:39:18Z andre.winkler@web.de $
  * ============================================================================
  * Project groovy-swinger
  * Copyright (c) 2008-2010 by Andre Winkler. All rights reserved.
@@ -23,22 +23,37 @@
  *
  */
 
-package de.awtools.groovy.swinger.builder;
-
-import org.junit.Test;
+package de.awtools.groovy.swinger.builder
 
 /**
- * TODO: Test of class {@link Textfield}.
+ * Example of a DSL like view specification.
  *
- * @author by Andre Winkler, $LastChangedBy$
- * @version $LastChangedRevision$ $LastChangedDate$
+ * @author  $Author: andre.winkler@web.de $
+ * @version $Revision: 181 $ $Date: 2010-06-29 14:39:18 +0200 (Di, 29 Jun 2010) $
  */
-public class TextfieldTest {
+class ViewSpecification {
 
-    @Test
-    public void testTextfield() {
-        GGTextfield textfield = GGTextfield.TextfieldBuilder.textfield("name")
-            .columns(20).mandatory().editable();
+    def name = 'ViewSpecification_Part_I'
+    def model = new ViewModel()
+
+    def view = {
+        bean { model }
+
+        textfield {
+            name '_name_'
+            columns 10
+            mandatory true
+            editable true
+            bind 'name'
+        }
+
+        textfield {
+            name '_forename_'
+            columns 10
+            mandatory true
+            editable true
+            bind 'forename'
+        }
     }
 
 }

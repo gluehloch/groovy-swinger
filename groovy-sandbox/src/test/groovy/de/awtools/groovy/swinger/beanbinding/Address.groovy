@@ -30,8 +30,8 @@ import groovy.beans.Bindable;
 /**
  * Test of the 1.7 annotation 'Bindable'.
  *
- * @author  $Author: andre.winkler@web.de $
- * @version $Revision: 156 $ $Date: 2009-11-10 16:53:29 +0100 (Di, 10 Nov 2009) $
+ * @author  $Author$
+ * @version $Revision$ $Date$
  */
 class Address {
 

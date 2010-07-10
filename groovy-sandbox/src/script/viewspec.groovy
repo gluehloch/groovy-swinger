@@ -22,6 +22,7 @@ class ViewSpecification {
             bind 'forename'
         }
 
+        name
     }
     
 }
@@ -74,32 +75,27 @@ class DSLReader {
     }
 
     def name(value) {
-        println "    DSLReader#name(${value})"
         currentElement.name = value
         elements[currentElement.name] = currentElement
     }
 
     def columns(value) {
-        println "    DSLReader#columns(${value})"
         currentElement.columns = value
     }
 
     def mandatory(value) {
-        println "    DSLReader#mandatory(${value})"
         currentElement.mandatory = value
     }
 
     def editable(value) {
-        println "    DSLReader#editable(${value})"
         currentElement.editable = value
     }
     
     def bind(value) {
-        println "    DSLReader#bind(${value})"
         currentElement.binding = value
     }
 
-    def invokeMethod(String name, args) {
+    def methodMissing(String name, args) {
         if (name == 'bean') {
             println "    bind to a model"
             model = args[0]()
@@ -109,9 +105,10 @@ class DSLReader {
             currentElement = new Textfield()
         }
 
-        println "    DSLReader#invokeMethod ${name}(...)"
+//        println "    DSLReader#invokeMethod ${name}(...)"
         args.eachWithIndex { arg, idx ->
-            println "        Argument ${idx}: ${arg}"
+            arg()
+            //println "        Argument ${idx}: ${arg}"
         }
     }
 
@@ -121,7 +118,7 @@ class DSLReader {
     }
 
     def propertyMissing(String name, value) {
-        println "    DSLReader#missingProperty ${name}"
+        println "    DSLReader#missingProperty ${name} with ${value}"
     }
 
 }
@@ -130,7 +127,7 @@ def dslReader = new DSLReader()
 def viewSpec = new ViewSpecification()
 
 viewSpec.view.delegate = dslReader
-viewSpec.view.resolveStrategy = Closure.DELEGATE_FIRST
+//viewSpec.view.resolveStrategy = Closure.DELEGATE_FIRST
 
 println "Execute: ${viewSpec.view()}"
 
