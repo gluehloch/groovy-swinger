@@ -40,17 +40,20 @@ class AnExample {
 def e = new AnExample()
 assert e.clos() == 3
 }}}
-In this case the closure calls the add method of the closure´s owner. The so called {{{OWNER_FIRST}}} strategy. Another opportunity would by to set the resolver strategy to {{{DELEGATE_FIRST}}}. Then the delegate would be the first object to search for the method add. Example:
+In this case the closure calls the add method of the closure´s owner. The so called {{{OWNER_FIRST}}} strategy. Another opportunity would by to set the resolver strategy to {{{DELEGATE_FIRST}}}. Then the delegate would be the first object to search for the method {{{add}}}. Example:
 {{{
 class AnExample {
     def clos = {
         add(1, 2)
     }
+    def add(a, b) {
+        a + b
+    }
 }
 
 class AnotherClass {
     def add(a, b) {
-        a + b
+        a + b + 1
     }
 }
 
@@ -58,7 +61,8 @@ def e = new AnExample()
 def f = new AnotherClass()
 
 e.clos.delegate = f
-assert e.clos() == 3
+e.clos.resolveStrategy = Closure.DELEGATE_FIRST
+assert e.clos() == 4
 }}}
 Here the method {{{add}}} of the {{{AnotherClass}}} would be called.
 
