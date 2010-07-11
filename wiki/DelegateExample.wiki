@@ -60,7 +60,7 @@ def f = new AnotherClass()
 e.clos.delegate = f
 assert e.clos() == 3
 }}}
-Here the method add of the AnotherClass would be called.
+Here the method add of the {{{AnotherClass}}} would be called.
 
 == Advanced explanations ==
 This [http://naleid.com/blog/2009/06/25/groovy-closures-make-unit-testing-with-soft-asserts-simple article] gives interesting informations about closures and delegate.
