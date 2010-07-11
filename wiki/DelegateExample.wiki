@@ -1,6 +1,6 @@
 #summary Example of Groovies delegate keyword.
 
-= The delegate keyword =
+== The delegate keyword ==
 The `delegate` keyword is only available in closures! Take a look at the following example file `DelegateExample.groovy`:
 {{{
 def clos = {
@@ -24,7 +24,7 @@ delegate: java.lang.Integer
 
 Per default `delegate` references the same object as `this`. But you have the possibility to change the value `delegate` instead of `this`.
 
-= ResolverStrategy =
+== Resolver Strategy ==
 The ResolverStrategy defines the lookup mechanism to find methods and properties of a closure. Example:
 {{{
 class AnExample {
@@ -62,5 +62,5 @@ assert e.clos() == 3
 }}}
 Here the method add of the AnotherClass would be called.
 
-= Advanced explanations =
+== Advanced explanations ==
 This [http://naleid.com/blog/2009/06/25/groovy-closures-make-unit-testing-with-soft-asserts-simple article] gives interesting informations about closures and delegate.
