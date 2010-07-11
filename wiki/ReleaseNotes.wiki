@@ -2,6 +2,7 @@
 
 == Changed in groovy-swinger-0.4.0 ==
  * Changed the package naming to {{{de.awtools.groovy.swinger}}}.
+ * Added a builder to create Textfields.
  * Something to do.
 
 == Changed in groovy-swinger-0.3.0 ==
