@@ -24,5 +24,43 @@ delegate: java.lang.Integer
 
 Per default `delegate` references the same object as `this`. But you have the possibility to change the value `delegate` instead of `this`.
 
+= ResolverStrategy =
+The ResolverStrategy defines the lookup mechanism to find methods and properties of a closure. Example:
+{{{
+class AnExample {
+    def clos = {
+        add(1, 2)
+    }
+
+    def add(a, b) {
+        a + b
+    }
+}
+
+def e = new AnExample()
+assert e.clos() == 3
+}}}
+In this case the closure calls the add method of the closure´s owner. The so called OWNER_FIRST strategy. Another opportunity would by to set the resolver strategy to DELEGATE_FIRST. Then the delegate would be the first object to search for the method add. Example:
+{{{
+class AnExample {
+    def clos = {
+        add(1, 2)
+    }
+}
+
+class AnotherClass {
+    def add(a, b) {
+        a + b
+    }
+}
+
+def e = new AnExample()
+def f = new AnotherClass()
+
+e.clos.delegate = f
+assert e.clos() == 3
+}}}
+Here the method add of the AnotherClass would be called.
+
 = Advanced explanations =
 This [http://naleid.com/blog/2009/06/25/groovy-closures-make-unit-testing-with-soft-asserts-simple article] gives interesting informations about closures and delegate.
