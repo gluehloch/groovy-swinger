@@ -72,7 +72,7 @@ e.clos.delegate = f
 e.clos.resolveStrategy = Closure.DELEGATE_FIRST
 assert e.clos() == 4
 }}}
-Here the method {{{add}}} of the {{{AnotherClass}}} would be called.
+Here the method {{{add}}} of the {{{AnotherClass}}} will be called.
 
 == Advanced explanations ==
 This [http://naleid.com/blog/2009/06/25/groovy-closures-make-unit-testing-with-soft-asserts-simple article] gives interesting informations about closures and delegate.
