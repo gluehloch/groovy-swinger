@@ -1,4 +1,5 @@
  * [ReleaseNotes Release Notes]
  * [MavenGroovyPlugin Maven Groovy Plugin]
- * [DelegateExample  Delegate Example]
- * [DelegateAndOwnerExample Delegate And Owner Example]
+ * The delegate keyword 
+   * [DelegateExample  Delegate Example]
+   * [DelegateAndOwnerExample Delegate And Owner Example]
