@@ -3,23 +3,31 @@
 == The delegate keyword ==
 The `delegate` keyword is only available in closures! Take a look at the following example file `DelegateExample.groovy`:
 {{{
-def clos = {
-    println 'this: ' + this.class.name
-    println 'delegate: ' + delegate.class.name
-    return delegate.class.name
+class DelegateExample {
+    def clos = {
+        println 'this: ' + this.class.name
+        println 'delegate: ' + delegate.class.name
+        println 'owner: ' + owner.class.name
+        delegate.class.name
+    }
 }
 
-assert 'DelegateExample' == clos()
-clos.delegate = new Integer(100)
-assert 'java.lang.Integer' == clos()
+def example = new DelegateExample()
+
+assert 'DelegateExample' == example.clos()
+example.clos.delegate = new Integer(100)
+assert 'java.lang.Integer' == example.clos()
 }}}
 
 This piece of code prints out the following statements:
 {{{
 this: DelegateExample
 delegate: DelegateExample
+owner: DelegateExample
 this: DelegateExample
 delegate: java.lang.Integer
+owner: DelegateExample
+
 }}}
 
 Per default `delegate` references the same object as `this`. But you have the possibility to change the value `delegate` instead of `this`.
