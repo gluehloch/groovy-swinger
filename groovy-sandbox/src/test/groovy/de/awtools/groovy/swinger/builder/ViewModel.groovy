@@ -39,4 +39,5 @@ class ViewModel {
     String toString() {
         name + "," + forename
     }
+
 }
