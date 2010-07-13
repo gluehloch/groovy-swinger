@@ -25,6 +25,11 @@
 
 package de.awtools.groovy.swinger.builder
 
+import javax.swing.JTextField;
+
+import com.jgoodies.binding.adapter.Bindings;
+import com.jgoodies.validation.view.ValidationComponentUtils;
+
 /**
  * Holds the info to build a JTextfield.
  *
@@ -41,6 +46,21 @@ class Textfield {
 
     String toString() {
         "[Textfield# name: ${name}, columns: ${columns}, mandatory: ${mandatory}, editable: ${editable}, binding: ${binding}]"
+    }
+
+
+    def xxx() {
+        JTextField jtextfield = new JTextField()
+        jtextfield.setName(name)
+        jtextfield.setColumns(columns)
+        jtextfield.setEditable(editable)
+
+        ValidationComponentUtils.setMessageKey(jtextfield, name)
+        ValidationComponentUtils.setMandatory(jtextfield, mandatory)
+        
+        Bindings.bind(jtextfield, gpm.getModel(binding))
+
+        jtextfield
     }
 
 }
