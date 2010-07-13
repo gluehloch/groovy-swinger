@@ -67,11 +67,14 @@ class DSLReader {
     }
 
     def methodMissing(String name, args) {
-        if (name == 'bean') {
-            view = new View()
-            view.model = args[0]()
-        } else if (name == 'textfield') {
-            currentElement = new Textfield()
+        switch (name) {
+            case 'bean':
+                view = new View()
+                view.model = args[0]()
+                break
+            case 'textfield':
+                currentElement = new Textfield()
+                break
         }
 
         args.eachWithIndex { arg, idx ->
