@@ -1,0 +1,5 @@
+#summary One-sentence summary of this page.
+
+= Introduction =
+
+If you are interested in the mechanism of the PropertyChangeSupport class of the Java API, then have a look into the JavaDocs of [http://cupi2.uniandes.edu.co/~cupi2/sitio/images/recursos/javadoc/j2se/1.5.0/docs/api/java/beans/PropertyChangeSupport.html PropertyChangeSupport]
