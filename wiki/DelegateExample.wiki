@@ -78,4 +78,4 @@ assert e.clos() == 4
 Here the method {{{add}}} of the {{{AnotherClass}}} will be called.
 
 = Advanced articles =
-This [http://naleid.com/blog/2009/06/25/groovy-closures-make-unit-testing-with-soft-asserts-simple article] gives interesting informations about closures and delegate. He extends the JUnit test framework with soft assertions. This assertion collects all errors and throws at the end of the test procedure an exception.
+This [http://naleid.com/blog/2009/06/25/groovy-closures-make-unit-testing-with-soft-asserts-simple article] gives interesting informations about closures and delegate. The author extends the JUnit test framework with soft assertions. This modified assertion collects all errors and throws at the end of the test procedure an exception.
