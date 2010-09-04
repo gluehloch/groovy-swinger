@@ -40,10 +40,6 @@ import com.jgoodies.binding.adapter.Bindings;
 import com.jgoodies.binding.value.ValueHolder;
 import com.jgoodies.binding.value.ValueModel;
 
-import de.awtools.groovy.swinger.bean.GroovyPresentationModel;
-import de.awtools.groovy.swinger.bean.GroovyPropertyChangeSupportBuilder;
-import de.awtools.groovy.swinger.bean.Person;
-
 /**
  * Testet die Anbindung unter Java der Groovy Klasse <code>Person</code> in
  * Zusammenarbeit mit <code>GroovyPropertyChangeSupportBuilder</code> und
@@ -117,6 +113,7 @@ public class PresentationModelTest {
 		final ValueHolder expectation = new ValueHolder("Hamburg");
 
 		PropertyChangeListener pcl = new PropertyChangeListener() {
+            @Override
 			public void propertyChange(PropertyChangeEvent evt) {
 				assertEquals(expectation.getValue(), vm.getValue());
 				assertEquals(expectation.getValue(), evt.getNewValue());
