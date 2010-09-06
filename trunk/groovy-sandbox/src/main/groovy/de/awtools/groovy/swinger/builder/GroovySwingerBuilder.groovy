@@ -35,7 +35,7 @@ class GroovySwingerBuilder {
 
     static def build(viewSpec) {
         def dslReader = new DSLReader()
-        viewSpec.view.delegate = dslReader      
+        viewSpec.view.delegate = dslReader
         viewSpec.view()
         dslReader.view
     }
