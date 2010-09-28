@@ -49,7 +49,7 @@ class Textfield {
     }
 
 
-    def xxx() {
+    def component() {
         JTextField jtextfield = new JTextField()
         jtextfield.setName(name)
         jtextfield.setColumns(columns)
