@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project>
   <modelVersion>4.0.0</modelVersion>
+
   <parent>
     <groupId>de.gluehloch</groupId>
     <artifactId>gluehloch-maven-parent</artifactId>
     <version>17</version>
   </parent>
+
   <groupId>de.awtools.groovy.swinger</groupId>
   <artifactId>groovy-swinger</artifactId>
   <version>0.4.0-SNAPSHOT</version>
@@ -142,6 +144,8 @@
       <version>2.0.1</version>
       <scope>compile</scope>
     </dependency>
+
+    <!-- the test department -->
     <dependency>
       <groupId>net.java.dev.glazedlists</groupId>
       <artifactId>glazedlists_java15</artifactId>
