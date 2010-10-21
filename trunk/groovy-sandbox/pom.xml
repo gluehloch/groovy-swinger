@@ -11,7 +11,9 @@
   <groupId>de.awtools.groovy.swinger</groupId>
   <artifactId>groovy-swinger</artifactId>
   <version>0.4.0-SNAPSHOT</version>
-  <description>Groovier swing programming.</description>
+  <description>
+    A try for groovier swing programming.
+  </description>
 
   <scm>
     <connection>
