@@ -30,15 +30,16 @@ vm.setValue("Hallo");
 // Propagate the change to the bean
 assertEquals(vm.getValue(), person.getName());
 
-// !!! The added property change support works !!!
+// !!! Property change support works fine!!!
 person.setProperty("name", "Winkler-the-new");
 assertEquals("Winkler-the-new", vm.getValue());
 assertEquals("Winkler-the-new", gpm.getModel("name").getValue());
 		
-// !!! The added property change support doesn´t work here !!!
+// !!! Property change support doesn´t work, if you call
 person.setName("Was_anderes");
 assertEquals("Was_anderes", person.getName());
-// --> The property change was not propagated to the value model. <--
+
+// --> BUT the property change was not propagated to the value model. <--
 assertEquals("Winkler-the-new", vm.getValue()); // The ValueModel has the old value
 assertEquals("Winkler-the-new", gpm.getModel("name").getValue());
 person.setProperty("name", "Winkler-the-new");
