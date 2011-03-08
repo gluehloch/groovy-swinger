@@ -32,7 +32,7 @@ owner: DelegateExample
 
 }}}
 
-Per default `delegate` references the same object as `this`. But you have the possibility to change the value `delegate` instead of `this`.
+Per default `delegate` references the same object as `this`. But you have the possibility to change the value `delegate` instead of `this`, which unmodifiable.
 
 = Resolver Strategy =
 The ResolverStrategy defines the lookup mechanism to find methods and properties of a closure. Example:
