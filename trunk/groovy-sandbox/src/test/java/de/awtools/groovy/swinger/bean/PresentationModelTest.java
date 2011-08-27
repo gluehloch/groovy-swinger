@@ -25,6 +25,8 @@
 
 package de.awtools.groovy.swinger.bean;
 
+import static org.fest.assertions.Assertions.assertThat;
+
 import static org.junit.Assert.assertEquals;
 
 import java.beans.PropertyChangeEvent;
@@ -74,6 +76,8 @@ public class PresentationModelTest {
 		person.setProperty("name", theOldValue);
 		assertEquals(theOldValue, vm.getValue());
 		assertEquals(theOldValue, gpm.getModel("name").getValue());
+		
+		assertThat(theOldValue).isEqualTo(vm.getValue().toString());
 
 		// Direct method call of the property does not work #setName(...)
 		person.setName(theNewValue);

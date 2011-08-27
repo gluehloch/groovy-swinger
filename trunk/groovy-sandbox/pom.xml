@@ -3,9 +3,9 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>de.gluehloch</groupId>
-    <artifactId>gluehloch-maven-parent</artifactId>
-    <version>19</version>
+    <groupId>de.awtools</groupId>
+    <artifactId>awtools-maven-pom</artifactId>
+    <version>20</version>
   </parent>
 
   <groupId>de.awtools.groovy.swinger</groupId>
@@ -136,8 +136,8 @@
     </dependency>
     <dependency>
       <groupId>com.jgoodies</groupId>
-      <artifactId>binding</artifactId>
-      <version>2.0.6</version>
+      <artifactId>jgoodies-binding</artifactId>
+      <version>2.4.0</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
@@ -152,6 +152,30 @@
       <groupId>net.java.dev.glazedlists</groupId>
       <artifactId>glazedlists_java15</artifactId>
       <version>1.8.0</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.easytesting</groupId>
+      <artifactId>fest-swing</artifactId>
+      <version>1.2</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.easytesting</groupId>
+      <artifactId>fest-assert</artifactId>
+      <version>1.4</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.easytesting</groupId>
+      <artifactId>fest-reflect</artifactId>
+      <version>1.2</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.easytesting</groupId>
+      <artifactId>fest-mocks</artifactId>
+      <version>1.1</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
