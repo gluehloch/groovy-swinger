@@ -46,7 +46,12 @@ class GroovyPresentationModelTest {
 	def gpm
 
     @Test
-    void testGroovyPresentationModel() {
+    void testGroovyPresentationModel_checkBuilder() {
+        
+    }
+
+    @Test
+    void testGroovyPresentationModel_Bind() {
 		def name = gpm.getModel('name')
 		name.value = 'Berlin'
 		assert bean.name == 'Berlin'
@@ -74,7 +79,7 @@ class GroovyPresentationModelTest {
 	}
 
 	@Test
-	void testGroovyPresentationModelWithUnknownProperty() {
+	void testGroovyPresentationModel_WithUnknownProperty() {
 		try {
 			gpm.getModel('unknownProperty')
 			Assert.fail()
@@ -84,7 +89,7 @@ class GroovyPresentationModelTest {
 	}
 
 	@Test
-	void testGroovyPresentationModelUnbind() {
+	void testGroovyPresentationModel_Unbind() {
         def name = gpm.getModel('name')
         name.value = 'Berlin'
         assert bean.name == 'Berlin'
@@ -99,14 +104,14 @@ class GroovyPresentationModelTest {
 	}
 
 	@Test
-	void testGroovyPresentationModelGetBeanProperty() {
+	void testGroovyPresentationModel_GetBeanProperty() {
 		assert 'Winkler' == gpm.getBeanProperty('name')
 		assert 'Andre' == gpm.getBeanProperty('surname')
 		assert 38 == gpm.getBeanProperty('age')
 	}
 
 	@Test
-	void testGroovyPresentationModelAddPropertyChangeListenerToBean() {
+	void testGroovyPresentationModel_AddPropertyChangeListenerToBean() {
 		def value = null
 		bean.addPropertyChangeListener({ event -> value = event.propertyName == 'name' ? event.newValue : null})
 		bean.name = 'Hallo Andre'

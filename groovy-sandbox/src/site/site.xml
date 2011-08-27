@@ -1,17 +1,19 @@
-<project name="Gluehloch Utilities">
+<project name="Groovy Swinger">
   <bannerLeft>
-    <name>Gluehloch</name>
-    <href>http://www.gluehloch.de/</href>
+    <name>Groovy Swinger</name>
+    <href>http://code.google.com/p/groovy-swinger/</href>
   </bannerLeft>
   <bannerRight>
     <name>Gluehloch</name>
     <src>http://maven.apache.org/images/apache-maven/project.png</src>
   </bannerRight>
+  <!--
   <skin>
     <groupId>de.gluehloch.maven.skins</groupId>
     <artifactId>gluehloch-maven-skin</artifactId>
     <version>1.0</version>
   </skin>
+   -->
 
   <publishDate format="dd MMM yyyy" />
   <body>

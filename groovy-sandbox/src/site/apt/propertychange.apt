@@ -67,7 +67,7 @@ public Person {
   []
 +------------------------------------------------------------------------------+
 class PropertyChangeSupportComposite {
-    private final delegate;
+    private final delegate
     private final pcs = new PropertyChangeSupport(this)
 
     PropertyChangeSupportComposite(def _delegate) {

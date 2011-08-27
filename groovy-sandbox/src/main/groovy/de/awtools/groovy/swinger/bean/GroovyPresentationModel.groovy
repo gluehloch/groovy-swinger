@@ -37,63 +37,66 @@ import java.beans.PropertyChangeListener
  */
 class GroovyPresentationModel {
 
-	/** Das Bean dessen Properties bearbeitet werden */
-	def bean
+    /** Das Bean dessen Properties bearbeitet werden */
+    def bean
 
-	/** Alle angelegten ValueHolders werden hier abgelegt. */
-	def valueHolders = [:]
+    /** Alle angelegten ValueHolders werden hier abgelegt. */
+    def valueHolders = [:]
 
-	/** Die Verbinder zwischen ValueModel und Bean-Eigenschaft. */
-	def connectors = []
+    /** Die Verbinder zwischen ValueModel und Bean-Eigenschaft. */
+    def connectors = []
 
-	/**
-	 * Das hier übergebene Bean muss PCL Eigenschaften besitzen. Entweder
-	 * auf natürliche Art und Weise oder über GroovyPropertyChangeSupportBuilder.
-	 *
-	 * @param _bean Das gewrappte Bean.
-	 */
-	GroovyPresentationModel(_bean) {
-		bean = _bean
-	}
+    /**
+     * Das hier übergebene Bean muss PCL Eigenschaften besitzen. Entweder
+     * auf natürliche Art und Weise oder über GroovyPropertyChangeSupportBuilder.
+     *
+     * TODO Validate the bean if it is enhanced by the <code>GroovyPropertyChangeSupportBuilder</code>
+     * builder.
+     *
+     * @param _bean Das gewrappte Bean.
+     */
+    GroovyPresentationModel(_bean) {
+        bean = _bean
+    }
 
-	/**
-	 * Liefert ein JGoodies ValueModel für eine Eigenschaft des gewrappten
-	 * Beans.
-	 *
-	 * @param propertyName Der Name der Eigenschaft.
-	 * @return Ein JGoodies ValueModel.
-	 */
-	ValueModel getModel(propertyName) {
-		if (!bean.metaClass.properties.find { it.name == propertyName }) {
-			throw new IllegalArgumentException("Unknown property ${propertyName}")
-		}
+    /**
+     * Liefert ein JGoodies ValueModel für eine Eigenschaft des gewrappten
+     * Beans.
+     *
+     * @param propertyName Der Name der Eigenschaft.
+     * @return Ein JGoodies ValueModel.
+     */
+    ValueModel getModel(propertyName) {
+        if (!bean.metaClass.properties.find { it.name == propertyName }) {
+            throw new IllegalArgumentException("Unknown property ${propertyName}")
+        }
 
-		def vh = valueHolders[propertyName]
-		if (!vh) {
-			vh = new ValueHolder()
-			valueHolders[propertyName] = vh
+        def vh = valueHolders[propertyName]
+        if (!vh) {
+            vh = new ValueHolder()
+            valueHolders[propertyName] = vh
 
-	        def pvmc = new PropertyValueModelConnector(
-	                valueModel: vh, bean: bean, propertyName: propertyName)
-	        pvmc.connect()
-	        connectors << pvmc
-		}
+            def pvmc = new PropertyValueModelConnector(
+                    valueModel: vh, bean: bean, propertyName: propertyName)
+            pvmc.connect()
+            connectors << pvmc
+        }
 
-		return vh
-	}
+        return vh
+    }
 
-	/**
-	 * Add a PropertyChangeListener to the bean.
-	 *
-	 * @param listener A PropertyChangeListener.
-	 */
-	def addPropertyChangeListener(listener) {
-	    def propertyNames = bean.metaClass.properties.collect { it.name } - ['class', 'metaClass']
+    /**
+     * Add a PropertyChangeListener to the bean.
+     *
+     * @param listener A PropertyChangeListener.
+     */
+    def addPropertyChangeListener(listener) {
+        def propertyNames = bean.metaClass.properties.collect { it.name } - ['class', 'metaClass']
 
-	    propertyNames.each { propertyName ->
-			bean.addPropertyChangeListener(propertyName, listener)	
-		}
-	}
+        propertyNames.each { propertyName ->
+            bean.addPropertyChangeListener(propertyName, listener)
+        }
+    }
 
     /**
      * Add a named PropertyChangeListener to the bean.
@@ -102,7 +105,7 @@ class GroovyPresentationModel {
      * @param listener A named PropertyChangeListener.
      */
     def addPropertyChangeListener(name, listener) {
-    	bean.addPropertyChangeListener(name, listener)
+        bean.addPropertyChangeListener(name, listener)
     }
 
     /**
@@ -112,19 +115,18 @@ class GroovyPresentationModel {
      */
     def removePropertyChangeListener(listener) {
         bean.removePropertyChangeListener(listener)
-//    	valueHolders.each { key, value ->
-//    		bean.removePropertyChangeListener(listener)
-//    	}
+        //    	valueHolders.each { key, value ->
+        //    		bean.removePropertyChangeListener(listener)
+        //    	}
     }
 
-	def getBeanProperty(propertyName) {
-		return bean.@"$propertyName"
-	}
+    def getBeanProperty(propertyName) {
+        return bean.@"$propertyName"
+    }
 
-	def unbind() {
-		connectors.each { pvmc ->
-			pvmc.disconnect()
-		}
- 	}
-
+    def unbind() {
+        connectors.each { pvmc ->
+            pvmc.disconnect()
+        }
+    }
 }
