@@ -47,7 +47,7 @@ class GroovyPresentationModelTest {
 
     @Test
     void testGroovyPresentationModel_checkBuilder() {
-        
+		assert GroovyPropertyChangeSupportBuilder.hasPropertyChangeSupport()
     }
 
     @Test
