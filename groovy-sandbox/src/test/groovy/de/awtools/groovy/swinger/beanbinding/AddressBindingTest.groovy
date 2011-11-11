@@ -2,7 +2,7 @@
 * $Id$
 * ============================================================================
 * Project groovy-swinger
-* Copyright (c) 2008-2010 by Andre Winkler. All rights reserved.
+* Copyright (c) 2008-2011 by Andre Winkler. All rights reserved.
 * ============================================================================
 *          GNU LESSER GENERAL PUBLIC LICENSE
 *  TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
@@ -27,6 +27,8 @@ package de.awtools.groovy.swinger.beanbinding
 
 import java.beans.PropertyChangeListener
 
+import de.awtools.groovy.swinger.bean.GroovyPresentationModel
+
 import org.junit.Test
 
 /**
@@ -49,6 +51,15 @@ class AddressBindingTest {
 		address.addPropertyChangeListener(pcl)
 
 		address.street = 'Mensingstr. 29a'
+	}
+
+	@Test
+	void testAddressBindingWithGroovyPresentationModel() {
+		def address = new Address()
+		def gpm = new GroovyPresentationModel(address)
+		def vm = gpm.getModel("street")
+		address.setStreet("Reeseberg")
+		assert vm.getValue() == "Reeseberg"
 	}
 
 }
