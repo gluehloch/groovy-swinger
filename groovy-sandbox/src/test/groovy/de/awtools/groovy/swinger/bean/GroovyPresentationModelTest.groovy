@@ -25,6 +25,8 @@
 
 package de.awtools.groovy.swinger.bean
 
+import static org.junit.Assert.*
+
 import javax.swing.JTextField
 
 import org.junit.Assert
@@ -47,7 +49,11 @@ class GroovyPresentationModelTest {
 
     @Test
     void testGroovyPresentationModel_checkBuilder() {
-		assert GroovyPropertyChangeSupportBuilder.hasPropertyChangeSupport()
+		def someObject = new Person(name : 'Winkler', surname : 'Andre', age : 38)
+		assertFalse GroovyPropertyChangeSupportBuilder.hasPropertyChangeSupport(someObject)
+		
+		GroovyPropertyChangeSupportBuilder.preparePCLMechanics(someObject)
+		assertTrue GroovyPropertyChangeSupportBuilder.hasPropertyChangeSupport(someObject)
     }
 
     @Test
