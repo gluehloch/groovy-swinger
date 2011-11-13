@@ -2,7 +2,7 @@
  * $Id$
  * ============================================================================
  * Project groovy-swinger
- * Copyright (c) 2008-2010 by Andre Winkler. All rights reserved.
+ * Copyright (c) 2008-2011 by Andre Winkler. All rights reserved.
  * ============================================================================
  *          GNU LESSER GENERAL PUBLIC LICENSE
  *  TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
@@ -37,13 +37,22 @@ import java.beans.PropertyChangeSupport
  */
 class GroovyPropertyChangeSupportBuilder {
 
+	static def hasPropertyChangeSupport(object) {
+		List<MetaMethod> someMethods = object.metaClass.getMetaMethods()
+		println "my methods: " + someMethods[0].toString()
+		
+		List<MetaMethod> metaMethod = object.metaClass.respondsTo("firePropertyChangeEvent", "somePropertyName", "oldValue", "oldValue")
+		return metaMethod.size() > 0
+		//return object.metaClass.getMetaMethod("firePropertyChangeEvent") != null
+	}
+	
 	/**
 	 * Es wird einer einzelnen bestehenden Objektinstanz Eigenschaften
 	 * hinzugefügt.
 	 * Siehe auch http://groovy.codehaus.org/Per-Instance+MetaClass.
 	 */
     static def preparePCLMechanics(objectToPimp) {
-    	def emc = new ExpandoMetaClass( objectToPimp.class, false )
+    	def emc = new ExpandoMetaClass(objectToPimp.class, false)
 
         def support = new GroovyPropertyChangeSupport(wrappedObject: objectToPimp)
     	emc.propertyChangeSupport << support
