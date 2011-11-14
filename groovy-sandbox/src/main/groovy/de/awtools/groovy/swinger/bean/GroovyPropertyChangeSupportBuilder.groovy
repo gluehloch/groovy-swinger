@@ -37,15 +37,6 @@ import java.beans.PropertyChangeSupport
  */
 class GroovyPropertyChangeSupportBuilder {
 
-	static def hasPropertyChangeSupport(object) {
-		List<MetaMethod> someMethods = object.metaClass.getMetaMethods()
-		println "my methods: " + someMethods[0].toString()
-		
-		List<MetaMethod> metaMethod = object.metaClass.respondsTo("firePropertyChangeEvent", "somePropertyName", "oldValue", "oldValue")
-		return metaMethod.size() > 0
-		//return object.metaClass.getMetaMethod("firePropertyChangeEvent") != null
-	}
-	
 	/**
 	 * Es wird einer einzelnen bestehenden Objektinstanz Eigenschaften
 	 * hinzugefügt.

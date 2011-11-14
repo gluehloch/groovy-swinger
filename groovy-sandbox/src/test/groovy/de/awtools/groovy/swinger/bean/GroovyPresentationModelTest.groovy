@@ -48,15 +48,6 @@ class GroovyPresentationModelTest {
 	def gpm
 
     @Test
-    void testGroovyPresentationModel_checkBuilder() {
-		def someObject = new Person(name : 'Winkler', surname : 'Andre', age : 38)
-		assertFalse GroovyPropertyChangeSupportBuilder.hasPropertyChangeSupport(someObject)
-		
-		GroovyPropertyChangeSupportBuilder.preparePCLMechanics(someObject)
-		assertTrue GroovyPropertyChangeSupportBuilder.hasPropertyChangeSupport(someObject)
-    }
-
-    @Test
     void testGroovyPresentationModel_Bind() {
 		def name = gpm.getModel('name')
 		name.value = 'Berlin'
