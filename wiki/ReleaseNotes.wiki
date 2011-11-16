@@ -4,7 +4,7 @@
 
 = Release Notes =
 
-== Changed in groovy-swinger-0.4.0 (Under Construction) ==
+== Changed in groovy-swinger-0.4.0-M1 (Under Construction) ==
  * Changed the package naming to {{{de.awtools.groovy.swinger}}}.
  * Added a DSL like builder to create Textfields.
  * Update to GMaven 1.3 and Groovy 1.8.4
