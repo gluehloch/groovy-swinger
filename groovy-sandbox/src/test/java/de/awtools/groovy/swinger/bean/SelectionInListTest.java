@@ -51,7 +51,6 @@ import de.awtools.groovy.swinger.bean.SelectionInListModel;
  */
 public class SelectionInListTest {
 
-    @SuppressWarnings("unchecked")
     @Test
     public void testSelectionInListWithGroovyPresentationModel() {
         final String[] fruits = new String[] { "apfel", "birne", "pflaume"};
@@ -63,9 +62,9 @@ public class SelectionInListTest {
         GroovyPropertyChangeSupportBuilder.preparePCLMechanics(silm);
         GroovyPresentationModel gpm = new GroovyPresentationModel(silm);        
 
-        EventListModel elm = new EventListModel(silm.getSelectionList());
-        SelectionInList sil = new SelectionInList(elm, gpm.getModel("selectedItem"));
-        JComboBox combobox = new JComboBox(new ComboBoxAdapter(sil));
+        EventListModel<String> elm = new EventListModel<String>(silm.getSelectionList());
+        SelectionInList<String> sil = new SelectionInList<String>(elm, gpm.getModel("selectedItem"));
+        JComboBox combobox = new JComboBox(new ComboBoxAdapter<String>(sil));
 
         assertEquals(0, combobox.getSelectedIndex());
         assertEquals("apfel", combobox.getSelectedItem());
