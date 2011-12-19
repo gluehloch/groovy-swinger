@@ -25,6 +25,8 @@
 
 package example.groovy.swinger.builder;
 
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Test;
 
 import de.awtools.groovy.swinger.builder.Textfield;
@@ -41,6 +43,7 @@ public class TextfieldTest {
     public void testTextfield() {
         GGTextfield textfield = GGTextfield.TextfieldBuilder.textfield("name")
             .columns(20).mandatory().editable();
+        assertEquals("name", textfield.getName());
     }
 
 }
