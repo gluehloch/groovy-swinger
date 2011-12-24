@@ -1,0 +1,45 @@
+Groovier Swing Programming
+
+* Anwendung
+
+  Person sei eine Groovy Bean Klasse.
+
++------------------------------------------------------------------------------+
+class Person {
+    def name
+    def surname
+    def age
+    def gender
+}
++------------------------------------------------------------------------------+
+
+  Der folgende Quelltext ist eine typische Anwendung. Person wird mit
+  der Klasse GroovyPropertyChangeSupportBuilder um PropertyChangeListener
+  Eigenschaften aufgepeppt. Anschließend wird mit JGoodies Data Binding die
+  Groovy Bean an ein Swing TextField angeschlossen.
+  
++------------------------------------------------------------------------------+
+// import static org.junit.Assert.assertEquals;
+// import javax.swing.JTextField;
+// import org.junit.Test;
+// import com.jgoodies.binding.adapter.Bindings;
+// import com.jgoodies.binding.value.ValueModel;
+
+Person person = new Person();
+person.setAge(39);
+person.setName("Winkler");
+
+GroovyPropertyChangeSupportBuilder.preparePCLMechanics(person);
+GroovyPresentationModel gpm = new GroovyPresentationModel(person);
+ValueModel vm = (ValueModel) gpm.getModel("name");
+vm.setValue("Hallo");
+assertEquals("expected 'Hallo'", vm.getValue(), person.getName());
+
+JTextField textField = new JTextField();
+Bindings.bind(textField, vm);
+assertEquals(person.getName(), textField.getText());
+textField.setText("Hamburg");
+assertEquals(person.getName(), "Hamburg");
++------------------------------------------------------------------------------+
+
+ TODO
