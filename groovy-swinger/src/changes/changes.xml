@@ -6,7 +6,7 @@
   </properties>
   <body>
     <release version="groovy-swing-0.4.0" date="2011-12-24"
-         description="Evolution">
+         description="Evolution and Groovy update">
       <action dev="andrewinkler" type="update" date="2011-12-17">
         Update to Groovy 1.8.4, Eclipse-Maven-Groovy compiler plugin.
         Changed the Eclipse Maven plugin.
