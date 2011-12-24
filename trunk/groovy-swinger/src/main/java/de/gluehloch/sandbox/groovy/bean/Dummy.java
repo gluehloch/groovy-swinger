@@ -34,4 +34,11 @@ package de.gluehloch.sandbox.groovy.bean;
  */
 class Dummy {
 
+	/**
+	 * Dummy method.
+	 */
+	public static void dummy() {
+		return;
+	}
+
 }
