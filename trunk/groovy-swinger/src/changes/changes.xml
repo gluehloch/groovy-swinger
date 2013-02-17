@@ -5,6 +5,13 @@
     <author email="andre.winkler@web.de">Andre Winkler</author>
   </properties>
   <body>
+    <release version="groovy-swing-0.5.0" date="2013-??-??"
+         description="Evolution and Groovy update">
+      <action dev="andrewinkler" type="update" date="2013-02-17">
+        New Groovy and Java versions.
+      </action>
+    </release>
+
     <release version="groovy-swing-0.4.0" date="2011-12-24"
          description="Evolution and Groovy update">
       <action dev="andrewinkler" type="update" date="2011-12-17">
