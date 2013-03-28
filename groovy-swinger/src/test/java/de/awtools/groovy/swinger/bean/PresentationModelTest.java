@@ -26,7 +26,6 @@
 package de.awtools.groovy.swinger.bean;
 
 import static org.fest.assertions.Assertions.assertThat;
-
 import static org.junit.Assert.assertEquals;
 
 import java.beans.PropertyChangeEvent;
@@ -72,23 +71,39 @@ public class PresentationModelTest {
 		final String theOldValue = "the_old_value";
 		final String theNewValue = "the_new_value";
 
-		// That works fine with #setProperty("name", value)
-		person.setProperty("name", theOldValue);
-		assertEquals(theOldValue, vm.getValue());
-		assertEquals(theOldValue, gpm.getModel("name").getValue());
-		
-		assertThat(theOldValue).isEqualTo(vm.getValue().toString());
+		person.setName("Winkler");
 
+		//
+		// Property change propagation works fine with #setProperty(...)
+		//
+		person.setProperty("name", "My new name");
+		assertThat(person.getName()).isEqualTo("My new name");
+		// => ValueModel has changed!!!
+		assertThat(vm.getValue()).isEqualTo("My new name");
+		assertThat(gpm.getModel("name").getValue()).isEqualTo("My new name");
+
+		//
+		// But with #setName(...) the change will be lost!
+		//
+		person.setName("Winkler");
+		assertThat(person.getName()).isEqualTo("Winkler");
+		// => ValueModel has not changed!!!
+		assertThat(vm.getValue()).isNotEqualTo("Winkler");
+		ValueModel newPersonNameValueModel = gpm.getModel("name");
+		assertEquals(newPersonNameValueModel, vm);
+		assertEquals(newPersonNameValueModel.getValue(), "My new name");
+		//assertThat(newPersonNameValueModel.getValue()).isNotEqualTo("My new name");
+		
 		// Direct method call of the property does not work #setName(...)
 		person.setName(theNewValue);
 		assertEquals(theNewValue, person.getName());
 
 		// ... but the ValueModel holds the old value!
-		assertEquals(theOldValue, vm.getValue());
-		assertEquals(theOldValue, gpm.getModel("name").getValue());
+		assertEquals("My new name", vm.getValue());
+		assertEquals("My new name", gpm.getModel("name").getValue());
 
-		person.setProperty("name", theNewValue);
-		assertEquals(theNewValue, vm.getValue());
+		person.setProperty("name", "Groth");
+		assertEquals("Groth", vm.getValue());
 	}
 
 	@Test
