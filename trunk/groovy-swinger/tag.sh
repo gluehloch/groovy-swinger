@@ -2,7 +2,12 @@
 #
 # !!! Take care for the release name !!!
 #
-RELEASE_FLAG="groovy-swinger-0.4.0-release"
+
+function pause(){
+   read -p "$*"
+}
+
+RELEASE_FLAG="groovy-swinger-0.5.0-release"
 
 PROJECT_NAME="groovy-swinger"
 BASE_URL="https://groovy-swinger.googlecode.com/svn"
@@ -16,6 +21,8 @@ echo ""
 echo "Tag /*and branch*/:"
 echo "    $RELEASE_FLAG"
 echo ""
+
+pause 'Press [Enter] key to continue...'
 
 #svn delete $BASE_URL/$PROJECT_NAME/tags/$RELEASE_FLAG -m "Error tag"
 #svn delete $BASE_URL/$PROJECT_NAME/branches/$RELEASE_FLAG -m "Error branch"
