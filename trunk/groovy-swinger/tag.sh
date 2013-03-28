@@ -18,7 +18,7 @@ echo ""
 echo "Project: $PROJECT_NAME"
 echo "Version: $RELEASE_FLAG"
 echo ""
-echo "Tag and branch"
+echo "Tag /* and branch */"
 echo "    $RELEASE_FLAG"
 echo ""
 
@@ -30,8 +30,8 @@ pause 'Press [Enter] key to continue...'
 svn copy $BASE_URL/trunk/$PROJECT_NAME $BASE_URL/tags/$RELEASE_FLAG \
   -m "TAG: $RELEASE_FLAG"
   
-svn copy $BASE_URL/trunk/$PROJECT_NAME $BASE_URL/branches/$PROJECT_NAME/$RELEASE_FLAG \
-  -m "BRANCH: $RELEASE_FLAG"
+#svn copy $BASE_URL/trunk/$PROJECT_NAME $BASE_URL/branches/$PROJECT_NAME/$RELEASE_FLAG \
+#  -m "BRANCH: $RELEASE_FLAG"
 
 
 echo "....Ready."
